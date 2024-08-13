@@ -172,7 +172,14 @@ main {
 *:after {
   box-sizing: border-box;
 }
-
+div,
+nav {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
+}
 /* Font */
 @font-face {
   font-family: "Pretendard";

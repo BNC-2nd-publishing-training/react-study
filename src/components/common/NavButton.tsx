@@ -17,7 +17,7 @@ const NavButton = ({
 }: INavButton) => {
   return (
     <Container selected={selected} {...props}>
-      {count && <Badge count={count} />}
+      {title === "All" && count && <Badge count={count} />}
       <TitleContent selected={selected}>{title}</TitleContent>
     </Container>
   );
@@ -35,6 +35,7 @@ const Container = styled.button<{
   justify-content: center;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
 
   border-bottom: ${({ selected }) =>
     selected ? `1px solid ${color.primary20}` : "1px solid transparent"};

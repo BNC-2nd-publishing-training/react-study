@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 
-import { ListStatusType } from "@/utils/interfaces/listStatusType";
 import CheckBox from "./CheckBox";
 import Tags from "./Tags";
+import { ITodoListType } from "@/utils/interfaces/TodoListType";
 
-interface IListProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  status: ListStatusType;
-  label: string;
-}
+interface IListProps
+  extends React.InputHTMLAttributes<HTMLInputElement>,
+    ITodoListType {}
+
 const List = ({ status, label, ...props }: IListProps) => {
   return (
     <Container>
