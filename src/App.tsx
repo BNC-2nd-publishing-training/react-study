@@ -1,27 +1,16 @@
-import styled from "@emotion/styled";
-import { theme } from "@/styles/theme";
+import { TextArea } from "./components";
 
 const App = () => {
-    return (
-        <Container>
-            <h1>ToDoList</h1>
-        </Container>
-    );
+  return (
+    <>
+      <div style={{ display: "flex" }}>
+        <div>ad</div>
+        <TextArea placeholder="Task 제목을 입력해주세요" />
+        <div>ad</div>
+      </div>
+      <div>asd</div>
+    </>
+  );
 };
-
-const Container = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    h1 {
-        color: ${theme.color.blue30};
-        font-size: ${theme.font.titleLarge.fontSize};
-        font-weight: ${theme.font.titleLarge.fontWeight};
-        line-height: ${theme.font.titleLarge.lineHeight};
-    }
-`;
 
 export default App;
