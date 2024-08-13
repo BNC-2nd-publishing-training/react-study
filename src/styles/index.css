@@ -2,19 +2,19 @@
 
 html,
 body {
-    width: 100%;
-    min-width: 1600px;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
-    font-weight: 400;
-    color: #111;
-    font-family: "Pretendard", "본고딕", Dotum, "돋움", Gulim, "굴림", Tahoma, Verdana, AppleGothic, UnDotum, Arial;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #fff;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: #111;
+  font-family: "Pretendard", "본고딕", Dotum, "돋움", Gulim, "굴림", Tahoma,
+    Verdana, AppleGothic, UnDotum, Arial;
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
 }
 div,
 dl,
@@ -38,10 +38,10 @@ p,
 blockquote,
 select,
 textarea {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-text-size-adjust: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: none;
 }
 table,
 th,
@@ -50,25 +50,26 @@ input,
 textarea,
 select,
 button {
-    box-sizing: border-box;
-    font-size: 18px;
-    font-family: "Pretendard", "본고딕", Dotum, "돋움", Gulim, "굴림", Tahoma, Verdana, AppleGothic, UnDotum, Arial;
-    -webkit-text-size-adjust: none;
+  box-sizing: border-box;
+  font-size: 18px;
+  font-family: "Pretendard", "본고딕", Dotum, "돋움", Gulim, "굴림", Tahoma,
+    Verdana, AppleGothic, UnDotum, Arial;
+  -webkit-text-size-adjust: none;
 }
 th,
 td {
-    word-break: break-all;
-    word-wrap: break-word;
-    -webkit-text-size-adjust: none;
+  word-break: break-all;
+  word-wrap: break-word;
+  -webkit-text-size-adjust: none;
 }
 table {
-    font-size: 14px;
-    border-spacing: 0;
-    border-collapse: collapse;
-    -webkit-text-size-adjust: none;
-    border: 0;
-    table-layout: fixed;
-    box-sizing: border-box;
+  font-size: 14px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  -webkit-text-size-adjust: none;
+  border: 0;
+  table-layout: fixed;
+  box-sizing: border-box;
 }
 address,
 caption,
@@ -77,17 +78,17 @@ code,
 dfn,
 em,
 var {
-    font-style: normal;
-    font-weight: normal;
-    -webkit-text-size-adjust: none;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-text-size-adjust: none;
 }
 em {
-    font-weight: inherit;
+  font-weight: inherit;
 }
 ol,
 ul,
 li {
-    list-style: none;
+  list-style: none;
 }
 h1,
 h2,
@@ -95,58 +96,58 @@ h3,
 h4,
 h5,
 h6 {
-    font-size: 100%;
-    box-sizing: border-box;
+  font-size: 100%;
+  box-sizing: border-box;
 }
 legend,
 caption {
-    visibility: hidden;
-    overflow: hidden;
-    line-height: 0;
-    width: 0;
-    height: 0;
-    margin: 0;
-    padding: 0;
-    text-indent: -99999px;
-    font-size: 0;
+  visibility: hidden;
+  overflow: hidden;
+  line-height: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  text-indent: -99999px;
+  font-size: 0;
 }
 img,
 fieldset {
-    border: 0 none;
+  border: 0 none;
 }
 span,
 em,
 strong {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 a {
-    color: #111;
-    box-sizing: border-box;
+  color: #111;
+  box-sizing: border-box;
 }
 a:link,
 a:visited,
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 input,
 img {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 input,
 button {
-    border-radius: 0;
-    -webkit-appearance: none;
-    border: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  border: 0;
 }
 button {
-    background-color: transparent;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    font-size: 18px;
-    label {
-        vertical-align: middle;
-    }
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font-size: 18px;
+  label {
+    vertical-align: middle;
+  }
 }
 
 /* html5 */
@@ -162,44 +163,44 @@ menu,
 nav,
 section,
 main {
-    display: block;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  display: block;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 *:before,
 *:after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* Font */
 @font-face {
-    font-family: "Pretendard";
-    font-weight: 500;
-    src: url("../assets/fonts/Pretendard-Regular.woff2") format("woff2"),
-        url("../assets/fonts/Pretendard-Regular.woff") format("woff");
-    font-display: swap;
+  font-family: "Pretendard";
+  font-weight: 500;
+  src: url("../assets/fonts/Pretendard-Regular.woff2") format("woff2"),
+    url("../assets/fonts/Pretendard-Regular.woff") format("woff");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "Pretendard";
-    font-weight: 500;
-    src: url("../assets/fonts/Pretendard-Medium.woff2") format("woff2"),
-        url("../assets/fonts/Pretendard-Medium.woff") format("woff");
-    font-display: swap;
+  font-family: "Pretendard";
+  font-weight: 500;
+  src: url("../assets/fonts/Pretendard-Medium.woff2") format("woff2"),
+    url("../assets/fonts/Pretendard-Medium.woff") format("woff");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "Pretendard";
-    font-weight: 600;
-    src: url("../assets/fonts/Pretendard-SemiBold.woff2") format("woff2"),
-        url("../assets/fonts/Pretendard-SemiBold.woff") format("woff");
-    font-dispay: swap;
+  font-family: "Pretendard";
+  font-weight: 600;
+  src: url("../assets/fonts/Pretendard-SemiBold.woff2") format("woff2"),
+    url("../assets/fonts/Pretendard-SemiBold.woff") format("woff");
+  font-dispay: swap;
 }
 @font-face {
-    font-family: "Pretendard";
-    font-weight: 700;
-    src: url("../assets/fonts/Pretendard-Bold.woff2") format("woff2"),
-        url("../assets/fonts/Pretendard-Bold.woff") format("woff");
-    font-display: swap;
+  font-family: "Pretendard";
+  font-weight: 700;
+  src: url("../assets/fonts/Pretendard-Bold.woff2") format("woff2"),
+    url("../assets/fonts/Pretendard-Bold.woff") format("woff");
+  font-display: swap;
 }
