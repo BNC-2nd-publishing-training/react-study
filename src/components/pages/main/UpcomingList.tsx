@@ -1,35 +1,35 @@
+import styled from "@emotion/styled";
 import { List } from "@/components/common";
 import { color, font } from "@/styles";
 import { ITodoListType } from "@/utils/interfaces/TodoListType";
-import styled from "@emotion/styled";
-const DummyData: ITodoListType[] = [
-  {
-    status: "Approved",
-    label: "간지나게 숨쉬기",
-  },
-  {
-    status: "In progress",
-    label: "간지나게 숨쉬기",
-  },
-  {
-    status: "In review",
-    label: "간지나게 숨쉬기",
-  },
-  {
-    status: "Waiting",
-    label: "간지나게 숨쉬기",
-  },
-];
-const UpcomingList = () => {
+import { changeCheckStatus } from "@/utils/functions/changeTodoList";
+
+interface IUpcomingList {
+  todoList: ITodoListType[];
+  setTodoList: React.Dispatch<React.SetStateAction<ITodoListType[]>>;
+}
+const UpcomingList = ({ todoList, setTodoList }: IUpcomingList) => {
+  const filteredTodoList = todoList
+    .map((item, idx) => ({ ...item, originalIdx: idx }))
+    .filter((item) => item.status === "Waiting");
   return (
     <Container>
       <h1>Upcoming Tasks</h1>
       <ListContainer>
-        {DummyData.map((v, idx) => (
+        {filteredTodoList.map((item) => (
           <List
-            status={v.status}
-            label={v.label}
-            key={idx + v.label + v.status}
+            {...item}
+            key={item.originalIdx + item.label + item.status}
+            onChange={() =>
+              changeCheckStatus({
+                todoList,
+                setTodoList,
+                idx: item.originalIdx,
+              })
+            }
+            todoList={todoList}
+            setTodoList={setTodoList}
+            idx={item.originalIdx}
           />
         ))}
       </ListContainer>

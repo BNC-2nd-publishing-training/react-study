@@ -1,42 +1,38 @@
+import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
+
 import { List, NavButton } from "@/components/common";
+
 import { Storage } from "@/utils/functions/localstoarge";
 import { ListStatusType } from "@/utils/interfaces/ListStatusType";
 import { ITodoListType } from "@/utils/interfaces/TodoListType";
-import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import { changeCheckStatus } from "@/utils/functions/changeTodoList";
 
 type NavListType = ListStatusType | "All";
 const navList: NavListType[] = ["All", "Approved", "In progress", "In review"];
 
-const DummyData: ITodoListType[] = [
-  {
-    status: "Approved",
-    label: "간지나게 숨쉬기",
-  },
-  {
-    status: "In progress",
-    label: "간지나게 숨쉬기",
-  },
-  {
-    status: "In review",
-    label: "간지나게 숨쉬기",
-  },
-  {
-    status: "Waiting",
-    label: "간지나게 숨쉬기",
-  },
-];
+interface ITodoListProps {
+  todoList: ITodoListType[];
+  setTodoList: React.Dispatch<React.SetStateAction<ITodoListType[]>>;
+}
 
-const TodoList = () => {
+const TodoList = ({ todoList, setTodoList }: ITodoListProps) => {
   const NavType = Storage.getItem("type") || "All";
   const [nowNav, setNowNav] = useState(NavType);
 
   const onClickNav = (data: NavListType) => {
     setNowNav(data);
   };
+
   useEffect(() => {
     Storage.setItem("type", nowNav);
   }, [nowNav]);
+
+  const filteredTodoList = todoList
+    .map((item, idx) => ({ ...item, originalIdx: idx }))
+    .filter((item) =>
+      nowNav === "All" ? item.status !== "Waiting" : item.status === nowNav
+    );
 
   return (
     <Container>
@@ -47,15 +43,25 @@ const TodoList = () => {
             key={nav}
             selected={nowNav === nav}
             onClick={() => onClickNav(nav)}
+            count={todoList.length}
           />
         ))}
       </NavFilter>
       <TodoContainer>
-        {DummyData.map((v, idx) => (
+        {filteredTodoList.map((v, idx) => (
           <List
-            status={v.status}
-            label={v.label}
             key={idx + v.label + v.status}
+            {...v}
+            onChange={() =>
+              changeCheckStatus({
+                todoList,
+                setTodoList,
+                idx: v.originalIdx,
+              })
+            }
+            todoList={todoList}
+            setTodoList={setTodoList}
+            idx={v.originalIdx}
           />
         ))}
       </TodoContainer>

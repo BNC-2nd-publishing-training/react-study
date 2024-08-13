@@ -2,11 +2,21 @@ import { color, font } from "@/styles";
 import styled from "@emotion/styled";
 interface ICheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  isChecked: boolean;
 }
-const CheckBox = ({ label, ...props }: ICheckBoxProps) => {
+const CheckBox = ({ label, isChecked, onChange, ...props }: ICheckBoxProps) => {
+  const stopPropagation = (event: React.MouseEvent) => {
+    event.stopPropagation();
+  };
   return (
     <Container>
-      <CheckBoxInput type="checkbox" {...props} />
+      <CheckBoxInput
+        type="checkbox"
+        checked={isChecked}
+        onChange={onChange}
+        onClick={stopPropagation}
+        {...props}
+      />
       <span>{label}</span>
     </Container>
   );

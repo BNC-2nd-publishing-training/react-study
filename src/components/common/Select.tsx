@@ -3,18 +3,19 @@ import styled from "@emotion/styled";
 
 import { color, font } from "@/styles";
 import { css } from "@emotion/react";
+import { ListStatusType } from "@/utils/interfaces/ListStatusType";
 
 interface ISelectProps {
   defaultText: string;
-  options: string[];
-  value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  options: ListStatusType[];
+  value: ListStatusType;
+  setValue: React.Dispatch<React.SetStateAction<ListStatusType>>;
 }
 
 const Select = ({ defaultText, options, value, setValue }: ISelectProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const onChangeValue = (value: string) => {
+  const onChangeValue = (value: ListStatusType) => {
     setValue(value);
     setIsOpen(false);
   };
@@ -27,7 +28,9 @@ const Select = ({ defaultText, options, value, setValue }: ISelectProps) => {
       {isOpen && (
         <OptionContainer>
           {options.map((o) => (
-            <ValueList onClick={() => onChangeValue(o)}>{o}</ValueList>
+            <ValueList onClick={() => onChangeValue(o)} key={o}>
+              {o}
+            </ValueList>
           ))}
         </OptionContainer>
       )}

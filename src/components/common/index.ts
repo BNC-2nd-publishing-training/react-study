@@ -7,3 +7,4 @@ export { default as AddButton } from "./AddButton";
 export { default as GeneralButton } from "./GeneralButton";
 export { default as Select } from "./Select";
 export { default as TextArea } from "./TextArea";
+export { default as Modal } from "./Modal";
