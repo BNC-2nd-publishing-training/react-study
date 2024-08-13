@@ -4,10 +4,14 @@ import { TagStatus } from "./type";
 import styled from "@emotion/styled";
 
 export const TagContainer = styled.div<{ status: TagStatus }>`
+  display: flex;
   width: 75px;
   height: 28px;
   border-radius: 14px;
+  ${theme.font.textSmall};
   text-align: center;
+  align-items: center;
+  justify-content: center;
   ${({ status }) => {
     switch (status) {
       case "approved":

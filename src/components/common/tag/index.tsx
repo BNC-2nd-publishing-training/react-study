@@ -1,8 +1,8 @@
 import { TagContainer } from "./style";
 import { TagProps } from "./type";
 
-const TagComponent = ({ text, status }: TagProps) => {
-  return <TagContainer status={status}>{text}</TagContainer>;
+const Tag = ({ status }: TagProps) => {
+  return <TagContainer status={status}>{status}</TagContainer>;
 };
 
-export default TagComponent;
+export default Tag;

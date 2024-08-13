@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 export type TagStatus = "approved" | "in-progress" | "in-review" | "waiting";
 
 export interface TagProps {
-  text: string;
   status: TagStatus;
 }
 
