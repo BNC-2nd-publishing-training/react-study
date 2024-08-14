@@ -1,34 +1,41 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-import Header from "@/components/Header";
 import TabList from "@/components/Tab/TabList";
 import TodoList from "@/components/Todo/TodoList";
 import UpCommingList from "@/components/Todo/UpcomingList";
 import { useState } from "react";
-import CreactTaskModal from "@/components/Modal/CreatTaskModal";
+import TitleText from "@/components/Text/TitleText";
+import AddTodoBtn from "@/components/Button/AddTodoBtn";
+import CreatTaskModal from "@/components/Modal/CreatTaskModal";
+import EditTaskModal from "@/components/Modal/EditTaskModal";
 
 const TodoApp = () => {
-    // const [popupVisible, setPopupVisible] = useState(false)
+    const [ createPopup, setCreatePopup] = useState(false)
+    const [ editPopup, setEditPopup] = useState(false)
 
-    // const handlePopupOpen = () => {
-    //     setPopupVisible(true);
-    // };
+    const createPopupOpen = () => setCreatePopup(true);
     
-    //   const handlePopupClose = () => {
-    //     setPopupVisible(false);
-    //   };
+    const createPopupClose = () => setCreatePopup(false);
+
+    const editPopupOpen = () => setEditPopup(true);
+
+    const editPopupClose = () => setEditPopup(false);
 
     return(
         <Container>
             <TodoBox>
-                <Header/>
+                <HeaderStyle>
+                    <TitleText text="Today Task"/>
+                    <AddTodoBtn onClick={createPopupOpen}/>
+                </HeaderStyle>
                 <TabList/>
                 <ScrollBox>
-                    <TodoList/>
-                    <UpCommingList/>
+                    <TodoList onClick={editPopupOpen}/>
+                    <UpCommingList onClick={editPopupOpen}/>
                 </ScrollBox>
             </TodoBox>
-            {/* {popupVisible && <CreactTaskModal onClose={handlePopupClose}/>} */}
+            {createPopup && <CreatTaskModal onClose={createPopupClose}/>}
+            {editPopup && <EditTaskModal onClose={editPopupClose}/>}
         </Container>
     );
 };
@@ -49,6 +56,13 @@ const TodoBox = styled.div`
     height: 80vh;
     border-radius: 10px;
     background-color: ${theme.color.white};
+`;
+
+const HeaderStyle = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 50px 0 50px;
 `;
 
 const ScrollBox = styled.div`
