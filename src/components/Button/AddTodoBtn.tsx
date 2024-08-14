@@ -5,19 +5,13 @@ import { Icon } from '@iconify/react';
 import { PopupProps } from '../../utils/interfaces/PopupProps'
 
 const AddTodoBtn = (props: PopupProps) => {
-    // const { onClick, onClose, openPopup = false } = props
-
-    // const handleBtnClick = () => {
-    //     openPopup(true)
-    // }
 
     return(
-        // <AddBtn onClick={handleBtnClick}>
-        <AddBtn>
+        <AddBtn onClick={props.onClick}>
             <Icon icon="ic:round-add"/>
         </AddBtn>
     );
-}
+};
 
 const AddBtn = styled.div`
     width: 50px;
@@ -30,5 +24,6 @@ const AddBtn = styled.div`
     box-shadow: rgb(98, 60, 231, 0.5) 0 2px 10px;
     color: ${theme.color.white};
     font-size: 28px;
+    cursor: pointer;
 `;
 export default AddTodoBtn;
