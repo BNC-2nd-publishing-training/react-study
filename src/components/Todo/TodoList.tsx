@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
 import Todo from "./Todo";
+import { PopupProps } from "@/utils/interfaces/PopupProps";
 
-const TodoList = () => {
+const TodoList = (props: PopupProps) => {
     return(
         <TodoContainer>
-            <Todo/>
-            <Todo/>
-            <Todo/>
-            <Todo/>
-            <Todo/>
+            <Todo onClick={props.onClick}/>
+            <Todo onClick={props.onClick}/>
+            <Todo onClick={props.onClick}/>
+            <Todo onClick={props.onClick}/>
+            <Todo onClick={props.onClick}/>
         </TodoContainer>
     );
 };

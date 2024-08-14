@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import Todo from "./Todo";
 import { theme } from "@/styles/theme";
+import { PopupProps } from "@/utils/interfaces/PopupProps";
 
-const UpCommingList = () => {
+const UpCommingList = (props:PopupProps) => {
     return(
         <UpCommingContainer>
             <Text>UpComming Task</Text>
