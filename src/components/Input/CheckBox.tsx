@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import { TodoProps } from "@/utils/interfaces/TodoProps";
+import { PopupProps } from "@/utils/interfaces/PopupProps";
 import { theme } from "@/styles/theme";
 
-const CheckBox = (props: TodoProps) => {
+const CheckBox = (props: TodoProps, props2: PopupProps) => {
     return(
-        <LabelStyle htmlFor={props.text}>
+        <LabelStyle htmlFor={props.text} onClick={props2.onClick}>
             <InputStyle type="checkbox" id={props.text} name={props.text} ></InputStyle>
             <TodoText>{props.text}</TodoText>
         </LabelStyle>
@@ -21,6 +22,7 @@ const InputStyle = styled.input`
     border-radius: 2px;
     width: 16px;
     height: 16px;
+    cursor: pointer;
 
     &:checked {
         border-color: transparent;
