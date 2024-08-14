@@ -23,6 +23,7 @@ const TabStyle = styled.div<{ isActive : boolean }>`
     width: 100%;
     color: ${({isActive}) => (isActive ? theme.color.black : theme.color.gray50)};
     border-bottom: 1px solid ${({isActive}) => (isActive ? theme.color.primary20 : theme.color.white)};
+    cursor: pointer;
 `;
 
 const AllContainer = styled.div`
