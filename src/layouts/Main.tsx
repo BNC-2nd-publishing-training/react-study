@@ -6,16 +6,35 @@ import TodoList from "@/components/TodoList";
 
 const Main = () => {
     const [selectedTab, setSelectedTab] = useState('All');
+    // 임시 데이터
+    const [todos, setTodos] = useState([
+        { id: 1, check: true, text: "간지나게 숨쉬기", tag: "Approved" },
+        { id: 2, check: true, text: "간지나게 숨쉬기", tag: "In Progress" },
+        { id: 3, check: true, text: "간지나게 숨쉬기", tag: "In Review" },
+        { id: 4, check: true, text: "간지나게 숨쉬기", tag: "In Review" },
+        { id: 5, check: true, text: "간지나게 숨쉬기", tag: "Approved" },
+        { id: 6, check: true, text: "간지나게 숨쉬기", tag: "In Progress" },
+        { id: 7, check: false, text: "간지나게 숨쉬기", tag: "Approved" },
+        { id: 8, check: false, text: "간지나게 숨쉬기", tag: "In Review" },
+        { id: 9, check: false, text: "간지나게 숨쉬기", tag: "Approved" },
+        { id: 10, check: false, text: "간지나게 숨쉬기", tag: "Approved" }
+    ]);
 
     const handleTabSelect = (tab) => {
         setSelectedTab(tab);
     };
 
+    const toggleTodoCheck = (id) => {
+        setTodos(todos.map(todo =>
+            todo.id === id ? { ...todo, check: !todo.check } : todo
+        ));
+    };
+
     return (
         <MainStyle>
-            <Tab onTabSelect={handleTabSelect} />
+            <Tab onTabSelect={handleTabSelect} todoCounts={todos.length}/>
             <ScrollBox>
-                <TodoList selectedTab={selectedTab} />
+                <TodoList todos={todos} selectedTab={selectedTab} onToggleTodo={toggleTodoCheck} />
             </ScrollBox>
         </MainStyle>
     );

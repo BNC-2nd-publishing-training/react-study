@@ -39,16 +39,16 @@ const TabContainer = styled.div`
 `;
 
 const BadgeTitle = styled.div`
+    width: 7vw;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    width: 7vw;
+    box-shadow: ${({ active }) => active ? `inset 0px -1px 0px 0px ${theme.color.primary20}` : 'none'};
+    white-space: nowrap;
     font-size: ${theme.font.textMedium.fontSize};
     font-weight: ${theme.font.textMedium.fontWeight};
-    white-space: nowrap;
-     box-shadow: ${({ active }) => active ? `inset 0px -1px 0px 0px ${theme.color.primary20}` : 'none'};
     cursor: pointer;
     
     .div {

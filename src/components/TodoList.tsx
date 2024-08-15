@@ -1,23 +1,10 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-import Todo from "./Todo";
+import Todo from "@/components/Todo";
 
-const TodoList = ({ selectedTab }) => {
-    const todos = [
-        { check: true, text: "간지나게 숨쉬기", tag: "Approved" },
-        { check: true, text: "간지나게 숨쉬기", tag: "In Progress" },
-        { check: true, text: "간지나게 숨쉬기", tag: "In Review" },
-        { check: true, text: "간지나게 숨쉬기", tag: "In Review" },
-        { check: true, text: "간지나게 숨쉬기", tag: "Approved" },
-        { check: true, text: "간지나게 숨쉬기", tag: "In Progress" },
-        { check: false, text: "간지나게 숨쉬기", tag: "Approved" },
-        { check: false, text: "간지나게 숨쉬기", tag: "In Review" },
-        { check: false, text: "간지나게 숨쉬기", tag: "Approved" },
-        { check: false, text: "간지나게 숨쉬기", tag: "Approved" }
-    ];
-
-    const filteredTodos = selectedTab === 'All' 
-        ? todos 
+const TodoList = ({ todos, selectedTab, onToggleTodo, onTaskSelect }) => {
+    const filteredTodos = selectedTab === 'All'
+        ? todos
         : todos.filter(todo => todo.tag === selectedTab);
 
     const completedTodos = filteredTodos.filter(todo => todo.check);
@@ -26,15 +13,29 @@ const TodoList = ({ selectedTab }) => {
     return (
         <TodoContainer>
             <Completed>
-                {completedTodos.map((todo, index) => (
-                    <Todo key={index} check={todo.check.toString()} text={todo.text} tag={todo.tag} />
+                {completedTodos.map(todo => (
+                    <Todo
+                        key={todo.id}
+                        check={todo.check.toString()}
+                        text={todo.text}
+                        tag={todo.tag}
+                        onToggle={() => onToggleTodo(todo.id)}
+                        onClick={() => onTaskSelect(todo)}
+                    />
                 ))}
             </Completed>
 
             <Upcoming>
                 <h2>Upcoming Tasks</h2>
-                {upcomingTodos.map((todo, index) => (
-                    <Todo key={index} check={todo.check.toString()} text={todo.text} tag={todo.tag} />
+                {upcomingTodos.map(todo => (
+                    <Todo
+                        key={todo.id}
+                        check={todo.check.toString()}
+                        text={todo.text}
+                        tag={todo.tag}
+                        onToggle={() => onToggleTodo(todo.id)}
+                        onClick={() => onTaskSelect(todo)}
+                    />
                 ))}
             </Upcoming>
         </TodoContainer>
@@ -44,8 +45,8 @@ const TodoList = ({ selectedTab }) => {
 const TodoContainer = styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 6vh;
     padding: 2vw 3vw;
+    row-gap: 6vh;
 `;
 
 const Completed = styled.div`
@@ -59,6 +60,7 @@ const Upcoming = styled.div`
     flex-direction: column;
     row-gap: 18px;
     h2 {
+        margin-bottom: 2vh;
         color: ${theme.color.gray60};
         font-size: ${theme.font.titleMedium.fontSize};
         font-weight: ${theme.font.titleMedium.fontWeight};

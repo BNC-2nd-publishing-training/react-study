@@ -8,7 +8,6 @@ const TodoApp = () => {
     return (
         <Container>
             <TodoListBox>
-                {/* (임시) layout부분  */}
                 <Header />
                 <Main />
             </TodoListBox>

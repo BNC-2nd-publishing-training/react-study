@@ -1,43 +1,41 @@
-import React, { useState } from 'react';
-import { FaRegSquare, FaSquareCheck } from "react-icons/fa6";
 import styled from '@emotion/styled';
 import { theme } from "@/styles/theme";
-import Tag from "@/components/Tag"
+import { FaRegSquare, FaSquareCheck } from "react-icons/fa6";
+import Tag from "@/components/Tag";
 
-const Todo = ({ check, text, tag }) => {
+const Todo = ({ check, text, tag, onToggle }) => {
     return (
-        <CheckBoxContainer>
-            {check == "false" ? <FaRegSquareIcon /> : <FaCheckSquareIcon />}
+        <CheckBoxContainer onClick={onToggle}>
+            {check === "false" ? <FaRegSquareIcon /> : <FaCheckSquareIcon />}
             <TaskText>{text}</TaskText>
-            <Tag tag={tag}/>
+            <Tag tag={tag} />
         </CheckBoxContainer>
     );
 };
 
 const CheckBoxContainer = styled.div`
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     cursor: pointer;
 `;
 
 const FaRegSquareIcon = styled(FaRegSquare)`
-    color: ${theme.color.gray60};
     margin-right: 6px;
     font-size: 20px;
+    color: ${theme.color.gray60};
 `;
 
 const FaCheckSquareIcon = styled(FaSquareCheck)`
-    color: ${theme.color.primary20};
     margin-right: 6px;
     font-size: 20px;
+    color: ${theme.color.primary20};
 `;
 
 const TaskText = styled.span`
     flex-grow: 1;
     margin-left: 10px;
 `;
-
 
 export default Todo;
