@@ -2,14 +2,10 @@ import React, { PropsWithChildren } from "react";
 import styled from "@emotion/styled";
 // import { theme } from "@/emotion/styled";
 
-// import ModalDefaultType from "@/utils/interfaces/ModalDefaultType";
-
-interface ModalDefaultType {
-    onClickAddButton: () => void;
-}
+import { ModalDefaultType } from "@/utils/interfaces/ModalDefaultType";
 
 function AddTodoModal({
-    onClickAddButton,
+    onClickPlusButton,
     children,
 }: PropsWithChildren<ModalDefaultType>) {
     return (
@@ -19,8 +15,8 @@ function AddTodoModal({
                 onClick={(e: React.MouseEvent) => {
                     e.preventDefault();
 
-                    if (onClickAddButton) {
-                        onClickAddButton();
+                    if (onClickPlusButton) {
+                        onClickPlusButton();
                     }
                 }}
             />
@@ -47,7 +43,7 @@ const TaskModal = styled.dialog`
     flex-direction: column;
     align-items: center;
     border: none;
-    border-radius: 3px;
+    border-radius: 10px;
     box-shadow: 0 0 30px rgba(30, 30, 30, 0.185);
     box-sizing: border-box;
     background-color: white;
@@ -61,7 +57,7 @@ const Back = styled.div`
     top: 0;
     left: 0;
     z-index: 9999;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
 `;
 
 export default AddTodoModal;
