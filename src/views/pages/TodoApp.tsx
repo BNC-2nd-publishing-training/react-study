@@ -10,32 +10,26 @@ import CreatTaskModal from "@/components/Modal/CreatTaskModal";
 import EditTaskModal from "@/components/Modal/EditTaskModal";
 
 const TodoApp = () => {
-    const [ createPopup, setCreatePopup] = useState(false)
-    const [ editPopup, setEditPopup] = useState(false)
+    const [ popupStatus, setPopupStatus ] = useState<null | 'create' | 'edit'>(null);
 
-    const createPopupOpen = () => setCreatePopup(true);
-    
-    const createPopupClose = () => setCreatePopup(false);
-
-    const editPopupOpen = () => setEditPopup(true);
-
-    const editPopupClose = () => setEditPopup(false);
+    const openPopup = (type: 'create' | 'edit') => setPopupStatus(type);
+    const closePopup = () => setPopupStatus(null);
 
     return(
         <Container>
             <TodoBox>
                 <HeaderStyle>
                     <TitleText text="Today Task"/>
-                    <AddTodoBtn onClick={createPopupOpen}/>
+                    <AddTodoBtn onClick={() => openPopup('create')}/>
                 </HeaderStyle>
                 <TabList/>
                 <ScrollBox>
-                    <TodoList onClick={editPopupOpen}/>
-                    <UpCommingList onClick={editPopupOpen}/>
+                    <TodoList onClick={() => openPopup('edit')}/>
+                    <UpCommingList onClick={() => openPopup('edit')}/>
                 </ScrollBox>
             </TodoBox>
-            {createPopup && <CreatTaskModal onClose={createPopupClose}/>}
-            {editPopup && <EditTaskModal onClose={editPopupClose}/>}
+            {popupStatus === 'create' && <CreatTaskModal onClose={closePopup}/>}
+            {popupStatus === 'edit' && <EditTaskModal onClose={closePopup}/>}
         </Container>
     );
 };
