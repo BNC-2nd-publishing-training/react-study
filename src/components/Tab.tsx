@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 
-const TabList = ({ onTabSelect }) => {
+const TabList = ({ onTabSelect, todoCounts }) => {
     const [selectedTab, setSelectedTab] = useState('All');
     const menu = ['All', 'In Review', 'In Progress', 'Approved'];
 
@@ -20,7 +20,7 @@ const TabList = ({ onTabSelect }) => {
                     active={selectedTab === menu}
                 >
                     <div className="div">
-                        {index === 0 && <span>1</span>}
+                        {index === 0 && <span>{todoCounts}</span>}
                         <p>{menu}</p>
                     </div>
                 </BadgeTitle>
