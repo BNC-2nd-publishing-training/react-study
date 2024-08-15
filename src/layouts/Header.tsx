@@ -16,10 +16,10 @@ const HeaderStyle = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 4vw 3vw 0;
+    margin: 4vw 3vw 0;
     h1{
         font-size: ${theme.font.titleLarge.fontSize};
-        font-weight: ${theme.font.titleMedium.fontWeight};
+        font-weight: ${theme.font.titleLarge.fontWeight};
     }
 `;
 

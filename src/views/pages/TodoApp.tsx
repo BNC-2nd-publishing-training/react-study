@@ -4,15 +4,6 @@ import { theme } from "@/styles/theme";
 import Header from "@/layouts/Header";
 import Main from "@/layouts/Main";
 
-// Todo 기본 셋 
-interface Todo {
-    id: number;
-    title: string;
-    tag: string;
-    completed: boolean;
-}
-
-// 할일 추가 함수
 const TodoApp = () => {
     return (
         <Container>
@@ -40,6 +31,10 @@ const TodoListBox = styled.div`
     height: 80vh;
     border-radius: 10px;
     background-color: ${theme.color.white};
+    overflow: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 export default TodoApp;
