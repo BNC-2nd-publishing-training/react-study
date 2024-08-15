@@ -3,10 +3,12 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import Header from "@/layouts/Header";
 import Main from "@/layouts/Main";
+import PopUp from "@/layouts/PopUp";
 
 const TodoApp = () => {
     return (
         <Container>
+            <PopUp />
             <TodoListBox>
                 <Header />
                 <Main />
