@@ -38,7 +38,6 @@ const Container = styled.div`
 const TodoListBox = styled.div`
     width: 30vw;
     height: 80vh;
-    padding: 4vw 3vw;
     border-radius: 10px;
     background-color: ${theme.color.white};
 `;
