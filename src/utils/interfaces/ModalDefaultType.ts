@@ -1,0 +1,3 @@
+interface ModalDefaultType {
+    onClickToggleModal: () => void;
+}
