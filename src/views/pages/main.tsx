@@ -1,16 +1,27 @@
+import { useState, useCallback } from "react";
+import AddTodoModal from "@/components/addTodoButton";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
-// // 컨테이너 이름 변경 후 나누기
-// // 정확한 간격, 크기 다시 한번 확인하고 맞추기
+function OpenAddModal() {
+    const [isOpenModal, setOpenModal] = useState<boolean>(false);
 
-const Main = () => {
+    const onClickAddButton = useCallback(() => {
+        setOpenModal(!isOpenModal);
+    }, [isOpenModal]);
+
     return (
         <Container>
             <TaskContainer>
                 <TaskHeader>
                     <Title>Today Task</Title>
-                    <AddButton>+</AddButton>
+                    {isOpenModal && (
+                        <AddTodoModal onClickAddButton={onClickAddButton}>
+                            여기에 이제 todo 입력창 추가하면 됨
+                        </AddTodoModal>
+                    )}
+                    <AddButton onClick={onClickAddButton}><i className="bi bi-plus-lg plus"></i></AddButton>
                 </TaskHeader>
             </TaskContainer>
         </Container>
@@ -36,12 +47,15 @@ const TaskContainer = styled.div`
 const TaskHeader = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 50px 40px;
+    padding: 50px 55px;
 `;
 
 const Title = styled.div`
     color: ${theme.color.black};
-    font: ${theme.font.titleLarge};
+    font-size: ${theme.font.titleLarge.fontSize};
+    font-weight: ${theme.font.titleLarge.fontWeight};
+    line-height: ${theme.font.titleLarge.lineHeight};
+    padding-top: 20px;
 `;
 
 const AddButton = styled.div`
@@ -52,6 +66,18 @@ const AddButton = styled.div`
     border-top-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+    box-shadow: 0 0 10px #623CE7;
+
+    .plus {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    &:hover {
+        transform: translateY(-1px);
+    }
 `;
 
-export default Main;
+export default OpenAddModal;
