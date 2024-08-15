@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+import DefaultLayout from "./layouts/DefaultLayouts";
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #EBEFF8;  //배경색 설정
 
     h1 {
         color: ${theme.color.blue30};
