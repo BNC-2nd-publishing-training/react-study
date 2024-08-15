@@ -1,3 +1,3 @@
-interface ModalDefaultType {
-    onClickToggleModal: () => void;
+export interface ModalDefaultType {
+    onClickPlusButton: () => void;
 }
