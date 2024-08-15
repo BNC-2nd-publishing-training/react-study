@@ -16,7 +16,7 @@ const Container = styled.div`
     top: 90px;
     left: 701px;
     gap: 0px;
-    border-radius: 10px 0px 0px 0px;
+    border-radius: 10px;
     border: 0px 1px 0px 1px;
     opacity: 0.5; 
     background-color: white 
