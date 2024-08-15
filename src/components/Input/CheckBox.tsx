@@ -3,20 +3,29 @@ import { TodoProps } from "@/utils/interfaces/TodoProps";
 import { PopupProps } from "@/utils/interfaces/PopupProps";
 import { theme } from "@/styles/theme";
 
-const CheckBox = (props: TodoProps, props2: PopupProps) => {
+const CheckBox = (todoProps: TodoProps, popupProps: PopupProps) => {
+
+    const inputClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+    };
+
     return(
-        <LabelStyle htmlFor={props.text} onClick={props2.onClick}>
-            <InputStyle type="checkbox" id={props.text} name={props.text} ></InputStyle>
-            <TodoText>{props.text}</TodoText>
-        </LabelStyle>
+        <CheckBoxStyle>
+            <InputStyle 
+                type="checkbox" 
+                id={todoProps.text} 
+                name={todoProps.text}
+                onClick={inputClick}></InputStyle>
+            <TodoText>{todoProps.text}</TodoText>
+        </CheckBoxStyle>
     );
 };
-
-const LabelStyle = styled.label`
+const CheckBoxStyle = styled.div`
     display: flex;
     align-items: center;
     column-gap: 12px;
 `;
+
 const InputStyle = styled.input`
     border: 0.5px solid ${theme.color.gray60};
     border-radius: 2px;
