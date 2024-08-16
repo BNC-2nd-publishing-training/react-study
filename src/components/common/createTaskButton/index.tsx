@@ -1,7 +1,7 @@
 import * as _ from "./style";
 import PlusIcon from "@/assets/images/plus";
 
-const PlusButton = () => {
+const CreateTaskButton = () => {
   return (
     <_.CreateTaskButtonContainer>
       <PlusIcon />
@@ -9,4 +9,4 @@ const PlusButton = () => {
   );
 };
 
-export default PlusButton;
+export default CreateTaskButton;
