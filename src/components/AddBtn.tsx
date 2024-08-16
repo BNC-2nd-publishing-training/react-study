@@ -1,18 +1,18 @@
-import { theme } from "@/styles/theme";
+import React from 'react';
 import styled from "@emotion/styled";
+import { theme } from "@/styles/theme";
 import { GrAdd } from "react-icons/gr";
 
-const AddButton = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+const AddBtn = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <Container {...props}>
-        <GrAdd/>
+        <GrAdd />
     </Container>
   );
 };
-export default AddButton;
 
 const Container = styled.button`
-  width:  calc(${theme.font.titleLarge.fontSize} + 20px);
+  width: calc(${theme.font.titleLarge.fontSize} + 20px);
   height: calc(${theme.font.titleLarge.fontSize} + 20px);
   padding: 11px 12px;
   background-color: ${theme.color.primary20};
@@ -24,4 +24,12 @@ const Container = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  cursor: pointer;
+  
+  &:focus {
+    outline: none;
+  }
 `;
+
+export default AddBtn;

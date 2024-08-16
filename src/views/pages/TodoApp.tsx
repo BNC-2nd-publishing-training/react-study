@@ -3,14 +3,20 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import Header from "@/layouts/Header";
 import Main from "@/layouts/Main";
-import PopUp from "@/layouts/PopUp";
+import Popup from "@/layouts/Popup";
 
 const TodoApp = () => {
+    const [isPopupVisible, setIsPopupVisible] = useState(true);
+
+    const togglePopup = () => {
+        setIsPopupVisible(!isPopupVisible);
+    };
+
     return (
         <Container>
-            <PopUp />
+            {isPopupVisible && <Popup onClose={togglePopup} />}
             <TodoListBox>
-                <Header />
+                <Header onClose={togglePopup}/>
                 <Main />
             </TodoListBox>
         </Container>
