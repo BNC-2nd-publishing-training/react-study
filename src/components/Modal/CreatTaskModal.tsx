@@ -5,35 +5,80 @@ import InputBox from "../Input/InputBox";
 import SelectBox from "../Input/SelectBox";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { PopupProps } from "@/utils/interfaces/PopupProps";
-import EditButton from "../Button/EditButton";
 import Button from "../Button/Button";
+import { useState } from "react";
+
+interface Task {
+    text: string;
+    status: string;
+}
 
 const CreatTaskModal = (props: PopupProps) => {
+    const [inputValue, setInputValue] = useState("");
+    const [selectedStatus, setSelectedStatus] = useState<any>(null);
 
     const closePopup = () => {
-        if(props.onClose){
+        if (props.onClose) {
             props.onClose();
         }
     };
 
-    return(
+    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setInputValue(event.target.value);
+    };
+
+    const handleSelectChange = (selectedOption: string) => {
+        setSelectedStatus(selectedOption);
+    };
+
+    const createTask = () => {
+        if (inputValue && selectedStatus) {
+            const existingTasks = JSON.parse(localStorage.getItem('tasks') || '[]') as Task[];
+
+            const newTask: Task = {
+                text: inputValue,
+                status: selectedStatus.label,
+            };
+            existingTasks.push(newTask);
+
+            localStorage.setItem('tasks', JSON.stringify(existingTasks));
+
+            console.log("Task 저장:", newTask);
+
+            setInputValue("");
+            setSelectedStatus(null);
+            closePopup();
+        } else {
+            alert("Task의 제목 혹은 상태를 모두 입력해주세요.");
+        }
+    };
+
+    return (
         <Background>
             <PopupBox>
-                <CloseIcon icon="bi:x" onClick={closePopup}/>
+                <CloseIcon icon="bi:x" onClick={closePopup} />
                 <PaddingBox>
                     <Group>
-                        <TitleText text="Create Task"/>
+                        <TitleText text="Create Task" />
                         <InputContainer>
-                            <InputBox placeholder="Task 제목을 입력해주세요"/>
-                            <SelectBox/>
+                            <InputBox
+                                placeholder="Task 제목을 입력해주세요"
+                                value={inputValue}
+                                onChange={handleInputChange}
+                            />
+                            <SelectBox onChange={handleSelectChange} />
                         </InputContainer>
                     </Group>
-                    <Button text="Task 추가하기" backgroundColor={theme.color.primary20}/>
+                    <Button
+                        text="Task 추가하기"
+                        backgroundColor={theme.color.primary20}
+                        onClick={createTask}
+                    />
                 </PaddingBox>
             </PopupBox>
         </Background>
-    )
-}
+    );
+};
 
 const Background = styled.div`
     position: absolute;
@@ -90,3 +135,4 @@ const CloseIcon = styled(Icon)`
 `;
 
 export default CreatTaskModal;
+
