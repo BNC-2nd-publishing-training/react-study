@@ -18,7 +18,7 @@ export const CheckboxContainer = styled.div<{ checked?: boolean }>`
   width: 16px;
   height: 16px;
   border: 0.5px solid ${theme.color.gray60};
-  border-radius: 4px;
+  border-radius: 2px;
   background-color: ${({ checked }) =>
     checked ? theme.color.primary20 : theme.color.white};
   background-image: ${({ checked }) =>
