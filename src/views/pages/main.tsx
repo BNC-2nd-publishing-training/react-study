@@ -12,27 +12,6 @@ function Main() {
             <TaskContainer>
                 <CreateTaskModal />
                 <TypeTab />
-
-                {/* <TaskBody>
-                    <TaskCounter>10</TaskCounter>
-                    <TabContainer>
-                        <Tabs>
-                            <TabPanel label="All">
-                                <Checkbox name="Option 1" value="value1" />
-                                <Checkbox name="Option 2" value="value2" />
-                            </TabPanel>
-                            <TabPanel label="In Review">
-                                <p>In Review Task</p>
-                            </TabPanel>
-                            <TabPanel label="In Progress">
-                                <p>In Progress Task</p>
-                            </TabPanel>
-                            <TabPanel label="Waiting">
-                                <p>Waiting Task</p>
-                            </TabPanel>
-                        </Tabs>
-                    </TabContainer>
-                </TaskBody> */}
             </TaskContainer>
         </Container>
     );
