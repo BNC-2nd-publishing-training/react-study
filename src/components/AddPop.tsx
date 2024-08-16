@@ -33,6 +33,7 @@ const AddPop: React.FC<PopupProps> = ({ onClose }) => {
                     <DropdownButton
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         isPlaceholder={selectedTag === 'Task의 상태를 선택해주세요'}
+                        isDropdownOpen={isDropdownOpen}
                     >
                         {selectedTag}
                     </DropdownButton>
@@ -70,6 +71,10 @@ const Input = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 3vh;
+    h1{
+        font-size: ${theme.font.titleMedium.fontSize};
+        font-weight: ${theme.font.titleMedium.fontWeight};
+    }
 `;
 
 const InputTitle = styled.textarea`
@@ -106,7 +111,7 @@ const DropdownButton = styled.button<DropdownButtonProps>`
     width: 100%;
     padding: 0.5rem;
     border: 1px solid ${theme.color.gray40};
-    border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px ${({ isDropdownOpen }) => isDropdownOpen ? '0 0'  : '4px 4px'};
     background-color: ${theme.color.white};
     font-size: ${theme.font.textMedium.fontSize};
     font-weight: ${theme.font.textMedium.fontWeight};
