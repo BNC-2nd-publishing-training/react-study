@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { theme } from '@/styles/theme';
 import AddPop from '@/components/AddPop';
+import EditPop from '@/components/EditPop';
 import { PopupProps } from '@/utils/interfaces/PopupType';
 
 const Popup: React.FC<PopupProps> = ({ onClose }) => {
@@ -11,6 +12,7 @@ const Popup: React.FC<PopupProps> = ({ onClose }) => {
             <PopUpOverlay aria-label="Close popup" />
             <PopUpBox role="dialog" aria-labelledby="popup-title">
                 <AddPop onClose={onClose}/>
+                {/* <EditPop onClose={onClose}/> */}
             </PopUpBox>
         </>
     );

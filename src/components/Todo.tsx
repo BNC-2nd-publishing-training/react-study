@@ -5,8 +5,8 @@ import Tag from "@/components/Tag";
 
 const Todo = ({ check, text, tag, onToggle }) => {
     return (
-        <CheckBoxContainer onClick={onToggle}>
-            {check === "false" ? <FaRegSquareIcon /> : <FaCheckSquareIcon />}
+        <CheckBoxContainer /*onClick={}*/>
+            {check === "false" ? <FaRegSquareIcon onClick={onToggle} /> : <FaCheckSquareIcon onClick={onToggle} />}
             <TaskText>{text}</TaskText>
             <Tag tag={tag} />
         </CheckBoxContainer>
