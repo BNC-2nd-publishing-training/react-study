@@ -5,14 +5,26 @@ import InputBox from "../Input/InputBox";
 import SelectBox from "../Input/SelectBox";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { PopupProps } from "@/utils/interfaces/PopupProps";
-import EditButton from "../Button/EditButton";
+import Button from "../Button/Button";
+import { useState } from "react";
 
 const EditTaskModal = (props: PopupProps) => {
-
+    const [inputValue, setInputValue] = useState("");
+    const [selectedStatus, setSelectedStatus] = useState<any>(null);
+    
     const closePopup = () => {
-        if(props.onClose){
+        if (props.onClose) {
             props.onClose();
         }
+    };
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setInputValue(event.target.value);
+    };
+
+    const handleSelectChange = (selectedOption: string) => {
+        console.log(selectedOption,'선택')
+        setSelectedStatus(selectedOption);
     };
 
     return(
@@ -21,13 +33,20 @@ const EditTaskModal = (props: PopupProps) => {
                 <CloseIcon icon="bi:x" onClick={closePopup}/>
                 <PaddingBox>
                     <Group>
-                        <TitleText text="Create Task"/>
+                        <TitleText text="Edit Task"/>
                         <InputContainer>
-                            <InputBox placeholder="Task 제목을 입력해주세요"/>
-                            <SelectBox/>
+                            <InputBox 
+                                placeholder="Task 제목을 입력해주세요"
+                                value={inputValue}
+                                onChange={handleInputChange}
+                            />
+                            <SelectBox onChange={handleSelectChange}/>
                         </InputContainer>
                     </Group>
-                    <EditButton/>
+                    <ButtonContainer>
+                        <Button text="Task 삭제하기" backgroundColor={theme.color.red30}/>
+                        <Button text="Task 수정하기" backgroundColor={theme.color.primary20}/>
+                    </ButtonContainer>
                 </PaddingBox>
             </PopupBox>
         </Background>
@@ -79,6 +98,13 @@ const Group = styled.div`
     row-gap: 40px;
     width: 100%;
     align-items: center;
+`;
+
+const ButtonContainer = styled.div`
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    width: 100%;
 `;
 
 const CloseIcon = styled(Icon)`
