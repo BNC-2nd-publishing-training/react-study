@@ -1,16 +1,21 @@
 import styled from "@emotion/styled";
 import Todo from "./Todo";
 import { theme } from "@/styles/theme";
-import { PopupProps } from "@/utils/interfaces/PopupProps";
+import { TodoProps } from "@/utils/interfaces/TodoProps";
 
-const UpCommingList = (props:PopupProps) => {
+const UpCommingList = ({ todos = [], onClick }: TodoProps) => {
     return(
         <UpCommingContainer>
             <Text>UpComming Task</Text>
             <TodoBox>
-                <Todo/>
-                <Todo/>
-                <Todo/>
+                {todos.slice().reverse().map((todo, index) => (
+                    <Todo
+                        key={index}
+                        onClick={onClick}
+                        text={todo.text}
+                        status={todo.status}
+                    />
+                ))}
             </TodoBox>
         </UpCommingContainer>
     );
