@@ -1,8 +1,10 @@
 export interface TodoItemProps {
-  todo: {
-    id: number;
-    text: string;
-    completed: boolean;
-  };
+  todo: Todo;
   onToggle: (id: number) => void;
+}
+
+export interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
 }
