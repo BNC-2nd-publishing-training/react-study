@@ -23,7 +23,7 @@ const Tags = (props: TagProps) => {
                 };
             default:
                 return{
-                    color: theme.color.gray30,
+                    color: theme.color.gray60,
                     backgroundColor: theme.color.gray10
                 }
         }
