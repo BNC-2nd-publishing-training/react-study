@@ -8,9 +8,9 @@ const Popup: React.FC<PopupProps> = ({ onClose }) => {
 
     return (
         <>
-            <PopUpOverlay onClick={onClose} aria-label="Close popup" />
+            <PopUpOverlay aria-label="Close popup" />
             <PopUpBox role="dialog" aria-labelledby="popup-title">
-                <AddPop />
+                <AddPop onClose={onClose}/>
             </PopUpBox>
         </>
     );
@@ -25,7 +25,6 @@ const PopUpOverlay = styled.div`
     background-color: ${theme.color.black};
     opacity: 0.5;
     z-index: 1;
-    cursor: pointer;
 `;
 
 const PopUpBox = styled.div`

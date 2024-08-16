@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-import { AiOutlineClose } from "react-icons/ai"; // 닫기 아이콘 사용을 위해 추가
+import { AiOutlineClose } from "react-icons/ai";
 
 const EditBtn = ({ onClick }) => {
     return (
