@@ -3,9 +3,12 @@ import { InputProps } from "@/utils/interfaces/InputProps";
 import styled from "@emotion/styled";
 
 const InputBox = (props: InputProps) => {
-    return(
-        <InputStyle value={props.value} placeholder={props.placeholder}>
-        </InputStyle>
+    return (
+        <InputStyle
+            value={props.value}
+            placeholder={props.placeholder}
+            onChange={props.onChange}
+        />
     );
 };
 
@@ -20,13 +23,11 @@ const InputStyle = styled.textarea`
     font-size: ${theme.font.textMedium.fontSize};
     font-weight: ${theme.font.textMedium.fontWeight};
 
-    ::placeholder{
+    ::placeholder {
         color: ${theme.color.gray40};
         font-size: ${theme.font.textMedium.fontSize};
         font-weight: ${theme.font.textMedium.fontWeight};
     }
 `;
-
-
 
 export default InputBox;
