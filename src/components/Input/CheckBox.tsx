@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
 import { TodoProps } from "@/utils/interfaces/TodoProps";
-import { PopupProps } from "@/utils/interfaces/PopupProps";
 import { theme } from "@/styles/theme";
 
-const CheckBox = (todoProps: TodoProps, popupProps: PopupProps) => {
+const CheckBox = (todoProps: TodoProps) => {
 
     const inputClick = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -13,7 +12,7 @@ const CheckBox = (todoProps: TodoProps, popupProps: PopupProps) => {
         <CheckBoxStyle>
             <InputStyle 
                 type="checkbox" 
-                id={todoProps.text} 
+                id={todoProps.text}
                 name={todoProps.text}
                 onClick={inputClick}></InputStyle>
             <TodoText>{todoProps.text}</TodoText>
