@@ -7,8 +7,8 @@ const TodoList = ({ todos, selectedTab, onToggleTodo, onTaskSelect }) => {
         ? todos
         : todos.filter(todo => todo.tag === selectedTab);
 
-    const completedTodos = filteredTodos.filter(todo => todo.check);
-    const upcomingTodos = filteredTodos.filter(todo => !todo.check);
+    const completedTodos = filteredTodos.filter(todo => todo.tag !== "Wating");
+    const upcomingTodos = todos.filter(todo => todo.tag === "Wating");
 
     return (
         <TodoContainer>

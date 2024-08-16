@@ -6,7 +6,7 @@ import Main from "@/layouts/Main";
 import Popup from "@/layouts/Popup";
 
 const TodoApp = () => {
-    const [isPopupVisible, setIsPopupVisible] = useState(true);
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
 
     const togglePopup = () => {
         setIsPopupVisible(!isPopupVisible);
