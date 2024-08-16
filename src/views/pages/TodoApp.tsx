@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import TabList from "@/components/Tab/TabList";
-import TodoList from "@/components/Todo/TodoList";
-import UpCommingList from "@/components/Todo/UpcomingList";
 import { useState } from "react";
 import TitleText from "@/components/Text/TitleText";
 import AddTodoBtn from "@/components/Button/AddTodoBtn";
@@ -22,11 +20,7 @@ const TodoApp = () => {
                     <TitleText text="Today Task"/>
                     <AddTodoBtn onClick={() => openPopup('create')}/>
                 </HeaderStyle>
-                <TabList/>
-                <ScrollBox>
-                    <TodoList onClick={() => openPopup('edit')}/>
-                    <UpCommingList onClick={() => openPopup('edit')}/>
-                </ScrollBox>
+                <TabList onClick={() => openPopup('edit')}/>
             </TodoBox>
             {popupStatus === 'create' && <CreatTaskModal onClose={closePopup}/>}
             {popupStatus === 'edit' && <EditTaskModal onClose={closePopup}/>}
@@ -58,14 +52,5 @@ const HeaderStyle = styled.div`
     align-items: center;
     padding: 50px 50px 0 50px;
 `;
-
-const ScrollBox = styled.div`
-    overflow: scroll;
-    display: flex;
-    flex-direction: column;
-    row-gap: 90px;
-    padding: 40px 50px;
-`;
-
 
 export default TodoApp;
