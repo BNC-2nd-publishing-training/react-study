@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-import Status from "./type";
 
 interface TagProps {
-  status?: Status;
+  status?: "Approved" | "In progress" | "In review" | "Waiting";
 }
 const statusColors = {
   Approved: {
