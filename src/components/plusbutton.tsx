@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { Icon } from '@iconify/react';
 import plusIcon from '@iconify/icons-mdi/plus';
-import Modal from './Modal';
+import Modal from '@/components/Modal';
 import { theme } from '@/styles/theme';
+import { TagType } from '@/utils/interfaces/tag.types';
 
 const PlusButtonStyled = styled.div`
   width: 50px;
@@ -16,9 +17,14 @@ const PlusButtonStyled = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 `;
 
-const PlusButton: React.FC = () => {
+interface PlusButtonProps {
+  onAddTask: (title: string, status: TagType) => void;
+}
+
+const PlusButton: React.FC<PlusButtonProps> = ({ onAddTask }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -31,7 +37,7 @@ const PlusButton: React.FC = () => {
         <Icon icon={plusIcon} width="24px" height="24px" />
       </PlusButtonStyled>
 
-      <Modal isOpen={isModalOpen} onClose={toggleModal} />
+      <Modal isOpen={isModalOpen} onClose={toggleModal} onAddTask={onAddTask} />
     </div>
   );
 };
