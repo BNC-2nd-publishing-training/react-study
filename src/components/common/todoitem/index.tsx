@@ -7,15 +7,10 @@ const TodoItem = ({ todo, onToggle }: TodoItemProps) => {
   return (
     <_.TodoItemContainer>
       <_.CheckboxContainer
+        type="checkbox"
         checked={todo.completed}
-        onClick={() => onToggle(todo.id)}
-      >
-        <_.HiddenCheckbox
-          type="checkbox"
-          checked={todo.completed}
-          onChange={() => onToggle(todo.id)}
-        />
-      </_.CheckboxContainer>
+        onChange={() => onToggle(todo.id)}
+      />
       <_.TodoText>{todo.text}</_.TodoText>
     </_.TodoItemContainer>
   );
