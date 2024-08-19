@@ -5,16 +5,31 @@ import EditBtn from '@/components/EditBtn';
 import { PopupProps } from '@/utils/interfaces/PopupType';
 import { getTagOptions, TagOption } from '@/utils/functions/tagUtils';
 
-const AddPop: React.FC<PopupProps> = ({ onClose }) => {
+const AddPop: React.FC<PopupProps> = ({ onClose, setTodos }) => {
     const [selectedTag, setSelectedTag] = useState<string>('Task의 상태를 선택해주세요');
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-
-    // Get tag options dynamically
+    const [taskTitle, setTaskTitle] = useState<string>('');
+    
     const tagOptions: TagOption[] = getTagOptions();
 
-    const handleTagClick = (value: string, label: string) => {
-        setSelectedTag(label);
+    const handleTagClick = (value: string) => {
+        setSelectedTag(value);
         setIsDropdownOpen(false);
+    };
+
+    const handleAddTask = () => {
+        const newTask = {
+            check: false,
+            text: taskTitle,
+            tag: selectedTag,
+            id: Date.now()
+        };
+
+        setTodos(prevTodos => [...prevTodos, newTask]);
+
+        setTaskTitle('');
+        setSelectedTag('Task의 상태를 선택해주세요');
+        onClose();
     };
 
     return (
@@ -23,7 +38,8 @@ const AddPop: React.FC<PopupProps> = ({ onClose }) => {
             <Input>
                 <h1 id="popup-title">Create Task</h1>
                 <InputTitle
-                    type="text"
+                    value={taskTitle}
+                    onChange={(e) => setTaskTitle(e.target.value)}
                     placeholder="Task 제목을 입력해주세요"
                     aria-label="Task Title"
                 />
@@ -40,7 +56,7 @@ const AddPop: React.FC<PopupProps> = ({ onClose }) => {
                             {tagOptions.map(option => (
                                 <DropdownItem
                                     key={option.value}
-                                    onClick={() => handleTagClick(option.value, option.label)}
+                                    onClick={() => handleTagClick(option.value)}
                                 >
                                     {option.label}
                                 </DropdownItem>
@@ -49,7 +65,7 @@ const AddPop: React.FC<PopupProps> = ({ onClose }) => {
                     )}
                 </DropdownContainer>
             </Input>
-            <AddTaskButton>Task 추가하기</AddTaskButton>
+            <AddTaskButton onClick={handleAddTask}>Task 추가하기</AddTaskButton>
         </AddPopStyle>
     );
 };

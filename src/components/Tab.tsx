@@ -58,6 +58,13 @@ const BadgeTitle = styled.div`
         align-items: center;
         margin: 2vw;
         color: ${({ active }) => active ? theme.color.black : theme.color.gray50};
+
+        span{
+            padding: 0 1vh;
+            border-radius: 10px;
+            background-color: ${theme.color.primary10};
+            color: ${theme.color.primary20};
+        }
     }
 `;
 

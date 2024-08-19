@@ -1,4 +1,4 @@
-export type PopupProps = {
-    isOpen: boolean;
-    handleClose: () => void;
-};
+export interface PopupProps {
+    onClose: () => void;
+    setTodos: React.Dispatch<React.SetStateAction<TodoItem[]>>;
+}

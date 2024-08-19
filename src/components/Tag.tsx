@@ -40,7 +40,8 @@ const TagItem = styled.div`
     background-color: #f0f0f0;
     padding: 5px 10px;
     border-radius: 12px;
-    font-size: ${theme.font.textSmall.fontSize}
+    white-space: nowrap;
+    font-size: ${theme.font.textSmall.fontSize};
 `;
 
 

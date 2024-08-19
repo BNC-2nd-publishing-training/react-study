@@ -17,26 +17,32 @@ const Todo = ({ check, text, tag, onToggle, onClick }: TodoProps) => {
 const CheckBoxContainer = styled.div`
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
     cursor: pointer;
 `;
 
 const FaRegSquareIcon = styled(FaRegSquare)`
-    margin-right: 6px;
-    font-size: 20px;
+    width: ${theme.font.textMedium.fontSize};
+    font-size:min-content;
     color: ${theme.color.gray60};
 `;
 
 const FaCheckSquareIcon = styled(FaSquareCheck)`
-    margin-right: 6px;
-    font-size: 20px;
+    width: ${theme.font.textMedium.fontSize};
+    font-size:  min-content;
     color: ${theme.color.primary20};
 `;
 
 const TaskText = styled.span`
     flex-grow: 1;
+    width: 50%;
     margin-left: 10px;
+    padding-right: 5vw;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: ${theme.font.textMedium.fontSize};
 `;
 
 export default Todo;

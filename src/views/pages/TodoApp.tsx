@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import styled from "@emotion/styled";
-import { theme } from "@/styles/theme";
-import Header from "@/layouts/Header";
-import Main from "@/layouts/Main";
-import Popup from "@/layouts/Popup";
+import styled from '@emotion/styled';
+import { theme } from '@/styles/theme';
+import Header from '@/layouts/Header';
+import Main from '@/layouts/Main';
+import Popup from '@/layouts/Popup';
+import { TodoItem } from '@/utils/interfaces/todoInterfaces';
 
-const TodoApp = () => {
-    const [isPopupVisible, setIsPopupVisible] = useState(false);
+const TodoApp: React.FC = () => {
+    const [isPopupVisible, setIsPopupVisible] = useState<boolean>(false);
 
     const togglePopup = () => {
-        setIsPopupVisible(!isPopupVisible);
+        setIsPopupVisible(prev => !prev);
     };
+
+    const [todos, setTodos] = useState<TodoItem[]>([
+        { id: 1, check: true, text: "간지나게 숨쉬기", tag: "Approved" }
+    ]);
 
     return (
         <Container>
-            {isPopupVisible && <Popup onClose={togglePopup} />}
+            {isPopupVisible && <Popup onClose={togglePopup} setTodos={setTodos} />}
             <TodoListBox>
-                <Header onClose={togglePopup}/>
-                <Main />
+                <Header onClose={togglePopup} />
+                <Main todos={todos} setTodos={setTodos} />
             </TodoListBox>
         </Container>
     );
