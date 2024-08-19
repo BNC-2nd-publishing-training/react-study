@@ -94,7 +94,6 @@ const InputTitle = styled.textarea`
 
     &:focus {
         outline: none;
-        border-color: ${theme.color.primary};
     }
 `;
 
@@ -156,14 +155,6 @@ const AddTaskButton = styled.button`
     cursor: pointer;
     font-size: ${theme.font.textMedium.fontSize};
     font-weight: ${theme.font.textMedium.fontWeight};  
-
-    &:hover {
-        background-color: ${theme.color.primary30};
-    }
-
-    &:focus {
-        outline: 2px solid ${theme.color.primary};
-    }
 `;
 
 export default AddPop;
