@@ -1,35 +1,58 @@
-// 유형별 Task 확인 Tab 컴포넌트 (기능 완성)
-// 피그마 확인해서 부족한 부분 CSS 수정하기
-
 import { useState } from 'react';
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+import Checkbox from "@/components/Checkbox/Checkbox"; // 올바른 경로로 조정
 
 const Tab = () => {
-    const [currentTab, clickTab] = useState<number>(0);
+    const [currentTab, setCurrentTab] = useState<number>(0);
+    const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({}); // 체크 상태 저장
 
     const TypeArr = [
-        {name: 'All', content: 'All Task'},
-        {name: 'InReview', content: 'In Review Task'},
-        {name: 'InProgress', content: 'In Progress Task'},
-        {name: 'Waiting', content: 'Waiting Task'}
+        { name: 'All', content: '모든 작업', checklist: ['작업 1', '작업 2', '작업 3'] },
+        { name: 'In Review', content: '검토 중인 작업', checklist: ['검토 중 작업 1', '검토 중 작업 2'] },
+        { name: 'In Progress', content: '진행 중인 작업', checklist: ['진행 중 작업 1', '진행 중 작업 2', '진행 중 작업 3'] },
+        { name: 'Approved', content: '승인된 작업', checklist: ['승인된 작업 1', '승인된 작업 2'] }
     ];
 
     const selectTypeHandler = (index: number) => {
-        clickTab(index);
+        setCurrentTab(index);
+    };
+
+    const handleCheckboxChange = (itemIndex: number) => {
+        setCheckedItems(prev => ({
+            ...prev,
+            [itemIndex]: !prev[itemIndex]
+        }));
     };
 
     return (
         <div>
             <TypeTab>
                 {TypeArr.map((el, index) => (
-                    <li className={index === currentTab ? "subType focused" : "subType"}
-                    onClick={() => selectTypeHandler(index)}>{el.name}</li>
+                    <li
+                        key={index}
+                        className={index === currentTab ? "subType focused" : "subType"}
+                        onClick={() => selectTypeHandler(index)}
+                    >
+                        {el.name}
+                    </li>
                 ))}
             </TypeTab>
 
             <Desc>
                 <p>{TypeArr[currentTab].content}</p>
+                <Checklist>
+                    {TypeArr[currentTab].checklist.map((item, idx) => (
+                        <ChecklistItem key={idx}>
+                            <Checkbox 
+                                checked={!!checkedItems[idx]} 
+                                onChange={() => handleCheckboxChange(idx)}
+                                id={`checkbox-${idx}`} // 고유한 ID 설정
+                                label={item} // 체크박스 레이블 설정
+                            />
+                        </ChecklistItem>
+                    ))}
+                </Checklist>
             </Desc>
         </div>
     );
@@ -63,6 +86,18 @@ const TypeTab = styled.ul`
 
 const Desc = styled.div`
     text-align: center;
+`;
+
+const Checklist = styled.ul`
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+`;
+
+const ChecklistItem = styled.li`
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 `;
 
 export default Tab;

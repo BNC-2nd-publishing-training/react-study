@@ -1,33 +1,45 @@
-// Task 체크박스 컴포넌트
-// 체크박스가 나오지 않음, 기능 보완 필요 (중요!)
+// src/components/Checkbox/Checkbox.tsx
 
-import React, { useState } from 'react';
+import React from 'react';
+import styled from "@emotion/styled";
 
+// Checkbox 컴포넌트의 props 타입 정의
 interface CheckboxProps {
-    name: string;
-    value: string;
-    checked?: boolean;
+    checked: boolean;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean;
+    label?: string;
+    id?: string;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ name, value, checked = false }) => {
-    const [isChecked, setIsChecked] = useState(checked);
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsChecked(event.target.checked);
-    };
-
+const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange, disabled, label, id }) => {
     return (
-        <label>
-            <input
-            type="checkbox"
-            name={name}
-            value={value}
-            checked={isChecked}
-            onChange={handleChange}
+        <CheckboxContainer>
+            <StyledCheckbox
+                type="checkbox"
+                checked={checked}
+                onChange={onChange}
+                disabled={disabled}
+                id={id}
             />
-            {name}
-        </label>
+            {label && <Label htmlFor={id}>{label}</Label>}
+        </CheckboxContainer>
     );
 };
+
+const CheckboxContainer = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const StyledCheckbox = styled.input`
+    margin-right: 8px;
+    cursor: pointer;
+`;
+
+const Label = styled.label`
+    font-size: 14px;
+    cursor: pointer;
+`;
 
 export default Checkbox;

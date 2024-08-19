@@ -4,6 +4,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import CreateTaskModal from "@/components/Modal/CreateTaskModal";
 import TypeTab from "@/components/Tab/TypeTab";
+
+import List from "@/components/Checkbox/CheckboxList";
  
 function Main() {
 
@@ -12,6 +14,7 @@ function Main() {
             <TaskContainer>
                 <CreateTaskModal />
                 <TypeTab />
+                <List />
             </TaskContainer>
         </Container>
     );
