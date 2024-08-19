@@ -15,10 +15,10 @@ const Main = () => {
         { id: 4, check: true, text: "간지나게 숨쉬기", tag: "In Review" },
         { id: 5, check: true, text: "간지나게 숨쉬기", tag: "Approved" },
         { id: 6, check: true, text: "간지나게 숨쉬기", tag: "In Progress" },
-        { id: 7, check: false, text: "간지나게 숨쉬기", tag: "Wating" },
+        { id: 7, check: false, text: "간지나게 숨쉬기", tag: "Waiting" },
         { id: 8, check: false, text: "간지나게 숨쉬기", tag: "In Review" },
         { id: 9, check: false, text: "간지나게 숨쉬기", tag: "Approved" },
-        { id: 10, check: false, text: "간지나게 숨쉬기", tag: "Wating" }
+        { id: 10, check: false, text: "간지나게 숨쉬기", tag: "Waiting" }
     ]);
 
     const handleTabSelect = (tab: string) => {

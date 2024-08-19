@@ -3,16 +3,14 @@ import styled from '@emotion/styled';
 import { theme } from '@/styles/theme';
 import EditBtn from '@/components/EditBtn';
 import { PopupProps } from '@/utils/interfaces/PopupType';
+import { getTagOptions, TagOption } from '@/utils/functions/tagUtils';
 
 const AddPop: React.FC<PopupProps> = ({ onClose }) => {
     const [selectedTag, setSelectedTag] = useState<string>('Task의 상태를 선택해주세요');
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
-    const tagOptions = [
-        { value: 'todo', label: 'To Do' },
-        { value: 'in-progress', label: 'In Progress' },
-        { value: 'done', label: 'Done' }
-    ];
+    // Get tag options dynamically
+    const tagOptions: TagOption[] = getTagOptions();
 
     const handleTagClick = (value: string, label: string) => {
         setSelectedTag(label);
@@ -71,7 +69,7 @@ const Input = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 3vh;
-    h1{
+    h1 {
         font-size: ${theme.font.titleMedium.fontSize};
         font-weight: ${theme.font.titleMedium.fontWeight};
     }
@@ -104,13 +102,14 @@ const DropdownContainer = styled.div`
 
 interface DropdownButtonProps {
     isPlaceholder: boolean;
+    isDropdownOpen: boolean;
 }
 
 const DropdownButton = styled.button<DropdownButtonProps>`
     width: 100%;
     padding: 0.5rem;
     border: 1px solid ${theme.color.gray40};
-    border-radius: 4px 4px ${({ isDropdownOpen }) => isDropdownOpen ? '0 0'  : '4px 4px'};
+    border-radius: 4px 4px ${({ isDropdownOpen }) => isDropdownOpen ? '0 0' : '4px 4px'};
     background-color: ${theme.color.white};
     font-size: ${theme.font.textMedium.fontSize};
     font-weight: ${theme.font.textMedium.fontWeight};

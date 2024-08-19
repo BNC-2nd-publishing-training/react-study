@@ -3,7 +3,7 @@ export interface TodoItem {
     id: number;
     check: boolean;
     text: string;
-    tag: string;
+    tag: 'Approved' | 'In Progress' | 'In Review' | 'Wating';
 }
 
 export interface TodoListProps {
