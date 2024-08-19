@@ -3,11 +3,12 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import Tab from "@/components/Tab";
 import TodoList from "@/components/TodoList";
+import { TodoItem } from "@/utils/interfaces/todoInterfaces";
 
 const Main = () => {
-    const [selectedTab, setSelectedTab] = useState('All');
+    const [selectedTab, setSelectedTab] = useState<string>('All');
     // 임시 데이터
-    const [todos, setTodos] = useState([
+    const [todos, setTodos] = useState<TodoItem[]>([
         { id: 1, check: true, text: "간지나게 숨쉬기", tag: "Approved" },
         { id: 2, check: true, text: "간지나게 숨쉬기", tag: "In Progress" },
         { id: 3, check: true, text: "간지나게 숨쉬기", tag: "In Review" },
@@ -20,11 +21,11 @@ const Main = () => {
         { id: 10, check: false, text: "간지나게 숨쉬기", tag: "Wating" }
     ]);
 
-    const handleTabSelect = (tab) => {
+    const handleTabSelect = (tab: string) => {
         setSelectedTab(tab);
     };
 
-    const toggleTodoCheck = (id) => {
+    const toggleTodoCheck = (id: number) => {
         setTodos(todos.map(todo =>
             todo.id === id ? { ...todo, check: !todo.check } : todo
         ));
@@ -32,9 +33,9 @@ const Main = () => {
 
     return (
         <MainStyle>
-            <Tab onTabSelect={handleTabSelect} todoCounts={todos.length}/>
+            <Tab onTabSelect={handleTabSelect} todoCounts={todos.length} />
             <ScrollBox>
-                <TodoList todos={todos} selectedTab={selectedTab} onToggleTodo={toggleTodoCheck} />
+                <TodoList todos={todos} selectedTab={selectedTab} onToggleTodo={toggleTodoCheck} onTaskSelect={() => {}} />
             </ScrollBox>
         </MainStyle>
     );

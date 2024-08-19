@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import Todo from "@/components/Todo";
+import { TodoListProps } from "@/utils/interfaces/todoInterfaces";
 
-const TodoList = ({ todos, selectedTab, onToggleTodo, onTaskSelect }) => {
+const TodoList = ({ todos, selectedTab, onToggleTodo, onTaskSelect }: TodoListProps) => {
     const filteredTodos = selectedTab === 'All'
         ? todos
         : todos.filter(todo => todo.tag === selectedTab);
