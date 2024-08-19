@@ -1,37 +1,45 @@
-// Task 생성창 컴포넌트 (기능 완성)
-// Header와 AddButton 컴포넌트 분리하기 (중요!)
-
 import { useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import AddTask from "@/components/Button/addTaskButton";
-
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import SelectBox from "@/components/Button/SelectButton";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function CreateTask() {
     const [isOpenModal, setOpenModal] = useState<boolean>(false);
 
-    const onClickPlusButton = useCallback(() => {
-        setOpenModal(!isOpenModal);
-    }, [isOpenModal]);
+    // 모달 열기 함수
+    const onOpenModal = useCallback(() => {
+        setOpenModal(true);
+    }, []);
+
+    // 모달 닫기 함수
+    const onCloseModal = useCallback(() => {
+        setOpenModal(false);
+    }, []);
 
     return (
         <Container>
             <TaskHeader>
                 <Title>Today Task</Title>
                 {isOpenModal && (
-                    <AddTask onClickPlusButton={onClickPlusButton}>
+                    <AddTask>
                         <ModalTitle>Create Task</ModalTitle>
-                        <CloseButton><i className="bi bi-x-lg CloseButton"></i></CloseButton>
+                        <CloseButton onClick={onCloseModal}>
+                            <i className="bi bi-x-lg CloseButton"></i>
+                        </CloseButton>
                         <TaskContent>
-                            <input type="text" placeholder="Task 제목을 입력해주세요"></input>
+                            <input type="text" placeholder="Task 제목을 입력해주세요" />
                         </TaskContent>
+                        <SelectBox />
                         <AddButton>
                             <button>Task 추가하기</button>
                         </AddButton>
                     </AddTask>
                 )}
-                <PlusButton onClick={onClickPlusButton}><i className="bi bi-plus-lg PlusButton"></i></PlusButton>
+                <PlusButton onClick={onOpenModal}>
+                    <i className="bi bi-plus-lg PlusButton"></i>
+                </PlusButton>
             </TaskHeader>
         </Container>
     );
@@ -67,14 +75,14 @@ const PlusButton = styled.div`
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     box-shadow: 0 0 10px ${theme.color.primary20};
-    corsur: pointer;
+    cursor: pointer;
 
     .PlusButton {
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        corsur: pointer;
+        cursor: pointer;
     }
 
     &:hover {
@@ -83,13 +91,15 @@ const PlusButton = styled.div`
 `;
 
 const ModalTitle = styled.div`
-    margin-top: 30px;
+    margin-top: 45px;
     font-size: 1.5rem;
 `;
 
 const CloseButton = styled.div`
     position: absolute;
-    right: 20px;
+    top: 18%;
+    right: 35%;
+    cursor: pointer;
 `;
 
 const TaskContent = styled.div`
@@ -113,10 +123,10 @@ const AddButton = styled.div`
     width: 480px;
     height: 50px;
     text-align: center;
-    margin-top: 210px;
+    margin-top: 235px;
     background-color: ${theme.color.primary20};
     border-radius: 5px;
-    corsur: pointer;
+    cursor: pointer;
 
     button {
         height: 100%;
