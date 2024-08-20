@@ -10,7 +10,7 @@ const CreateInput = styled.input`
     height: 130px;
     position: absolute; 
     top: 200px; 
-    left: 100px; 
+    left: 100px;
     border-radius: 6px;
     border: 0.2px solid gray;
 

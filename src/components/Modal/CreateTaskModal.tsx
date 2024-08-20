@@ -57,4 +57,4 @@ const MdOutlineClose  = styled.button`
     top: 10px;
     right: 10px;
     background: none;
-`;
+    `
