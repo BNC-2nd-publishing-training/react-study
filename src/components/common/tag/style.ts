@@ -14,25 +14,25 @@ export const TagContainer = styled.div<{ status: TagStatus }>`
   justify-content: center;
   ${({ status }) => {
     switch (status) {
-      case "approved":
+      case "Approved":
         return css`
           color: ${theme.color.primary20};
           background-color: ${theme.color.primary10};
         `;
 
-      case "in-progress":
+      case "In progress":
         return css`
-          color: ${theme.color.green10};
-          background-color: ${theme.color.green30};
+          color: ${theme.color.green30};
+          background-color: ${theme.color.green10};
         `;
 
-      case "in-review":
+      case "In review":
         return css`
-          color: ${theme.color.red10};
-          background-color: ${theme.color.red30};
+          color: ${theme.color.red30};
+          background-color: ${theme.color.red10};
         `;
 
-      case "waiting":
+      case "Waiting":
         return css`
           color: ${theme.color.gray10};
           background-color: ${theme.color.gray60};
