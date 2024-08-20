@@ -9,14 +9,19 @@ const CreateInput = styled.input`
     width: 480px;
     height: 130px;
     position: absolute; 
-    top: 200px; 
-    left: 100px;
+    top: 280px; 
+    left:640px;
     border-radius: 6px;
     border: 0.2px solid gray;
+    padding:20px;
+    padding-bottom:100px;
 
+    
     ::placeholder {
+        vertical-align:top;
         font-weight: ${theme.font.textMedium.fontWeight};
         font-size: ${theme.font.textMedium.fontSize};
         color: gray;
+        line-height: 1.2;
     }
 `;
