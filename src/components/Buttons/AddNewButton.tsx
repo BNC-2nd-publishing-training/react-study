@@ -1,9 +1,12 @@
 import styled from "@emotion/styled";
 import { FaPlus } from 'react-icons/fa';
 
-export default function FixedButton() {
+interface FixedButtonProps{
+    onClick:()=>void;
+}
+export default function FixedButton({onClick}:FixedButtonProps) {
     return (
-        <StyledFixedButton>
+        <StyledFixedButton onClick={onClick}>
             <FaPlus style={{ color: 'white', fontSize: '20px' }} />
         </StyledFixedButton>
     );
