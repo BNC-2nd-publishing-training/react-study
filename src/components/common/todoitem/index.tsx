@@ -2,8 +2,6 @@ import * as _ from "./style";
 import { TodoItemProps } from "./type";
 
 const TodoItem = ({ todo, onToggle }: TodoItemProps) => {
-  console.log("Rendering TodoItem:", todo);
-
   return (
     <_.TodoItemContainer>
       <_.CheckboxContainer

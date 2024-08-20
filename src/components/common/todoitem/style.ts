@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { theme } from "../../../styles/theme";
-import checkImg from "../../../assets/images/check.png";
 
 export const TodoItemContainer = styled.div`
   display: flex;
