@@ -1,41 +1,51 @@
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
-import { theme } from '@/styles/theme';
-import NewButton from '@/components/Buttons/AddNewButton';
-import CreateTaskModal from '@/components/Modal/CreateTaskModal'; 
-import CreateInput from '@/components/Input/TaskInput'
+import React, { useState } from "react";
+import styled from "@emotion/styled";
+import { theme } from "@/styles/theme";
+import NewButton from "@/components/Buttons/AddNewButton";
+import CreateTaskModal from "@/components/Modal/CreateTaskModal";
+import CreateInput from "@/components/Input/TaskInput";
+import TagDropdown from "@/components/Input/TagSelect"; // TagDropdown 컴포넌트 import
 
 export default function Todo() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
-    return (
-        <>
-        <CreateInput/>
-            <Text1>Today Task</Text1>
-            <NewButton onClick={openModal} />
-            <Text2>Upcoming Task</Text2>
-            {isModalOpen && (
-                <CreateTaskModal onClose={closeModal} />
-            )}
-        </>
-    );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const handleTagSelect = (value: string) => {
+    setSelectedTag(value);
+  };
+
+  return (
+    <>
+      <CreateInput />
+      <Text1>Today Task</Text1>
+      <TagDropdown
+        placeholder="Task의 상태를 선택해주세요"
+        onSelect={handleTagSelect}
+      />
+      <NewButton onClick={openModal} />
+      <Text2>Upcoming Task</Text2>
+      {isModalOpen && <CreateTaskModal onClose={closeModal} />}
+    </>
+  );
 }
 
 const Text1 = styled.div`
-    position: absolute;
-    top: 14.5%;
-    left: 37%;
-    color: ${theme.color.black};
-    font-size: ${theme.font.titleLarge.fontSize};
-    font-weight: ${theme.font.titleLarge.fontWeight};
+  position: absolute;
+  top: 14.5%;
+  left: 37%;
+  color: ${theme.color.black};
+  font-size: ${theme.font.titleLarge.fontSize};
+  font-weight: ${theme.font.titleLarge.fontWeight};
 `;
 
 const Text2 = styled.div`
-    position: absolute;
-    top: 60%;
-    left: 37%;
-    color: ${theme.color.gray60};
-    font-size: ${theme.font.titleMedium.fontSize};
-    font-weight: ${theme.font.titleMedium.fontWeight};
+  position: absolute;
+  top: 60%;
+  left: 37%;
+  color: ${theme.color.gray60};
+  font-size: ${theme.font.titleMedium.fontSize};
+  font-weight: ${theme.font.titleMedium.fontWeight};
 `;
