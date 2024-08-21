@@ -3,16 +3,16 @@ import { ButtonProps } from "@/utils/interfaces/ButtonProps";
 import { theme } from "@/styles/theme";
 
 const Button = (props: ButtonProps) => {
-    return(
+    return (
         <ButtonStyle
-            style={{backgroundColor: props.backgroundColor}}
+            backgroundColor={props.backgroundColor}
             onClick={props.onClick}>
             {props.text}
         </ButtonStyle>
-    )
+    );
 }
 
-const ButtonStyle = styled.button`
+const ButtonStyle = styled.button<{ backgroundColor?: string }>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,6 +21,7 @@ const ButtonStyle = styled.button`
     border-radius: 4px;
     color: ${theme.color.white};
     font: ${theme.font.titleMedium};
+    background-color: ${({ backgroundColor }) => backgroundColor || theme.color.primary20};
 `;
 
 export default Button;
