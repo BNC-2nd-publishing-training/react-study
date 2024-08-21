@@ -4,7 +4,8 @@ import { theme } from "@/styles/theme";
 import NewButton from "@/components/Buttons/AddNewButton";
 import CreateTaskModal from "@/components/Modal/CreateTaskModal";
 import CreateInput from "@/components/Input/TaskInput";
-import TagDropdown from "@/components/Input/TagSelect"; // TagDropdown 컴포넌트 import
+import TagDropdown from "@/components/Input/TagSelect";
+import Checkbox from "@/components/Input/TodoInput";
 
 export default function Todo() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,6 +20,7 @@ export default function Todo() {
 
   return (
     <>
+      <Checkbox />
       <CreateInput />
       <Text1>Today Task</Text1>
       <TagDropdown
