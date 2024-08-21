@@ -20,6 +20,10 @@ export const getTextColor = (type: TagType) => {
     switch (type) {
         case "Approved":
             return { color: theme.color.primary20 };
+        case "In progress":
+            return { color: theme.color.green30 };
+        case "In review":
+            return { color: theme.color.red30 };
         case "Waiting":
             return { color: theme.color.gray60 };
         default:

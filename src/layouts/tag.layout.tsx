@@ -7,7 +7,8 @@ const TagLayout: React.FC<TagProps> = ({ type }) => {
     const tagStyle = getTagStyle(type);
     const textColor = getTextColor(type);
     const displayText = (type === "Waiting") ? "Approved" : 
-                        (type === "In progress" || type === "In review") ? "" : 
+                        (type === "In progress" ) ? "In progress" : 
+                        (type ==="In review") ? "In review":
                         type;
 
     return (
