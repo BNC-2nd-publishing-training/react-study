@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import NewButton from "@/components/Buttons/AddNewButton";
 import CreateTaskModal from "@/components/Modal/CreateTaskModal";
-
+import Tags from "@/components/Tags/Tags";
 export default function Todo() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -17,6 +17,7 @@ export default function Todo() {
 
   return (
     <>
+      <Tags />
       <Text1>Today Task</Text1>
 
       <NewButton onClick={openModal} />
