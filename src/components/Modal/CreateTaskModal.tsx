@@ -6,25 +6,21 @@ import SelectBox from "../Input/SelectBox";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { PopupProps } from "@/utils/interfaces/PopupProps";
 import Button from "../Button/Button";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { TodoProps } from "@/utils/interfaces/TodoProps";
 import { SelectBoxProps } from "@/utils/interfaces/SelectBoxProps";
 
-const CreateTaskModal = ({ onClose }: PopupProps ) => {
+const CreateTaskModal = ({ onClose }: PopupProps) => {
     const [inputValue, setInputValue] = useState<string>("");
     const [selectedStatus, setSelectedStatus] = useState<SelectBoxProps | null>(null);
 
-    const closePopup = useCallback(() => {
-        if (onClose) onClose();
-    }, [onClose]);
-
-    const handleInputChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInputValue(event.target.value);
-    }, []);
+    };
 
-    const handleSelectChange = useCallback((label: SelectBoxProps) => {
+    const handleSelectChange = (label: SelectBoxProps) => {
         setSelectedStatus(label);
-    }, []);
+    };
 
     const createTask = () => {
         if (inputValue && selectedStatus) {
@@ -43,7 +39,7 @@ const CreateTaskModal = ({ onClose }: PopupProps ) => {
 
             setInputValue("");
             setSelectedStatus(null);
-            closePopup();
+            if (onClose) onClose();
         } else {
             alert("Task의 제목 혹은 상태를 모두 입력해주세요.");
         }
@@ -52,8 +48,8 @@ const CreateTaskModal = ({ onClose }: PopupProps ) => {
     return (
         <Background>
             <PopupBox>
-                <IconBox>
-                    <CloseIcon icon="bi:x" onClick={closePopup} />
+                <IconBox onClick={() => onClose && onClose()}>
+                    <CloseIcon icon="bi:x" />
                 </IconBox>
                 <PaddingBox>
                     <Group>
@@ -64,7 +60,7 @@ const CreateTaskModal = ({ onClose }: PopupProps ) => {
                                 value={inputValue}
                                 onChange={handleInputChange}
                             />
-                            <SelectBox onChange={handleSelectChange}/>
+                            <SelectBox onChange={handleSelectChange} />
                         </InputContainer>
                     </Group>
                     <Button
