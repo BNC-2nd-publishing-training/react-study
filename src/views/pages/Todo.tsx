@@ -20,13 +20,10 @@ export default function Todo() {
 
   return (
     <>
-      <Checkbox />
-      <CreateInput />
       <Text1>Today Task</Text1>
-      <TagDropdown
-        placeholder="Task의 상태를 선택해주세요"
-        onSelect={handleTagSelect}
-      />
+      <CreateInput />
+      <TagDropdown onSelect={handleTagSelect} />
+      <Checkbox />
       <NewButton onClick={openModal} />
       <Text2>Upcoming Task</Text2>
       {isModalOpen && <CreateTaskModal onClose={closeModal} />}

@@ -7,12 +7,20 @@ const Checkbox = () => {
   const [isChecked, check] = useState(false);
   const CheckboxChange = () => check(!isChecked);
   return (
-    <CheckboxContainer isChecked={isChecked} onClick={CheckboxChange}>
-      {isChecked && <FaCheck color="white" size={12} />}
-      <HiddenCheckbox type="checkbox" checked={isChecked} readOnly />
-    </CheckboxContainer>
+    <Label>
+      <CheckboxContainer isChecked={isChecked} onClick={CheckboxChange}>
+        {isChecked && <FaCheck color="white" size={12} />}
+        <HiddenCheckbox type="checkbox" checked={isChecked} readOnly />
+      </CheckboxContainer>
+    </Label>
   );
 };
+const Label = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 const CheckboxContainer = styled.div<{ isChecked: boolean }>`
   width: 16px;

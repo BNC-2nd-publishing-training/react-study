@@ -9,12 +9,12 @@ const CreateInput = styled.input`
   width: 480px;
   height: 130px;
   position: absolute;
-  top: 280px;
-  left: 640px;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 6px;
   border: 0.2px solid gray;
   padding: 20px;
-  padding-bottom: 100px;
   display: flex;
   justify-content: center;
   vertical-align: middle;

@@ -24,7 +24,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   padding-left: 0.7%;
-  top: 50%;
+  margin-top: 5%;
   padding-top: 25%;
   option[value=""] {
     color: gray;
