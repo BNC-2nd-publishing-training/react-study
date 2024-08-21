@@ -4,7 +4,7 @@ import TabList from "@/components/Tab/TabList";
 import { useState } from "react";
 import TitleText from "@/components/Text/TitleText";
 import AddTodoBtn from "@/components/Button/AddTodoBtn";
-import CreatTaskModal from "@/components/Modal/CreatTaskModal";
+import CreateTaskModal from "@/components/Modal/CreateTaskModal";
 import EditTaskModal from "@/components/Modal/EditTaskModal";
 
 const TodoApp = () => {
@@ -22,7 +22,7 @@ const TodoApp = () => {
                 </HeaderStyle>
                 <TabList onClick={() => openPopup('edit')}/>
             </TodoBox>
-            {popupStatus === 'create' && <CreatTaskModal onClose={closePopup}/>}
+            {popupStatus === 'create' && <CreateTaskModal onClose={closePopup}/>}
             {popupStatus === 'edit' && <EditTaskModal onClose={closePopup}/>}
         </Container>
     );
@@ -40,8 +40,8 @@ const Container = styled.div`
 const TodoBox = styled.div`
     display: flex;
     flex-direction: column;
-    width: 30vw;
-    height: 80vh;
+    width: 517px;
+    height: 840px;
     border-radius: 10px;
     background-color: ${theme.color.white};
 `;
@@ -52,5 +52,6 @@ const HeaderStyle = styled.div`
     align-items: center;
     padding: 50px 50px 0 50px;
 `;
+
 
 export default TodoApp;
