@@ -64,7 +64,7 @@ const CreateTaskModal = ({ onClose }: PopupProps ) => {
                                 value={inputValue}
                                 onChange={handleInputChange}
                             />
-                            <SelectBox onChange={handleSelectChange} />
+                            <SelectBox onChange={handleSelectChange}/>
                         </InputContainer>
                     </Group>
                     <Button
@@ -126,11 +126,12 @@ const Group = styled.div`
     width: 100%;
 `;
 
-const IconBox = styled.div`
+const IconBox = styled.button`
     position: absolute;
     right: 0;
     padding: 15px;
     cursor: pointer;
+    line-height: 0;
 `;
 
 const CloseIcon = styled(Icon)`
