@@ -24,27 +24,17 @@ const TabList = (props: TabProps) => {
             return todos.filter((todo: any) => todo.status.toLowerCase() === statusLower);
         };
 
-        const selectedStatus = menu[selectTab];
-        setFilteredTodos(filterByStatus(selectedStatus));
-    }, [filteredTodos]);
-
-    useEffect(() => {
-        const storedTodos = localStorage.getItem('tasks');
-        const todos = storedTodos ? JSON.parse(storedTodos) : [];
         
         const filterUpcoming = () => {
             return todos.filter((todo: any) => todo.status.toLowerCase() === 'waiting');
         };
-
-        setUpcomingTodos(filterUpcoming());
-    }, [upcomingTodos]);
-
-    useEffect(() => {
-        const storedTodos = localStorage.getItem('tasks');
-        const todos = storedTodos ? JSON.parse(storedTodos) : [];
         
+        const selectedStatus = menu[selectTab];
+        
+        setFilteredTodos(filterByStatus(selectedStatus));
+        setUpcomingTodos(filterUpcoming());
         setCountTask(todos.length);
-    }, [filteredTodos, upcomingTodos]);
+    }, [selectTab]);
 
     return (
         <TabContainer>
