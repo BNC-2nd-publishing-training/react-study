@@ -1,4 +1,11 @@
+
 export interface PopupProps {
     onClose: () => void;
-    setTodos: React.Dispatch<React.SetStateAction<TodoItem[]>>;
+    setTodos: (todos: string) => void;
+    selectedTask?: {
+        id: number;
+        text: string;
+        tag: string;
+        check: boolean;
+    };
 }
