@@ -33,7 +33,9 @@ const Tag = ({ status = "Waiting" }: TagProps) => {
 };
 
 const TagContainer = styled.div<{ background: string; color: string }>`
-  ${theme.font.textSmall};
+  font-weight: ${theme.font.textSmall};
+  font-size: ${theme.font.textSmall};
+  line-height: ${theme.font.textSmall};
   width: 75px;
   height: 28px;
   border-radius: 14px;

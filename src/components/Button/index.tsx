@@ -13,7 +13,9 @@ const ButtonContainer = styled.button<{ width?: string }>`
   width: ${({ width }) => width};
   height: 50px;
   border-radius: 4px;
-  font-family: ${theme.font.titleMedium};
+  font-size: ${theme.font.titleMedium};
+  font-weight: ${theme.font.titleMedium};
+  line-height: ${theme.font.titleMedium};
   background-color: ${theme.color.primary20};
   color: ${theme.color.white};
 `;
