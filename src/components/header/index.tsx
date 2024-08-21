@@ -4,16 +4,16 @@ import { AddBtn } from "@/assets/images";
 
 const Header = () => {
   return (
-    <Container>
+    <HeaderContainer>
       <p>Today Task</p>
       <AddButton>
         <img src={AddBtn}/>
       </AddButton>
-    </Container>
+    </HeaderContainer>
   );
 };
 
-const Container = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
