@@ -5,7 +5,7 @@ import { TodoProps } from "@/utils/interfaces/TodoProps";
 
 const UpCommingList = ({ todos = [], onClick }: TodoProps) => {
     return(
-        <UpCommingContainer>
+        <div>
             <Text>UpComming Task</Text>
             <TodoBox>
                 {todos.slice().reverse().map((todo, index) => (
@@ -17,20 +17,15 @@ const UpCommingList = ({ todos = [], onClick }: TodoProps) => {
                     />
                 ))}
             </TodoBox>
-        </UpCommingContainer>
+        </div>
     );
 };
-
-const UpCommingContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    row-gap: 40px;
-`;
 
 const TodoBox = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 18px;
+    margin-top: 40px;
 `;
 
 
