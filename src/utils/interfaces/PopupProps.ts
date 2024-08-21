@@ -1,5 +1,5 @@
 export interface PopupProps{
-    onClick?: () => void;
+    onClick: () => void;
     onClose?: () => void;
     onChange?: (selectedOption: string) => void;
 }
