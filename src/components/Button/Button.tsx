@@ -12,7 +12,7 @@ const Button = (props: ButtonProps) => {
     )
 }
 
-const ButtonStyle = styled.div`
+const ButtonStyle = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;

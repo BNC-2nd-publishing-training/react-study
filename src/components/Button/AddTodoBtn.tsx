@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import { Icon } from '@iconify/react';
@@ -13,7 +12,7 @@ const AddTodoBtn = (props: PopupProps) => {
     );
 };
 
-const AddBtn = styled.div`
+const AddBtn = styled.button`
     width: 50px;
     height: 50px;
     display: flex;
@@ -23,7 +22,7 @@ const AddBtn = styled.div`
     background-color: ${theme.color.primary20};
     box-shadow: rgb(98, 60, 231, 0.5) 0 2px 10px;
     color: ${theme.color.white};
-    font-size: 28px;
+    font-size: ${theme.font.titleLarge};
     cursor: pointer;
 `;
 export default AddTodoBtn;
