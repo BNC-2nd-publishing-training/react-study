@@ -3,9 +3,6 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import NewButton from "@/components/Buttons/AddNewButton";
 import CreateTaskModal from "@/components/Modal/CreateTaskModal";
-import CreateInput from "@/components/Input/TaskInput";
-import TagDropdown from "@/components/Input/TagSelect";
-import Checkbox from "@/components/Input/TodoInput";
 
 export default function Todo() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,9 +18,7 @@ export default function Todo() {
   return (
     <>
       <Text1>Today Task</Text1>
-      <CreateInput />
-      <TagDropdown onSelect={handleTagSelect} />
-      <Checkbox />
+
       <NewButton onClick={openModal} />
       <Text2>Upcoming Task</Text2>
       {isModalOpen && <CreateTaskModal onClose={closeModal} />}
