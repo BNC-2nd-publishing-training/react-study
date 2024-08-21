@@ -1,31 +1,57 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { theme } from '@/styles/theme';
+import { EditPopProps } from '@/utils/interfaces/EditPopProps';
 import EditBtn from '@/components/EditBtn';
-import { PopupProps } from '@/utils/interfaces/PopupType';
+import { getTagOptions, TagOption } from '@/utils/functions/tagUtils';
 
-const EditPop: React.FC<PopupProps> = ({ onClose }) => {
-    const [selectedTag, setSelectedTag] = useState<string>('Task의 상태를 선택해주세요');
+const EditPop: React.FC<EditPopProps> = ({ onClose, setTodos, task }) => {
+    const [selectedTag, setSelectedTag] = useState<string>(task?.tag || 'Task의 상태를 선택해주세요');
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+    const [taskTitle, setTaskTitle] = useState<string>(task?.text || '');
 
-    const tagOptions = [
-        { value: 'todo', label: 'To Do' },
-        { value: 'in-progress', label: 'In Progress' },
-        { value: 'done', label: 'Done' }
-    ];
+    const tagOptions: TagOption[] = getTagOptions();
 
-    const handleTagClick = (value: string, label: string) => {
-        setSelectedTag(label);
+    const handleTagClick = (value: string) => {
+        setSelectedTag(value);
         setIsDropdownOpen(false);
     };
+
+    const handleSaveTask = () => {
+        if (!task) return;
+
+        const updatedTask = {
+            ...task,
+            text: taskTitle,
+            tag: selectedTag,
+        };
+
+        setTodos(prevTodos =>
+            prevTodos.map(t => (t.id === task.id ? updatedTask : t))
+        );
+
+        onClose();
+    };
+
+    const handleDeleteTask = () => {
+        if (!task) return;
+
+        setTodos(prevTodos => prevTodos.filter(t => t.id !== task.id));
+        onClose();
+    };
+
+    if (!task) {
+        return <div>오류, 클릭된 값이 존재하지 않습니다</div>;
+    }
 
     return (
         <EditPopStyle>
             <EditBtn onClick={onClose} aria-label="Close popup" />
             <Input>
-                <h1 id="popup-title">Create Task</h1>
+                <h1 id="popup-title">Edit Task</h1>
                 <InputTitle
-                    type="text"
+                    value={taskTitle}
+                    onChange={(e) => setTaskTitle(e.target.value)}
                     placeholder="Task 제목을 입력해주세요"
                     aria-label="Task Title"
                 />
@@ -42,7 +68,7 @@ const EditPop: React.FC<PopupProps> = ({ onClose }) => {
                             {tagOptions.map(option => (
                                 <DropdownItem
                                     key={option.value}
-                                    onClick={() => handleTagClick(option.value, option.label)}
+                                    onClick={() => handleTagClick(option.value)}
                                 >
                                     {option.label}
                                 </DropdownItem>
@@ -51,6 +77,10 @@ const EditPop: React.FC<PopupProps> = ({ onClose }) => {
                     )}
                 </DropdownContainer>
             </Input>
+            <div style={{ width: "100%", display: 'flex', gap: '1vw' }}>
+                <DeleteTaskButton onClick={handleDeleteTask}>Task 삭제하기</DeleteTaskButton>
+                <SaveTaskButton onClick={handleSaveTask}>Task 수정하기</SaveTaskButton>
+            </div>
         </EditPopStyle>
     );
 };
@@ -70,9 +100,9 @@ const Input = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 3vh;
-    h1{
-        font-size: ${theme.font.titleMedium.fontSize};
-        font-weight: ${theme.font.titleMedium.fontWeight};
+    h1 {
+        font-size: ${theme.font.titleLarge.fontSize};
+        font-weight: ${theme.font.titleLarge.fontWeight};
     }
 `;
 
@@ -93,7 +123,6 @@ const InputTitle = styled.textarea`
 
     &:focus {
         outline: none;
-        border-color: ${theme.color.primary};
     }
 `;
 
@@ -104,13 +133,14 @@ const DropdownContainer = styled.div`
 
 interface DropdownButtonProps {
     isPlaceholder: boolean;
+    isDropdownOpen: boolean;
 }
 
 const DropdownButton = styled.button<DropdownButtonProps>`
     width: 100%;
     padding: 0.5rem;
     border: 1px solid ${theme.color.gray40};
-    border-radius: 4px 4px ${({ isDropdownOpen }) => isDropdownOpen ? '0 0'  : '4px 4px'};
+    border-radius: 4px 4px ${({ isDropdownOpen }) => isDropdownOpen ? '0 0' : '4px 4px'};
     background-color: ${theme.color.white};
     font-size: ${theme.font.textMedium.fontSize};
     font-weight: ${theme.font.textMedium.fontWeight};
@@ -145,7 +175,21 @@ const DropdownItem = styled.div`
     }
 `;
 
-const AddTaskButton = styled.button`
+const DeleteTaskButton = styled.button`
+    flex: 1;
+    width: 100%;
+    padding: 0.75rem 2rem;
+    background-color: ${theme.color.red30};
+    color: ${theme.color.white};
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: ${theme.font.textMedium.fontSize};
+    font-weight: ${theme.font.textMedium.fontWeight};  
+`;
+
+const SaveTaskButton = styled.button`
+    flex: 1;
     width: 100%;
     padding: 0.75rem 2rem;
     background-color: ${theme.color.primary20};
@@ -155,14 +199,6 @@ const AddTaskButton = styled.button`
     cursor: pointer;
     font-size: ${theme.font.textMedium.fontSize};
     font-weight: ${theme.font.textMedium.fontWeight};  
-
-    &:hover {
-        background-color: ${theme.color.primary30};
-    }
-
-    &:focus {
-        outline: 2px solid ${theme.color.primary};
-    }
 `;
 
 export default EditPop;

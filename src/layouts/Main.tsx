@@ -3,8 +3,15 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import Tab from "@/components/Tab";
 import TodoList from "@/components/TodoList";
+import { TodoItem } from '@/utils/interfaces/todoInterfaces';
 
-const Main = ({todos, setTodos}) => {
+interface MainProps {
+    todos: TodoItem[];
+    setTodos: React.Dispatch<React.SetStateAction<TodoItem[]>>;
+    onTaskSelect: (task: TodoItem) => void;
+}
+
+const Main: React.FC<MainProps> = ({ todos, setTodos, onTaskSelect }) => {
     const [selectedTab, setSelectedTab] = useState<string>('All');
 
     const handleTabSelect = (tab: string) => {
@@ -21,7 +28,12 @@ const Main = ({todos, setTodos}) => {
         <MainStyle>
             <Tab onTabSelect={handleTabSelect} todoCounts={todos.length} />
             <ScrollBox>
-                <TodoList todos={todos} selectedTab={selectedTab} onToggleTodo={toggleTodoCheck} onTaskSelect={() => {}} />
+                <TodoList
+                    todos={todos}
+                    selectedTab={selectedTab}
+                    onToggleTodo={toggleTodoCheck}
+                    onTaskSelect={onTaskSelect} // Pass selected task to parent
+                />
             </ScrollBox>
         </MainStyle>
     );

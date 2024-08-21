@@ -17,7 +17,7 @@ const TodoList = ({ todos, selectedTab, onToggleTodo, onTaskSelect }: TodoListPr
                 {completedTodos.map(todo => (
                     <Todo
                         key={todo.id}
-                        check={(todo.check ?? false).toString()} // Provide default value
+                        check={(todo.check ?? false).toString()}
                         text={todo.text}
                         tag={todo.tag}
                         onToggle={() => onToggleTodo(todo.id)}
@@ -31,7 +31,7 @@ const TodoList = ({ todos, selectedTab, onToggleTodo, onTaskSelect }: TodoListPr
                 {upcomingTodos.map(todo => (
                     <Todo
                         key={todo.id}
-                        check={(todo.check ?? false).toString()} // Provide default value
+                        check={(todo.check ?? false).toString()}
                         text={todo.text}
                         tag={todo.tag}
                         onToggle={() => onToggleTodo(todo.id)}

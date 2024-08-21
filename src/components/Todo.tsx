@@ -5,9 +5,19 @@ import Tag from "@/components/Tag";
 import { TodoProps } from "@/utils/interfaces/todoInterfaces";
 
 const Todo = ({ check, text, tag, onToggle, onClick }: TodoProps) => {
+    // Prevent checkbox click from triggering the onClick event for editing
+    const handleCheckboxClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        onToggle();
+    };
+
     return (
         <CheckBoxContainer onClick={onClick}>
-            {check === "false" ? <FaRegSquareIcon onClick={onToggle} /> : <FaCheckSquareIcon onClick={onToggle} />}
+            {check === "false" ? (
+                <FaRegSquareIcon onClick={handleCheckboxClick} />
+            ) : (
+                <FaCheckSquareIcon onClick={handleCheckboxClick} />
+            )}
             <TaskText>{text}</TaskText>
             <Tag tag={tag} />
         </CheckBoxContainer>
@@ -24,13 +34,13 @@ const CheckBoxContainer = styled.div`
 
 const FaRegSquareIcon = styled(FaRegSquare)`
     width: ${theme.font.textMedium.fontSize};
-    font-size:min-content;
+    font-size: min-content;
     color: ${theme.color.gray60};
 `;
 
 const FaCheckSquareIcon = styled(FaSquareCheck)`
     width: ${theme.font.textMedium.fontSize};
-    font-size:  min-content;
+    font-size: min-content;
     color: ${theme.color.primary20};
 `;
 

@@ -86,8 +86,8 @@ const Input = styled.div`
     align-items: center;
     gap: 3vh;
     h1 {
-        font-size: ${theme.font.titleMedium.fontSize};
-        font-weight: ${theme.font.titleMedium.fontWeight};
+        font-size: ${theme.font.titleLarge.fontSize};
+        font-weight: ${theme.font.titleLarge.fontWeight};
     }
 `;
 

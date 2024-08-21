@@ -8,6 +8,7 @@ import { TodoItem } from '@/utils/interfaces/todoInterfaces';
 
 const TodoApp: React.FC = () => {
     const [isPopupVisible, setIsPopupVisible] = useState<boolean>(false);
+    const [selectedTask, setSelectedTask] = useState<TodoItem | null>(null);
 
     const togglePopup = () => {
         setIsPopupVisible(prev => !prev);
@@ -17,12 +18,28 @@ const TodoApp: React.FC = () => {
         { id: 1, check: true, text: "간지나게 숨쉬기", tag: "Approved" }
     ]);
 
+    const handleTaskSelect = (task: TodoItem) => {
+        setSelectedTask(task);
+        togglePopup();
+    };
+
+    const handleAddTask = () => {
+        setSelectedTask(null);
+        togglePopup();
+    };
+
     return (
         <Container>
-            {isPopupVisible && <Popup onClose={togglePopup} setTodos={setTodos} />}
+            {isPopupVisible && (
+                <Popup
+                    onClose={togglePopup}
+                    setTodos={setTodos}
+                    selectedTask={selectedTask || undefined} // Conditionally pass selected task
+                />
+            )}
             <TodoListBox>
-                <Header onClose={togglePopup} />
-                <Main todos={todos} setTodos={setTodos} />
+                <Header onClose={handleAddTask} />
+                <Main todos={todos} setTodos={setTodos} onTaskSelect={handleTaskSelect} />
             </TodoListBox>
         </Container>
     );
