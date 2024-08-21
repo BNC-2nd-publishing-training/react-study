@@ -2,12 +2,12 @@ import { theme } from "@/styles/theme";
 import { InputProps } from "@/utils/interfaces/InputProps";
 import styled from "@emotion/styled";
 
-const InputBox = (props: InputProps) => {
+const InputBox = ({ value = '', placeholder = '', onChange}: InputProps) => {
     return (
         <InputStyle
-            value={props.value}
-            placeholder={props.placeholder}
-            onChange={props.onChange}
+            value={value}
+            placeholder={placeholder}
+            onChange={onChange}
         />
     );
 };
