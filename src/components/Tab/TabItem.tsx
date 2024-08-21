@@ -2,13 +2,11 @@ import styled from "@emotion/styled";
 import { TabProps } from "@/utils/interfaces/TabProps";
 import { theme } from "@/styles/theme";
 
-const TabItem = (props: TabProps) => {
-    const { text, isActive = false, onClick, count } = props;
-
+const TabItem = ({ text, isActive = false, onClick, count }: TabProps) => {
     return (
         <TabStyle onClick={onClick} isActive={isActive}>
             <AllContainer>
-                {text === 'All' ? <NumBox>{props.count}</NumBox> : ''}
+                {text === 'All' && <NumBox>{count}</NumBox>}
                 <Menu>{text}</Menu>
             </AllContainer>
         </TabStyle>
