@@ -2,10 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import Select, { StylesConfig } from "react-select";
 import { theme } from "@/styles/theme";
-
-interface SelectBoxProps {
-    onChange: (selectedOption: any) => void;
-}
+import { SelectBoxProps } from "@/utils/interfaces/SelectBoxProps";
 
 const SelectBox = ({ onChange }: SelectBoxProps) => {
     const status = [
