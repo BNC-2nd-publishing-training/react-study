@@ -11,9 +11,9 @@ const Badge = ({ value }: IBadgeProps) => {
 
 const BadgeContainer = styled.div`
   ${theme.font.textSmall};
-  font-size: ${theme.font.textSmall};
-  font-weight: ${theme.font.textSmall};
-  line-height: ${theme.font.textSmall};
+  font-size: ${theme.font.textSmall.fontSize};
+  font-weight: ${theme.font.textSmall.fontWeight};
+  line-height: ${theme.font.textSmall.lineHeight};
   color: ${theme.color.primary20};
   width: 29px;
   height: 20px;
