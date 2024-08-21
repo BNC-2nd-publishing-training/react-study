@@ -6,36 +6,32 @@ import SelectBox from "../Input/SelectBox";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { PopupProps } from "@/utils/interfaces/PopupProps";
 import Button from "../Button/Button";
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import { TodoProps } from "@/utils/interfaces/TodoProps";
+import { SelectBoxProps } from "@/utils/interfaces/SelectBoxProps";
 
-interface Task {
-    text: string;
-    status: string;
-}
+const CreateTaskModal = ({ onClose }: PopupProps ) => {
+    const [inputValue, setInputValue] = useState<string>("");
+    const [selectedStatus, setSelectedStatus] = useState<SelectBoxProps | null>(null);
 
-const CreatTaskModal = (props: PopupProps) => {
-    const [inputValue, setInputValue] = useState("");
-    const [selectedStatus, setSelectedStatus] = useState<any>(null);
+    const closePopup = useCallback(() => {
+        if (onClose) onClose();
+    }, [onClose]);
 
-    const closePopup = () => {
-        if (props.onClose) {
-            props.onClose();
-        }
-    };
-
-    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleInputChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInputValue(event.target.value);
-    };
+    }, []);
 
-    const handleSelectChange = (selectedOption: string) => {
-        setSelectedStatus(selectedOption);
-    };
+    const handleSelectChange = useCallback((label: SelectBoxProps) => {
+        setSelectedStatus(label);
+    }, []);
 
     const createTask = () => {
         if (inputValue && selectedStatus) {
-            const existingTasks = JSON.parse(localStorage.getItem('tasks') || '[]') as Task[];
+            const existingTasks = JSON.parse(localStorage.getItem('tasks') || '[]') as TodoProps[];
 
-            const newTask: Task = {
+            const newTask: TodoProps = {
+                id: (existingTasks.length + 1).toString(),
                 text: inputValue,
                 status: selectedStatus.label,
             };
@@ -56,7 +52,9 @@ const CreatTaskModal = (props: PopupProps) => {
     return (
         <Background>
             <PopupBox>
-                <CloseIcon icon="bi:x" onClick={closePopup} />
+                <IconBox>
+                    <CloseIcon icon="bi:x" onClick={closePopup} />
+                </IconBox>
                 <PaddingBox>
                     <Group>
                         <TitleText text="Create Task" />
@@ -81,19 +79,21 @@ const CreatTaskModal = (props: PopupProps) => {
 };
 
 const Background = styled.div`
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(0, 0, 0, 0.5);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const PopupBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    position: relative;
     width: 35vw;
     height: 38vw;
     background-color: ${theme.color.white};
@@ -106,15 +106,14 @@ const PaddingBox = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 80%;
-    row-gap: 40px;
-    padding: 0 4vw;
+    height: 100%;
+    padding: 4vw;
 `;
 
 const InputContainer = styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 30px;
+    gap: 30px;
     width: 100%;
     margin-bottom: 5vw;
 `;
@@ -122,17 +121,20 @@ const InputContainer = styled.div`
 const Group = styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 40px;
-    width: 100%;
     align-items: center;
+    gap: 40px;
+    width: 100%;
 `;
 
-const CloseIcon = styled(Icon)`
-    font-size: 30px;
+const IconBox = styled.div`
+    position: absolute;
     right: 0;
     padding: 15px;
     cursor: pointer;
 `;
 
-export default CreatTaskModal;
+const CloseIcon = styled(Icon)`
+    font-size: 30px;
+`;
 
+export default CreateTaskModal;
