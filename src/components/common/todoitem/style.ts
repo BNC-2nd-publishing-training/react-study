@@ -7,9 +7,7 @@ export const TodoItemContainer = styled.div`
   gap: 12px;
 `;
 
-export const CheckboxContainer = styled.input`
-  display: flex;
-  align-items: center;
+export const CheckBox = styled.input`
   width: 16px;
   height: 16px;
   border: 0.5px solid ${theme.color.gray60};
