@@ -1,17 +1,19 @@
 import { NavButtonProps } from "./type";
 import * as _ from "./style";
 import Badge from "../badge";
+import { ListProps } from "../list/type";
 
 const NavButton = ({
   selected = false,
   title,
-  count,
+  count = 0,
   ...props
 }: NavButtonProps) => {
   return (
     <_.NavButtonContainer selected={selected} {...props}>
-      {count && <Badge count={count} label={title} />}
-      <_.TitleContent selected={selected}>{title}</_.TitleContent>
+      <_.TitleContent selected={selected}>
+        <Badge count={count} label={title} />
+      </_.TitleContent>
     </_.NavButtonContainer>
   );
 };
