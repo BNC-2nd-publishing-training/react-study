@@ -9,7 +9,7 @@ interface NavItemProps {
 const Nav = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const navItems = ["All", "In Review", "In Prograss", "Approved"];
+  const navItems = ["All", "In Review", "In Progress", "Approved"];
 
   return (
     <NavContainer>

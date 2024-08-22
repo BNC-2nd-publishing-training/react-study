@@ -1,10 +1,6 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-import Tag from "./components/Tag";
-import Button from "./components/Button";
 import FloatingButton from "./components/Button/Floating";
-import Badge from "./components/Badge";
-import Checkbox from "./components/Checkbox";
 import Nav from "./components/Nav";
 import CheckboxList from "./components/Checkbox/CheckboxList";
 
@@ -18,10 +14,18 @@ const App = () => {
         </Header>
         <Nav />
         <CheckboxListContainer>
-          <CheckboxList status="Approved" label="허용" />
-          <CheckboxList status="Approved" label="허용" />
+          <CheckboxList status="Approved" label="간지나게 숨쉬기" />
+          <CheckboxList status="Approved" label="간지나게 숨쉬기" />
+          <CheckboxList status="In review" label="간지나게 숨쉬기" />
+          <CheckboxList status="In progress" label="허용" />
           <CheckboxList status="Approved" label="허용" />
         </CheckboxListContainer>
+        <UpcomingTaskTitleContainer>
+          <UpcomingTaskTitle>Upcoming Tasks</UpcomingTaskTitle>
+        </UpcomingTaskTitleContainer>
+        <UpcomingTasksContainer>
+          <CheckboxList status="Waiting" label="간지나게 숨쉬기" />
+        </UpcomingTasksContainer>
       </TodolistContainer>
     </Container>
   );
@@ -42,14 +46,23 @@ const CheckboxListContainer = styled.div`
   padding: 40px 47px;
   gap: 18px;
   overflow: auto;
+  max-height: 320px;
 `;
 
 const UpcomingTasksContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 40px 47px;
+  padding: 0px 47px 0px;
   gap: 18px;
-  overflow: auto;
+  overflow-y: auto;
+  max-height: 160px;
+`;
+
+const UpcomingTaskTitle = styled.span`
+  color: ${theme.color.gray60};
+  font-size: ${theme.font.titleMedium.fontSize};
+  font-weight: ${theme.font.titleMedium.fontWeight};
+  line-height: ${theme.font.titleMedium.lineHeight};
 `;
 
 const TodolistContainer = styled.div`
@@ -66,6 +79,11 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 52px 47px 0px;
+`;
+
+const UpcomingTaskTitleContainer = styled.div`
+  display: flex;
+  padding: 52px 47px 40px;
 `;
 
 const TodayTaskTitle = styled.h1`
