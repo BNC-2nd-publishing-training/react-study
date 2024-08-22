@@ -29,6 +29,7 @@ const HeaderContainer = styled.div`
 
   p {
     font-size: ${theme.font.titleLarge};
+    font-weight: ${theme.font.titleLarge};
     color: ${theme.color.black};
   }
 `;

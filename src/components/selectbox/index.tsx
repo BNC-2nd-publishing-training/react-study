@@ -20,6 +20,7 @@ const Container=styled.input`
     ::placeholder{
         color: ${theme.color.gray40};
         font-size: ${theme.font.textMedium};
+        font-weight: 100${theme.font.textMedium};
     }
     
 `

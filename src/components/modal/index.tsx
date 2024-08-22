@@ -44,6 +44,7 @@ const ModalBox = styled.div`
   border-radius: 10px;
   p {
     font-size: ${theme.font.titleLarge};
+    font-weight: ${theme.font.titleLarge};
     display: flex;
     justify-content: center;
   }
