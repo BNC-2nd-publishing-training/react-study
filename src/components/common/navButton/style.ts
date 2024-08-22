@@ -14,5 +14,8 @@ export const NavButtonContainer = styled.button<{ selected: boolean }>`
 
 export const TitleContent = styled.span<{ selected: boolean }>`
   ${theme.font.textMedium}
-  color:${({ selected }) => (selected ? theme.color.black : theme.color.gray50)}
+  color:${({ selected }) =>
+    selected ? theme.color.black : theme.color.gray50};
+  display: flex;
+  justify-content: center;
 `;
