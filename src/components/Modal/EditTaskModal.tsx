@@ -1,29 +1,83 @@
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import TitleText from "../Text/TitleText";
 import InputBox from "../Input/InputBox";
 import SelectBox from "../Input/SelectBox";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { Icon } from "@iconify/react";
 import { PopupProps } from "@/utils/interfaces/PopupProps";
 import Button from "../Button/Button";
-import { useState, useCallback } from "react";
 import { SelectBoxProps } from "@/utils/interfaces/SelectBoxProps";
+import { useTodoContext } from "@/context/TodoContext";
+import { TodoProps } from "@/utils/interfaces/TodoProps";
 
 const EditTaskModal = ({ onClose }: PopupProps) => {
-    const [inputValue, setInputValue] = useState<string>("");
-    const [selectedStatus, setSelectedStatus] = useState<SelectBoxProps | null>(null);
+    const { selectedTodo, setSelectedTodo } = useTodoContext();
+    const [inputValue, setInputValue] = useState<string>(selectedTodo?.text || "");
+    const [selectedStatus, setSelectedStatus] = useState<SelectBoxProps>({
+        label: selectedTodo?.status || "",
+        value: selectedTodo?.status || ""
+    });
 
-    const closePopup = useCallback(() => {
+    const closePopup = () => {
         if (onClose) onClose();
-    }, [onClose]);
+    };
 
-    const handleInputChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInputValue(event.target.value);
-    }, []);
+    };
 
-    const handleSelectChange = useCallback((label: SelectBoxProps) => {
-        setSelectedStatus(label);
-    }, []);
+    const handleSelectChange = (option: SelectBoxProps) => {
+        setSelectedStatus(option);
+    };
+
+    const handleTaskUpdate = () => {
+        if (selectedTodo) {
+            const updatedTodo = {
+                ...selectedTodo,
+                text: inputValue,
+                status: selectedStatus.value || ""
+            };
+            console.log(updatedTodo);
+            const storedTodos = localStorage.getItem("tasks");
+            if (storedTodos) {
+                const todos: TodoProps[] = JSON.parse(storedTodos);
+    
+                const updatedTodos = todos.map(todo =>
+                    todo.id === updatedTodo.id ? updatedTodo : todo
+                );
+    
+                localStorage.setItem("tasks", JSON.stringify(updatedTodos));
+                
+                setSelectedTodo(null);
+                closePopup();
+            }
+        }
+    };
+    
+
+    const handleTaskDelete = () => {
+        if (selectedTodo) {
+            const id = selectedTodo.id;
+            console.log(id);
+            if (id) {
+                const storedTodos = localStorage.getItem("tasks");
+                if (storedTodos) {
+                    const todos: TodoProps[] = JSON.parse(storedTodos);
+
+                    const updatedTodos = todos.filter(todo => todo.id !== id);
+
+                    console.log(updatedTodos);
+
+                    localStorage.setItem("tasks", JSON.stringify(updatedTodos));
+
+                    setSelectedTodo(null);
+                    closePopup();
+                }
+            }
+        }
+    };
+    
 
     return (
         <Background>
@@ -40,18 +94,23 @@ const EditTaskModal = ({ onClose }: PopupProps) => {
                                 value={inputValue}
                                 onChange={handleInputChange}
                             />
-                            <SelectBox onChange={handleSelectChange} />
+                            <SelectBox
+                                onChange={handleSelectChange}
+                                value={selectedStatus.value}
+                            />
                         </InputContainer>
                     </Group>
                     <ButtonContainer>
-                        <Button text="Task 삭제하기" backgroundColor={theme.color.red30} />
-                        <Button text="Task 수정하기" backgroundColor={theme.color.primary20} />
+                        <Button text="Task 삭제하기" backgroundColor={theme.color.red30} onClick={handleTaskDelete} />
+                        <Button text="Task 수정하기" backgroundColor={theme.color.primary20} onClick={handleTaskUpdate} />
                     </ButtonContainer>
                 </PaddingBox>
             </PopupBox>
         </Background>
     );
 };
+
+// Styled components remain unchanged
 
 const Background = styled.div`
     position: fixed;
@@ -107,11 +166,12 @@ const ButtonContainer = styled.div`
     width: 100%;
 `;
 
-const IconBox = styled.div`
+const IconBox = styled.button`
     position: absolute;
     right: 0;
     padding: 15px;
     cursor: pointer;
+    line-height: 0;
 `;
 
 const CloseIcon = styled(Icon)`
