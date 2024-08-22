@@ -1,26 +1,53 @@
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import { MdOutlineClose as CloseIcon } from "react-icons/md";
-import CreateInput from "@/components/Input/TaskInput";
+import CreateTask from "@/components/Input/TaskInput";
 import TagDropdown from "@/components/Input/TagSelect";
 import NewButton from "@/components/Buttons/AddButton";
 
+interface Task {
+  title: string;
+  tag: string | null;
+}
+
 interface CreateTaskModalProps {
-  onClose: () => void;
+  onClose: (task: Task) => void;
 }
 
 export default function CreateTaskModal({ onClose }: CreateTaskModalProps) {
+  const [taskTitle, setTaskTitle] = useState("");
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTaskTitle(e.target.value);
+    console.log("현재 입력값:", e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (taskTitle.trim()) {
+      onClose({ title: taskTitle.trim(), tag: selectedTag });
+      setTaskTitle("");
+    } else {
+      alert("작업 제목을 입력해주세요.");
+    }
+  };
+
   return (
     <ModalContainer>
       <ModalContent>
         <TextInput>Create Task</TextInput>
-        <CloseButton onClick={onClose}>
+        <CloseButton onClick={() => onClose({ title: "", tag: null })}>
           <CloseIcon size={24} />
         </CloseButton>
         <Body>
-          <CreateInput placeholder="Task 제목을 입력해주세요" />
-          <TagDropdown onSelect={(value) => console.log(value)} />
-          <NewButton />
+          <CreateTask
+            placeholder="Task 제목을 입력해주세요"
+            value={taskTitle}
+            onChange={handleChange}
+          />
+          <TagDropdown onSelect={setSelectedTag} />
+          <NewButton onClick={handleSubmit}>Task 추가하기</NewButton>
         </Body>
       </ModalContent>
     </ModalContainer>

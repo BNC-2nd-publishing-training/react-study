@@ -34,6 +34,7 @@ const Tags = () => {
     </TagsContainer>
   );
 };
+
 const Tag = styled.div<{ bgColor: string; textColor: string }>`
   padding-top: 6px;
   border-radius: 14px;
@@ -49,4 +50,5 @@ const Tag = styled.div<{ bgColor: string; textColor: string }>`
 const TagsContainer = styled.div`
   gap: 8px;
 `;
+
 export default Tags;

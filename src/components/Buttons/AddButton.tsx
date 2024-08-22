@@ -1,8 +1,13 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 
-export default function NewButton() {
-  return <StyledNewButton>Task 추가하기</StyledNewButton>;
+interface NewButtonProps {
+  onClick: () => void;
+  children: React.ReactNode;
+}
+
+export default function NewButton({ onClick, children }: NewButtonProps) {
+  return <StyledNewButton onClick={onClick}>{children}</StyledNewButton>;
 }
 
 const StyledNewButton = styled.button`

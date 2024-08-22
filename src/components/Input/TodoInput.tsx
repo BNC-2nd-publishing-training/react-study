@@ -3,23 +3,21 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import { FaCheck } from "react-icons/fa";
 
-const Checkbox = () => {
-  const [isChecked, check] = useState(false);
-  const CheckboxChange = () => check(!isChecked);
+const Checkbox = ({ isChecked, onChange }) => {
   return (
     <Label>
-      <CheckboxContainer isChecked={isChecked} onClick={CheckboxChange}>
+      <CheckboxContainer isChecked={isChecked} onClick={onChange}>
         {isChecked && <FaCheck color="white" size={12} />}
         <HiddenCheckbox type="checkbox" checked={isChecked} readOnly />
       </CheckboxContainer>
     </Label>
   );
 };
+
 const Label = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  display: flex;
+  align-items: center;
 `;
 
 const CheckboxContainer = styled.div<{ isChecked: boolean }>`

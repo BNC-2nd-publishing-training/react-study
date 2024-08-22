@@ -1,8 +1,21 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 
-export default function CreateTask() {
-  return <CreateInput placeholder="Task 제목을 입력해주세요" />;
+interface CreateTaskProps {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
+}
+
+export default function CreateTask({
+  value,
+  onChange,
+  placeholder,
+}: CreateTaskProps) {
+  return (
+    <CreateInput placeholder={placeholder} value={value} onChange={onChange} />
+  );
 }
 
 const CreateInput = styled.input`

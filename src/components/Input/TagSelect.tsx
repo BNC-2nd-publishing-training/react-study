@@ -20,6 +20,7 @@ export default function TagDropdown({ onSelect }: DropdownProps) {
     </Container>
   );
 }
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -30,6 +31,7 @@ const Container = styled.div`
     color: gray;
   }
 `;
+
 const TagDropdownSelect = styled.select`
   width: 480px;
   height: 42px;
