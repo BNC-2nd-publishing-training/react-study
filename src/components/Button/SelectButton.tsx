@@ -3,18 +3,19 @@
 import { useState } from 'react';
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+import { useTaskContext } from '@/components/Modal/CreateTask';
 
 function SelectType() {
     const [isOption, setIsOption] = useState(false);
+    const { selectedType, setSelectedType } = useTaskContext();
+
     const onClickLabel = () => {
         setIsOption(!isOption);
     };
 
     const defaultText = "Task 상태를 선택해주세요";
-    const [selectType, setSelectType] = useState(defaultText);
-
     const handleClickSelectType = (type: string) => {
-        setSelectType(type);
+        setSelectedType(type);
         setIsOption(!isOption);
     };
 
@@ -23,9 +24,9 @@ function SelectType() {
             <SelectTypeBox toggle={isOption}>
                 <SelectTypeLabel 
                     onClick={onClickLabel} 
-                    isDefault={selectType === defaultText}
+                    isDefault={selectedType === defaultText}
                 >
-                    {selectType}
+                    {selectedType}
                 </SelectTypeLabel>
                 <SelectTypeUl toggle={isOption}>
                     <SelectTypeLi onClick={() => handleClickSelectType("In Review")}>In Review</SelectTypeLi>
