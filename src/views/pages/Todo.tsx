@@ -4,7 +4,7 @@ import { theme } from "@/styles/theme";
 import NewButton from "@/components/Buttons/AddNewButton";
 import CreateTaskModal from "@/components/Modal/CreateTaskModal";
 import Checkbox from "@/components/Input/TodoInput";
-import All from "@/components/Buttons/All";
+import All from "@/components/Buttons/AllButton";
 import Approved from "@/components/Buttons/Approved";
 import InReview from "@/components/Buttons/InReviewButton";
 import InProgress from "@/components/Buttons/InProgressButton";
@@ -24,7 +24,7 @@ export default function Todo() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [nextId, setNextId] = useState(1);
-  const [selectedButton, setSelectedButton] = useState<string | null>(null);
+  const [selectedTag, setSelectedTag] = useState<string | null>("All");
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -49,30 +49,35 @@ export default function Todo() {
     );
   };
 
-  const handleButtonClick = (buttonName: string) => {
-    setSelectedButton((prevSelectedButton) =>
-      prevSelectedButton === buttonName ? null : buttonName
-    );
+  const handleButtonClick = (tag: string) => {
+    setSelectedTag(tag);
   };
+
+  const filteredTasks = tasks.filter((task) => {
+    if (selectedTag === "All") {
+      return task.tag?.label !== "Waiting";
+    }
+    return task.tag?.label === selectedTag;
+  });
 
   return (
     <>
       <ButtonContainer>
         <All
-          isSelected={selectedButton === "All"}
+          isSelected={selectedTag === "All"}
           onClick={() => handleButtonClick("All")}
         />
         <InReview
-          isSelected={selectedButton === "InReview"}
-          onClick={() => handleButtonClick("InReview")}
+          isSelected={selectedTag === "In review"}
+          onClick={() => handleButtonClick("In review")}
         />
         <Approved
-          isSelected={selectedButton === "Approved"}
+          isSelected={selectedTag === "Approved"}
           onClick={() => handleButtonClick("Approved")}
         />
         <InProgress
-          isSelected={selectedButton === "InProgress"}
-          onClick={() => handleButtonClick("InProgress")}
+          isSelected={selectedTag === "In progress"}
+          onClick={() => handleButtonClick("In progress")}
         />
       </ButtonContainer>
       <Text1>Today Task</Text1>
@@ -80,22 +85,20 @@ export default function Todo() {
       <Text2>Upcoming Task</Text2>
       {isModalOpen && <CreateTaskModal onClose={closeModal} />}
       <TaskList>
-        {tasks
-          .filter((task) => task.tag?.label !== "Waiting")
-          .map((task) => (
-            <TaskItem key={task.id}>
-              <Checkbox
-                isChecked={task.isChecked}
-                onChange={() => toggleCheckbox(task.id)}
-              />
-              {task.title}{" "}
-              {task.tag && (
-                <Tag bgColor={task.tag.bgColor} textColor={task.tag.textColor}>
-                  {task.tag.label}
-                </Tag>
-              )}
-            </TaskItem>
-          ))}
+        {filteredTasks.map((task) => (
+          <TaskItem key={task.id}>
+            <Checkbox
+              isChecked={task.isChecked}
+              onChange={() => toggleCheckbox(task.id)}
+            />
+            {task.title}{" "}
+            {task.tag && (
+              <Tag bgColor={task.tag.bgColor} textColor={task.tag.textColor}>
+                {task.tag.label}
+              </Tag>
+            )}
+          </TaskItem>
+        ))}
       </TaskList>
       <UpcomingTaskList>
         {tasks
@@ -118,7 +121,6 @@ export default function Todo() {
     </>
   );
 }
-
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-start;
