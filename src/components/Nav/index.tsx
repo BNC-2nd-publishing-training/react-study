@@ -6,10 +6,10 @@ interface NavItemProps {
   isActive: boolean;
 }
 
-function Nav() {
+const Nav = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const navItems = ["All", "In Review"];
+  const navItems = ["All", "In Review", "In Prograss", "Approved"];
 
   return (
     <NavContainer>
@@ -24,12 +24,13 @@ function Nav() {
       ))}
     </NavContainer>
   );
-}
+};
 
 const NavContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  padding: 16px;
+  width: 517px;
+  height: 90px;
+  justify-content: center;
 `;
 
 const NavItem = styled.div<NavItemProps>`
@@ -41,6 +42,7 @@ const NavItem = styled.div<NavItemProps>`
   font-weight: ${theme.font.textMedium.fontWeight};
   font-size: ${theme.font.textMedium.fontSize};
   line-height: ${theme.font.textMedium.lineHeight};
+  margin-top: 35px;
 
   &:after {
     content: "";
@@ -49,7 +51,7 @@ const NavItem = styled.div<NavItemProps>`
     height: 1px;
     background-color: ${(props) =>
       props.isActive ? "#623CE7" : "transparent"};
-    margin-top: 38px;
+    margin-top: 35px;
     transition: background-color 0.3s ease;
   }
 `;

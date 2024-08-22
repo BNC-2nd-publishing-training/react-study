@@ -16,10 +16,9 @@ const Textarea = ({
 };
 
 const TextareaContainer = styled.textarea<{ width?: string; height?: string }>`
-  ${theme.font.textMedium}
-  font-size: ${theme.font.textMedium};
-  font-weight: ${theme.font.textMedium};
-  line-height: ${theme.font.textMedium};
+  font-size: ${theme.font.textMedium.fontSize};
+  font-weight: ${theme.font.textMedium.fontWeight};
+  line-height: ${theme.font.textMedium.lineHeight};
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   resize: none;
@@ -29,7 +28,9 @@ const TextareaContainer = styled.textarea<{ width?: string; height?: string }>`
 
   &::placeholder {
     color: ${theme.color.gray40};
-    ${theme.font.textMedium}
+    font-size: ${theme.font.textMedium.fontSize};
+    font-weight: ${theme.font.textMedium.fontWeight};
+    line-height: ${theme.font.textMedium.lineHeight};
   }
 `;
 

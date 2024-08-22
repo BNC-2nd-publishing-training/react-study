@@ -1,9 +1,28 @@
 import { theme } from "@/styles/theme";
 import styled from "@emotion/styled";
 
-const Checkbox = () => {
-  return <CheckboxInput type="checkbox" />;
+interface ICheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+}
+
+const Checkbox = ({ label, ...props }: ICheckboxProps) => {
+  return (
+    <Container>
+      <CheckboxInput type="checkbox" {...props} />
+      <span>{label}</span>
+    </Container>
+  );
 };
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-weight: ${theme.font.textMedium.fontWeight};
+  font-size: ${theme.font.textMedium.fontSize};
+  line-height: ${theme.font.textMedium.lineHeight};
+`;
 
 const CheckboxInput = styled.input`
   width: 16px;
