@@ -34,11 +34,11 @@ const TodoApp: React.FC = () => {
                 <Popup
                     onClose={togglePopup}
                     setTodos={setTodos}
-                    selectedTask={selectedTask || undefined} // Conditionally pass selected task
+                    selectedTask={selectedTask || undefined}
                 />
             )}
             <TodoListBox>
-                <Header onClose={handleAddTask} />
+                <Header onClose={handleAddTask} setTodos={setTodos}/>
                 <Main todos={todos} setTodos={setTodos} onTaskSelect={handleTaskSelect} />
             </TodoListBox>
         </Container>
