@@ -57,8 +57,9 @@ const ModalBox = styled.div`
   background-color: ${theme.color.white};
   border-radius: 10px;
   p {
-    font-size: ${theme.font.titleLarge};
-    font-weight: bold; /* 직접 수치로 설정하거나 원하는 값을 사용 */
+    font-size: ${theme.font.titleLarge.fontSize};
+    font-weight: ${theme.font.titleLarge.fontWeight};
+    line-height: ${theme.font.titleLarge.lineHeight};
     display: flex;
     justify-content: center;
   }
@@ -86,7 +87,9 @@ const TaskInput = styled.textarea`
   color: ${theme.color.black};
   ::placeholder {
     color: ${theme.color.gray40};
-    font-size: ${theme.font.textMedium};
+    font-size: ${theme.font.textMedium.fontSize};
+    font-weight: ${theme.font.textMedium.fontWeight};
+    line-height: ${theme.font.textMedium.lineHeight};
   }
 `;
 
@@ -95,7 +98,9 @@ const TaskAddButton = styled.button`
   height: 50px;
   background-color: ${theme.color.primary20};
   color: ${theme.color.white};
-  font-size: ${theme.font.titleMedium};
+  font-size: ${theme.font.titleMedium.fontSize};
+  font-weight: ${theme.font.titleMedium.fontWeight};
+  line-height: ${theme.font.titleMedium.lineHeight};
   border-radius: 4px;
   margin-top: 200px;
   margin-left: 75px;

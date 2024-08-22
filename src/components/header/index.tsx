@@ -26,10 +26,10 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   p {
-    font-size: ${theme.font.titleLarge};
-    font-weight: ${theme.font.titleLarge};
+    font-size: ${theme.font.titleLarge.fontSize};
+    font-weight: ${theme.font.titleLarge.fontWeight};
+    line-height: ${theme.font.titleLarge.lineHeight};
     color: ${theme.color.black};
   }
 `;

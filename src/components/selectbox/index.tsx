@@ -33,23 +33,27 @@ const SelectBox: React.FC<SelectBoxProps> = ({ options, value, onChange }) => {
       padding: "5px 3px",
       fontSize: theme.font.textMedium.fontSize,
       fontWeight: theme.font.textMedium.fontWeight,
+      lineHeight: theme.font.textMedium.lineHeight,
       boxShadow: "none",
     }),
     placeholder: (styles) => ({
       ...styles,
-      fontSize: theme.font.titleMedium.fontSize,
-      fontWeight: theme.font.titleMedium.fontWeight,
+      fontSize: theme.font.textMedium.fontSize,
+      fontWeight: theme.font.textMedium.fontWeight,
+      lineHeight: theme.font.textMedium.lineHeight
     }),
     singleValue: (styles) => ({
       ...styles,
       color: theme.color.gray40,
-      fontSize: theme.font.titleMedium.fontSize,
-      fontWeight: theme.font.titleMedium.fontWeight,
+      fontSize: theme.font.textMedium.fontSize,
+      fontWeight: theme.font.textMedium.fontWeight,
+      lineHeight: theme.font.textMedium.lineHeight,
     }),
     option: (styles) => ({
       ...styles,
-      fontSize: theme.font.titleMedium.fontSize,
-      fontWeight: theme.font.titleMedium.fontWeight,
+      fontSize: theme.font.textMedium.fontSize,
+      fontWeight: theme.font.textMedium.fontWeight,
+      lineHeight: theme.font.textMedium.lineHeight,
     }),
   };
 
