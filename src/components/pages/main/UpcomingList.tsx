@@ -51,7 +51,7 @@ const Container = styled.section`
   margin-top: 40px;
 `;
 
-const ListContainer = styled.div`
+const ListContainer = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 18px;

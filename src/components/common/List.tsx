@@ -51,7 +51,7 @@ const List = ({
 
 export default List;
 
-const Container = styled.div`
+const Container = styled.ul`
   width: 100%;
 
   display: flex;
