@@ -43,16 +43,31 @@ export default function Todo() {
       <Text2>Upcoming Task</Text2>
       {isModalOpen && <CreateTaskModal onClose={closeModal} />}
       <TaskList>
-        {tasks.map((task, index) => (
-          <TaskItem key={index}>
-            <Checkbox
-              isChecked={task.isChecked}
-              onChange={() => toggleCheckbox(index)}
-            />{" "}
-            {task.title} {task.tag && <Tag>{task.tag}</Tag>}
-          </TaskItem>
-        ))}
+        {tasks
+          .filter((task) => task.tag !== "Waiting")
+          .map((task, index) => (
+            <TaskItem key={index}>
+              <Checkbox
+                isChecked={task.isChecked}
+                onChange={() => toggleCheckbox(index)}
+              />
+              {task.title} {task.tag && <Tag>{task.tag}</Tag>}
+            </TaskItem>
+          ))}
       </TaskList>
+      <UpcomingTaskList>
+        {tasks
+          .filter((task) => task.tag === "Waiting")
+          .map((task, index) => (
+            <TaskItem key={index}>
+              <Checkbox
+                isChecked={task.isChecked}
+                onChange={() => toggleCheckbox(index)}
+              />
+              {task.title} {task.tag && <Tag>{task.tag}</Tag>}
+            </TaskItem>
+          ))}
+      </UpcomingTaskList>
     </>
   );
 }
@@ -80,6 +95,16 @@ const TaskList = styled.div`
   flex-direction: column;
   position: absolute;
   top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26%;
+`;
+
+const UpcomingTaskList = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 65%;
   left: 50%;
   transform: translateX(-50%);
   width: 26%;
