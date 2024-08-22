@@ -2,7 +2,7 @@ import { GeneralButton, Modal, Select, TextArea } from "@/components/common";
 import { ListStatusType } from "@/utils/interfaces/ListStatusType";
 import { ITodoListType } from "@/utils/interfaces/TodoListType";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const selectStatus: ListStatusType[] = [
   "Approved",
@@ -41,10 +41,13 @@ const CreateTask = ({
         { label, status: statusValue, isChecked: false },
       ]);
       setIsOpen(false);
-      setStatusValue("");
-      setLabel("");
     }
   };
+
+  useEffect(() => {
+    setStatusValue("");
+    setLabel("");
+  }, [isOpen]);
 
   return (
     <>

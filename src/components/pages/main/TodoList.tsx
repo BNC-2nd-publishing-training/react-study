@@ -34,6 +34,10 @@ const TodoList = ({ todoList, setTodoList }: ITodoListProps) => {
       nowNav === "All" ? item.status !== "Waiting" : item.status === nowNav
     );
 
+  const allTodoListLen = todoList.filter(
+    (item) => item.status !== "Waiting"
+  ).length;
+
   return (
     <Container>
       <NavFilter>
@@ -43,7 +47,7 @@ const TodoList = ({ todoList, setTodoList }: ITodoListProps) => {
             key={nav}
             selected={nowNav === nav}
             onClick={() => onClickNav(nav)}
-            count={todoList.length}
+            count={allTodoListLen}
           />
         ))}
       </NavFilter>
@@ -78,16 +82,15 @@ const Container = styled.section`
 
 const NavFilter = styled.nav`
   display: flex;
-  overflow: auto;
-  padding: 0px 14px;
+  justify-content: center;
+  margin-bottom: 40px;
 `;
 
 const TodoContainer = styled.div`
-  margin-top: 10px;
-  padding: 10px 47px 0px 47px;
+  padding: 0px 47px;
   display: flex;
   flex-direction: column;
   gap: 18px;
-  height: 200px;
+  height: 258px;
   overflow-y: auto;
 `;

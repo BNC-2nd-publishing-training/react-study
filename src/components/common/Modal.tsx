@@ -19,11 +19,9 @@ const Modal = ({ title, children, setIsOpen }: IModalProps) => {
   return (
     <Backdrop onClick={closeModal}>
       <Container onClick={stopPropagation}>
-        <Header>
-          <button onClick={closeModal}>
-            <CloseIcon />
-          </button>
-        </Header>
+        <CloseButton onClick={closeModal}>
+          <CloseIcon />
+        </CloseButton>
         <TitleContainer>
           <h1>{title}</h1>
         </TitleContainer>
@@ -50,10 +48,12 @@ const Backdrop = styled.div`
 `;
 
 const Container = styled.div`
-  width: 645px;
+  width: 630px;
+  height: 645px;
   background-color: white;
-  padding: 26px 24px;
+  padding: 60px 75px;
   border-radius: 10px;
+  position: relative;
 
   display: flex;
   flex-direction: column;
@@ -62,9 +62,11 @@ const Container = styled.div`
     width: 95dvw;
   }
 `;
-const Header = styled.div`
-  display: flex;
-  justify-content: flex-end;
+const CloseButton = styled.button`
+  position: absolute;
+  right: 24px;
+  top: 26px;
+  height: 30px;
 `;
 
 const TitleContainer = styled.div`
@@ -76,5 +78,8 @@ const TitleContainer = styled.div`
 `;
 
 const ChildrenContainer = styled.div`
-  padding: 0px 50px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;

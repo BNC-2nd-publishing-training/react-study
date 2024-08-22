@@ -51,8 +51,9 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const ValueContainer = styled.div<{ isOpen: boolean }>`
+const ValueContainer = styled.button<{ isOpen: boolean }>`
   ${ValueContainerStyle}
+  text-align: start;
   border: 1px solid ${color.gray40};
   border-radius: ${({ isOpen }) => (isOpen ? "4px 4px 0px 0px" : "4px")};
 `;
@@ -68,10 +69,11 @@ const DefaultLabel = styled.label`
 
 const OptionContainer = styled.ol`
   position: absolute;
-  top: 45px;
+  top: 45.5px;
   left: 0px;
   width: 100%;
-  border: 1px solid ${color.gray40};
+  border: solid ${color.gray40};
   border-radius: 0px 0px 4px 4px;
+  border-width: 0px 1px 1px 1px;
   background-color: ${color.white};
 `;

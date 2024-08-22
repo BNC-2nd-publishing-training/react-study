@@ -16,8 +16,8 @@ const NavButton = ({
   ...props
 }: INavButton) => {
   return (
-    <Container selected={selected} {...props}>
-      {title === "All" && count && <Badge count={count} />}
+    <Container type="button" selected={selected} {...props}>
+      {title === "All" && count != undefined && <Badge count={count} />}
       <TitleContent selected={selected}>{title}</TitleContent>
     </Container>
   );

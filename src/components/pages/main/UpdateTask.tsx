@@ -42,7 +42,7 @@ const UpdateTask = ({
   };
 
   const updateTodo = () => {
-    if (!label) alert("Task 제목을 입력해주세요");
+    if (!labelValue) alert("Task 제목을 입력해주세요");
     else if (!statusValue) alert("Task의 상태를 선택해주세요");
     else {
       changeTodoList({
@@ -64,27 +64,27 @@ const UpdateTask = ({
     <>
       {isOpen && (
         <Modal title="Update Task" setIsOpen={setIsOpen}>
-          <Container>
-            <InputForm>
-              <TextArea
-                placeholder="Task 제목을 입력해주세요"
-                value={labelValue}
-                onChange={onChangeLabel}
-              />
-              <Select
-                defaultText="Task의 상태를 선택해주세요"
-                options={selectStatus}
-                value={statusValue}
-                setValue={setStatusValue}
-              />
-            </InputForm>
-            <ButtonContainer>
-              <GeneralButton isCancel onClick={deleteTodo}>
-                Task 삭제하기
-              </GeneralButton>
-              <GeneralButton onClick={updateTodo}>Task 수정하기</GeneralButton>
-            </ButtonContainer>
-          </Container>
+          <InputForm>
+            <TextArea
+              placeholder="Task 제목을 입력해주세요"
+              value={labelValue}
+              onChange={onChangeLabel}
+            />
+            <Select
+              defaultText="Task의 상태를 선택해주세요"
+              options={selectStatus}
+              value={statusValue}
+              setValue={setStatusValue}
+            />
+          </InputForm>
+          <ButtonContainer>
+            <GeneralButton isCancel onClick={deleteTodo} width="230px">
+              Task 삭제하기
+            </GeneralButton>
+            <GeneralButton onClick={updateTodo} width="230px">
+              Task 수정하기
+            </GeneralButton>
+          </ButtonContainer>
         </Modal>
       )}
     </>
@@ -93,19 +93,16 @@ const UpdateTask = ({
 
 export default UpdateTask;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 200px;
-`;
-
 const InputForm = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  > textarea {
+    margin-bottom: 30px;
+  }
 `;
 
 const ButtonContainer = styled.div`
-  display: flex;
-  gap: 20px;
+  > button:first-child {
+    margin-right: 20px;
+  }
 `;

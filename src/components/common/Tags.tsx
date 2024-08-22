@@ -26,25 +26,28 @@ const Container = styled.div<{
   ${font.textSmall}
   text-align: center;
 
-  ${({ status }) =>
-    status === "Approved"
-      ? css`
+  ${({ status }) => {
+    switch (status) {
+      case "Approved":
+        return css`
           background-color: ${color.primary10};
           color: ${color.primary20};
-        `
-      : status === "In progress"
-      ? css`
+        `;
+      case "In progress":
+        return css`
           background-color: ${color.green10};
           color: ${color.green30};
-        `
-      : status === "In review"
-      ? css`
+        `;
+      case "In review":
+        return css`
           background-color: ${color.red10};
           color: ${color.red30};
-        `
-      : status === "Waiting" &&
-        css`
+        `;
+      case "Waiting":
+        return css`
           background-color: ${color.gray10};
           color: ${color.gray60};
-        `}
+        `;
+    }
+  }}
 `;

@@ -43,10 +43,10 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   padding: 0px 47px;
-  gap: 40px;
   h1 {
     ${font.titleMedium}
-    color:${color.gray60}
+    color:${color.gray60};
+    margin-bottom: 40px;
   }
   margin-top: 40px;
 `;
@@ -55,6 +55,6 @@ const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 18px;
-  height: 200px;
+  height: 166px;
   overflow-y: scroll;
 `;

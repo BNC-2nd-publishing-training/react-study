@@ -28,8 +28,10 @@ const MainPage = () => {
           <h1>Today Task</h1>
           <AddButton onClick={() => setCreateTaskOpen(true)} />
         </Header>
-        <TodoList todoList={todoList} setTodoList={setTodoList} />
-        <UpcomingList todoList={todoList} setTodoList={setTodoList} />
+        <ListContainer>
+          <TodoList todoList={todoList} setTodoList={setTodoList} />
+          <UpcomingList todoList={todoList} setTodoList={setTodoList} />
+        </ListContainer>
       </Container>
     </Background>
   );
@@ -49,18 +51,22 @@ const Background = styled.div`
 
 const Container = styled.main`
   width: 517px;
+  height: 840px;
   background-color: ${color.white};
   border: solid ${color.gray20};
   border-width: 0px 1px;
   border-radius: 10px;
-  padding: 30px 0px;
+  padding: 52px 0px 32px 0px;
 
   display: flex;
   flex-direction: column;
-  @media screen and (max-width: 550px) {
-    width: 100%;
-    height: 100%;
-  }
+`;
+
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `;
 
 const Header = styled.header`
