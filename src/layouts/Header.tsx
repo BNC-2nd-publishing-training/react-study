@@ -14,7 +14,6 @@ const Header: React.FC<PopupProps> = ({ onClose }) => {
 
 const HeaderStyle = styled.header`
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin: 4vw 3vw 0;
