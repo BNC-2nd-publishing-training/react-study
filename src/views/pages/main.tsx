@@ -4,17 +4,22 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import CreateTaskModal from "@/components/Modal/CreateTaskModal";
 import TypeTab from "@/components/Tab/TypeTab";
+import { TaskProvider } from "@/components/Modal/CreateTask";
 
-import List from "@/components/Checkbox/CheckboxList";
+import WaitingTask from "@/components/Task/WaitingTask";
+
+// import List from "@/components/Checkbox/CheckboxList";
  
 function Main() {
 
     return (
         <Container>
             <TaskContainer>
-                <CreateTaskModal />
-                <TypeTab />
-                <List />
+                <TaskProvider>
+                    <CreateTaskModal />
+                    <TypeTab />
+                </TaskProvider>
+                <WaitingTask />
             </TaskContainer>
         </Container>
     );
