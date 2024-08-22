@@ -4,7 +4,7 @@ import { TodoItemProps } from "./type";
 const TodoItem = ({ todo, onToggle }: TodoItemProps) => {
   return (
     <_.TodoItemContainer>
-      <_.CheckboxContainer
+      <_.CheckBox
         type="checkbox"
         checked={todo.completed}
         onChange={() => onToggle(todo.id)}
