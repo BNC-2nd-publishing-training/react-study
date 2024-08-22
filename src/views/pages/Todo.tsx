@@ -24,6 +24,7 @@ export default function Todo() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [nextId, setNextId] = useState(1);
+  const [selectedButton, setSelectedButton] = useState<string | null>(null);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -48,13 +49,31 @@ export default function Todo() {
     );
   };
 
+  const handleButtonClick = (buttonName: string) => {
+    setSelectedButton((prevSelectedButton) =>
+      prevSelectedButton === buttonName ? null : buttonName
+    );
+  };
+
   return (
     <>
       <ButtonContainer>
-        <All />
-        <InReview />
-        <Approved />
-        <InProgress />
+        <All
+          isSelected={selectedButton === "All"}
+          onClick={() => handleButtonClick("All")}
+        />
+        <InReview
+          isSelected={selectedButton === "InReview"}
+          onClick={() => handleButtonClick("InReview")}
+        />
+        <Approved
+          isSelected={selectedButton === "Approved"}
+          onClick={() => handleButtonClick("Approved")}
+        />
+        <InProgress
+          isSelected={selectedButton === "InProgress"}
+          onClick={() => handleButtonClick("InProgress")}
+        />
       </ButtonContainer>
       <Text1>Today Task</Text1>
       <NewButton onClick={openModal}>Add New Task</NewButton>
