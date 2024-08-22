@@ -37,9 +37,19 @@ const SelectBox: React.FC<SelectBoxProps> = ({ options, value, onChange }) => {
     }),
     placeholder: (styles) => ({
       ...styles,
+      fontSize: theme.font.titleMedium.fontSize,
+      fontWeight: theme.font.titleMedium.fontWeight,
+    }),
+    singleValue: (styles) => ({
+      ...styles,
       color: theme.color.gray40,
       fontSize: theme.font.titleMedium.fontSize,
-      fontWeight: theme.font.textMedium.fontWeight,
+      fontWeight: theme.font.titleMedium.fontWeight,
+    }),
+    option: (styles) => ({
+      ...styles,
+      fontSize: theme.font.titleMedium.fontSize,
+      fontWeight: theme.font.titleMedium.fontWeight,
     }),
   };
 
