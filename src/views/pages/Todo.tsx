@@ -4,6 +4,7 @@ import { theme } from "@/styles/theme";
 import NewButton from "@/components/Buttons/AddNewButton";
 import CreateTaskModal from "@/components/Modal/CreateTaskModal";
 import Checkbox from "@/components/Input/TodoInput";
+import All from "@/components/Buttons/All";
 
 interface Task {
   id: number;
@@ -46,6 +47,7 @@ export default function Todo() {
 
   return (
     <>
+      <All />
       <Text1>Today Task</Text1>
       <NewButton onClick={openModal}>Add New Task</NewButton>
       <Text2>Upcoming Task</Text2>
@@ -92,7 +94,7 @@ export default function Todo() {
 
 const Text1 = styled.div`
   position: absolute;
-  top: 14.5%;
+  top: 8%;
   left: 37%;
   color: ${theme.color.black};
   font-size: ${theme.font.titleLarge.fontSize};

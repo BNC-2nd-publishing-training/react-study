@@ -24,7 +24,7 @@ const StyledFixedButton = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  top: 14%;
+  top: 8%;
   left: 60%;
   transform: translate(-50%, -50%);
 `;
