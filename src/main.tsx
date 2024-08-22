@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./views/pages/main.js";
+import App from "./views/pages/main.tsx";
 // import App from "./App.tsx";
 import "@/styles/index.css";
 import DefaultLayout from "./layouts/DefaultLayouts.tsx";
