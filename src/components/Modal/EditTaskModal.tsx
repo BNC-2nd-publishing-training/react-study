@@ -59,7 +59,6 @@ const EditTaskModal = ({ onClose }: PopupProps) => {
     const handleTaskDelete = () => {
         if (selectedTodo) {
             const id = selectedTodo.id;
-            console.log(id);
             if (id) {
                 const storedTodos = localStorage.getItem("tasks");
                 if (storedTodos) {
@@ -67,14 +66,13 @@ const EditTaskModal = ({ onClose }: PopupProps) => {
 
                     const updatedTodos = todos.filter(todo => todo.id !== id);
 
-                    console.log(updatedTodos);
-
                     localStorage.setItem("tasks", JSON.stringify(updatedTodos));
 
                     setSelectedTodo(null);
                     closePopup();
                 }
             }
+            console.log("삭제된 Task의 id : " + id);
         }
     };
     
