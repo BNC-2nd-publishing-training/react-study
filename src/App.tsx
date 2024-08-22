@@ -1,8 +1,11 @@
+import { TodoProvider } from "./context/TodoContext";
 import TodoApp from "./views/pages/TodoApp";
 
 const App = () => {
     return (
-        <TodoApp/>
+        <TodoProvider>
+            <TodoApp/>
+        </TodoProvider>
     );
 };
 
