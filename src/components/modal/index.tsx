@@ -3,12 +3,18 @@ import { theme } from "@/styles/theme";
 import { CloseBtn } from "@/assets/images";
 import SelectBox from "../selectbox";
 
-const DefaultModal = () => {
+
+interface DefaultModalProps {
+    closeModal: () => void;
+  }
+
+const DefaultModal: React.FC<DefaultModalProps>  = ( {closeModal}) => {
+   
   return (
     <Container>
       <ModalBox>
-        <CloseButton>
-          <img src={CloseBtn}></img>
+        <CloseButton onClick={closeModal} >
+          <img src={CloseBtn} alt="clse"></img>
         </CloseButton>
         <p>Create Task</p>
         <TaskInput placeholder="Task 제목을 입력해주세요" />

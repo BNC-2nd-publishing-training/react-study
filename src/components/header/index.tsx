@@ -1,15 +1,23 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import { AddBtn } from "@/assets/images";
+import { useState } from 'react';
+import DefaultModal from "../modal";
 
 const Header = () => {
+
+  const [isOpenModal, setIsOpenModal] = useState(false)
+
+  const openModal = () => setIsOpenModal(true);
+  const closeModal = () => setIsOpenModal(false);
 
   return (
     <HeaderContainer>
       <p>Today Task</p>
-      <AddButton>
+      <AddButton onClick={openModal}>
         <img src={AddBtn}/>
       </AddButton>
+      {isOpenModal && <DefaultModal closeModal={closeModal} />}
     </HeaderContainer>
   );
 };

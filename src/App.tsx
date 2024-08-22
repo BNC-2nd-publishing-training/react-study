@@ -1,14 +1,13 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import Header from "./components/header";
-import DefaultModal from "./components/modal";
+
 
 const App = () => {
     return (
         <Container>
             <TodoBox>
                 <Header/>
-                <DefaultModal/>
             </TodoBox>
         </Container>
     );
