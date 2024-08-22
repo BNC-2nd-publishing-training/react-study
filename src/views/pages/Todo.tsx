@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import NewButton from "@/components/Buttons/AddNewButton";
 import CreateTaskModal from "@/components/Modal/CreateTaskModal";
-import Tags from "@/components/TagUI/Tags";
 import Checkbox from "@/components/Input/TodoInput";
 
 interface Task {
+  id: number;
   title: string;
   tag: {
     label: string;
@@ -19,6 +19,7 @@ interface Task {
 export default function Todo() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [nextId, setNextId] = useState(1);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -26,15 +27,19 @@ export default function Todo() {
 
   const closeModal = (task: Task) => {
     if (task.title) {
-      setTasks((prevTasks) => [...prevTasks, { ...task, isChecked: false }]);
+      setTasks((prevTasks) => [
+        ...prevTasks,
+        { ...task, id: nextId, isChecked: false },
+      ]);
+      setNextId(nextId + 1);
     }
     setIsModalOpen(false);
   };
 
-  const toggleCheckbox = (index: number) => {
+  const toggleCheckbox = (id: number) => {
     setTasks((prevTasks) =>
-      prevTasks.map((task, i) =>
-        i === index ? { ...task, isChecked: !task.isChecked } : task
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, isChecked: !task.isChecked } : task
       )
     );
   };
@@ -48,11 +53,11 @@ export default function Todo() {
       <TaskList>
         {tasks
           .filter((task) => task.tag?.label !== "Waiting")
-          .map((task, index) => (
-            <TaskItem key={index}>
+          .map((task) => (
+            <TaskItem key={task.id}>
               <Checkbox
                 isChecked={task.isChecked}
-                onChange={() => toggleCheckbox(index)}
+                onChange={() => toggleCheckbox(task.id)}
               />
               {task.title}{" "}
               {task.tag && (
@@ -66,11 +71,11 @@ export default function Todo() {
       <UpcomingTaskList>
         {tasks
           .filter((task) => task.tag?.label === "Waiting")
-          .map((task, index) => (
-            <TaskItem key={index}>
+          .map((task) => (
+            <TaskItem key={task.id}>
               <Checkbox
                 isChecked={task.isChecked}
-                onChange={() => toggleCheckbox(index)}
+                onChange={() => toggleCheckbox(task.id)}
               />
               {task.title}{" "}
               {task.tag && (
