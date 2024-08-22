@@ -1,8 +1,8 @@
-import { TagContainer } from "./style";
+import * as S from "./style";
 import { TagProps } from "./type";
 
 const Tag = ({ status }: TagProps) => {
-  return <TagContainer status={status}>{status}</TagContainer>;
+  return <S.TagContainer status={status}>{status}</S.TagContainer>;
 };
 
 export default Tag;

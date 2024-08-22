@@ -1,14 +1,14 @@
-import * as _ from "./style";
+import * as S from "./style";
 import { BadgeProps } from "./type";
 
 const Badge = ({ label, count }: BadgeProps) => {
   return (
-    <_.Container>
-      <_.BadgeContainer>
-        {label === "All" && <_.Count>{count}</_.Count>}
-      </_.BadgeContainer>
-      <_.Text>{label}</_.Text>
-    </_.Container>
+    <S.Container>
+      <S.BadgeContainer>
+        {label === "All" && <S.Count>{count}</S.Count>}
+      </S.BadgeContainer>
+      <S.Text>{label}</S.Text>
+    </S.Container>
   );
 };
 

@@ -1,9 +1,9 @@
-import * as _ from "./style";
+import * as S from "./style";
 import { TextAreaProps } from "./type";
 
 const TextArea = ({ placeholder, value, onChange }: TextAreaProps) => {
   return (
-    <_.TextAreaContainer
+    <S.TextAreaContainer
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange(e.target.value)}

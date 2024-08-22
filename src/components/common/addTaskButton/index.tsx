@@ -1,7 +1,7 @@
-import * as _ from "./style";
+import * as S from "./style";
 
 const AddTaskButton = () => {
-  return <_.AddTaskButton>Task 추가하기</_.AddTaskButton>;
+  return <S.AddTaskButton>Task 추가하기</S.AddTaskButton>;
 };
 
 export default AddTaskButton;

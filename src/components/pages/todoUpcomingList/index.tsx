@@ -1,4 +1,4 @@
-import * as s from "./style";
+import * as S from "./style";
 import { UpcommingTodoListProps } from "./type";
 import { useCallback } from "react";
 import List from "@/components/common/list";
@@ -20,14 +20,14 @@ const TodoUpcomingList = ({
 
   return (
     <>
-      <s.Header>
+      <S.Header>
         <p>Upcoming Tasks</p>
-      </s.Header>
-      <s.Container>
+      </S.Header>
+      <S.Container>
         {a.map((item) => (
           <List status={item.status} todo={item} onToggle={handleToggle}></List>
         ))}
-      </s.Container>
+      </S.Container>
     </>
   );
 };

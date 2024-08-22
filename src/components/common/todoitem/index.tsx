@@ -1,16 +1,16 @@
-import * as _ from "./style";
+import * as S from "./style";
 import { TodoItemProps } from "./type";
 
 const TodoItem = ({ todo, onToggle }: TodoItemProps) => {
   return (
-    <_.TodoItemContainer>
-      <_.CheckBox
+    <S.TodoItemContainer>
+      <S.CheckBox
         type="checkbox"
         checked={todo.completed}
         onChange={() => onToggle(todo.id)}
       />
-      <_.TodoText>{todo.text}</_.TodoText>
-    </_.TodoItemContainer>
+      <S.TodoText>{todo.text}</S.TodoText>
+    </S.TodoItemContainer>
   );
 };
 

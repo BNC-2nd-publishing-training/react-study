@@ -1,7 +1,6 @@
 import { NavButtonProps } from "./type";
-import * as _ from "./style";
+import * as S from "./style";
 import Badge from "../badge";
-import { ListProps } from "../list/type";
 
 const NavButton = ({
   selected = false,
@@ -10,11 +9,11 @@ const NavButton = ({
   ...props
 }: NavButtonProps) => {
   return (
-    <_.NavButtonContainer selected={selected} {...props}>
-      <_.TitleContent selected={selected}>
+    <S.NavButtonContainer selected={selected} {...props}>
+      <S.TitleContent selected={selected}>
         <Badge count={count} label={title} />
-      </_.TitleContent>
-    </_.NavButtonContainer>
+      </S.TitleContent>
+    </S.NavButtonContainer>
   );
 };
 

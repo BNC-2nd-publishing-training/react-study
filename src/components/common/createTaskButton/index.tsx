@@ -1,11 +1,11 @@
-import * as _ from "./style";
+import * as S from "./style";
 import PlusIcon from "@/assets/images/plus";
 
 const CreateTaskButton = () => {
   return (
-    <_.CreateTaskButtonContainer>
+    <S.CreateTaskButtonContainer>
       <PlusIcon />
-    </_.CreateTaskButtonContainer>
+    </S.CreateTaskButtonContainer>
   );
 };
 
