@@ -22,7 +22,7 @@ export const Count = styled.div`
   font-size: 12px;
 `;
 
-export const Text = styled.div`
+export const Text = styled.p`
   ${theme.font.textMedium};
   color: ${theme.color.gray50};
 `;
