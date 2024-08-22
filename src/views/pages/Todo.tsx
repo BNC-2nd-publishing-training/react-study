@@ -5,6 +5,9 @@ import NewButton from "@/components/Buttons/AddNewButton";
 import CreateTaskModal from "@/components/Modal/CreateTaskModal";
 import Checkbox from "@/components/Input/TodoInput";
 import All from "@/components/Buttons/All";
+import Approved from "@/components/Buttons/Approved";
+import InReview from "@/components/Buttons/InReviewButton";
+import InProgress from "@/components/Buttons/InProgressButton";
 
 interface Task {
   id: number;
@@ -47,7 +50,12 @@ export default function Todo() {
 
   return (
     <>
-      <All />
+      <ButtonContainer>
+        <All />
+        <InReview />
+        <Approved />
+        <InProgress />
+      </ButtonContainer>
       <Text1>Today Task</Text1>
       <NewButton onClick={openModal}>Add New Task</NewButton>
       <Text2>Upcoming Task</Text2>
@@ -91,6 +99,15 @@ export default function Todo() {
     </>
   );
 }
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  gap: 33px;
+  margin-top: 2%;
+  width: 80%;
+  margin-left: 8vw;
+`;
 
 const Text1 = styled.div`
   position: absolute;
