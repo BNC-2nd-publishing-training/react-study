@@ -8,7 +8,11 @@ import Checkbox from "@/components/Input/TodoInput";
 
 interface Task {
   title: string;
-  tag: string | null;
+  tag: {
+    label: string;
+    bgColor: string;
+    textColor: string;
+  } | null;
   isChecked: boolean;
 }
 
@@ -37,34 +41,43 @@ export default function Todo() {
 
   return (
     <>
-      <Tags />
       <Text1>Today Task</Text1>
       <NewButton onClick={openModal}>Add New Task</NewButton>
       <Text2>Upcoming Task</Text2>
       {isModalOpen && <CreateTaskModal onClose={closeModal} />}
       <TaskList>
         {tasks
-          .filter((task) => task.tag !== "Waiting")
+          .filter((task) => task.tag?.label !== "Waiting")
           .map((task, index) => (
             <TaskItem key={index}>
               <Checkbox
                 isChecked={task.isChecked}
                 onChange={() => toggleCheckbox(index)}
               />
-              {task.title} {task.tag && <Tag>{task.tag}</Tag>}
+              {task.title}{" "}
+              {task.tag && (
+                <Tag bgColor={task.tag.bgColor} textColor={task.tag.textColor}>
+                  {task.tag.label}
+                </Tag>
+              )}
             </TaskItem>
           ))}
       </TaskList>
       <UpcomingTaskList>
         {tasks
-          .filter((task) => task.tag === "Waiting")
+          .filter((task) => task.tag?.label === "Waiting")
           .map((task, index) => (
             <TaskItem key={index}>
               <Checkbox
                 isChecked={task.isChecked}
                 onChange={() => toggleCheckbox(index)}
               />
-              {task.title} {task.tag && <Tag>{task.tag}</Tag>}
+              {task.title}{" "}
+              {task.tag && (
+                <Tag bgColor={task.tag.bgColor} textColor={task.tag.textColor}>
+                  {task.tag.label}
+                </Tag>
+              )}
             </TaskItem>
           ))}
       </UpcomingTaskList>
@@ -119,11 +132,15 @@ const TaskItem = styled.div`
   gap: 18px;
 `;
 
-const Tag = styled.span`
-  background-color: ${theme.color.gray20};
-  color: ${theme.color.black};
-  padding: 2px 6px;
-  border-radius: 4px;
+const Tag = styled.div<{ bgColor: string; textColor: string }>`
+  padding-top: 6px;
+  border-radius: 14px;
+  text-align: center;
+  background-color: ${({ bgColor }) => bgColor};
+  color: ${({ textColor }) => textColor};
+  font-size: ${theme.font.textSmall.fontSize};
+  font-weight: ${theme.font.textSmall.fontWeight};
+  width: 75px;
+  height: 28px;
   margin-left: 8px;
-  font-size: ${theme.font.titleMedium.fontSize};
 `;

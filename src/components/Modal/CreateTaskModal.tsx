@@ -8,7 +8,11 @@ import NewButton from "@/components/Buttons/AddButton";
 
 interface Task {
   title: string;
-  tag: string | null;
+  tag: {
+    label: string;
+    bgColor: string;
+    textColor: string;
+  } | null;
 }
 
 interface CreateTaskModalProps {
@@ -17,11 +21,37 @@ interface CreateTaskModalProps {
 
 export default function CreateTaskModal({ onClose }: CreateTaskModalProps) {
   const [taskTitle, setTaskTitle] = useState("");
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [selectedTag, setSelectedTag] = useState<Task["tag"] | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTaskTitle(e.target.value);
-    console.log("현재 입력값:", e.target.value);
+  };
+
+  const handleTagSelect = (tag: string) => {
+    const tagOptions = {
+      "In review": {
+        label: "In review",
+        bgColor: theme.color.green10,
+        textColor: theme.color.green30,
+      },
+      "In progress": {
+        label: "In progress",
+        bgColor: theme.color.red10,
+        textColor: theme.color.red30,
+      },
+      Approved: {
+        label: "Approved",
+        bgColor: theme.color.primary10,
+        textColor: theme.color.primary20,
+      },
+      Waiting: {
+        label: "Waiting",
+        bgColor: theme.color.gray10,
+        textColor: theme.color.gray60,
+      },
+    };
+
+    setSelectedTag(tagOptions[tag]);
   };
 
   const handleSubmit = () => {
@@ -46,7 +76,7 @@ export default function CreateTaskModal({ onClose }: CreateTaskModalProps) {
             value={taskTitle}
             onChange={handleChange}
           />
-          <TagDropdown onSelect={setSelectedTag} />
+          <TagDropdown onSelect={handleTagSelect} />
           <NewButton onClick={handleSubmit}>Task 추가하기</NewButton>
         </Body>
       </ModalContent>
