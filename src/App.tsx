@@ -4,7 +4,31 @@ import FloatingButton from "./components/Button/Floating";
 import Nav from "./components/Nav";
 import CheckboxList from "./components/Checkbox/CheckboxList";
 
+const dummyList: {
+  status: "Approved" | "In progress" | "In review" | "Waiting";
+  label: string;
+}[] = [
+  {
+    status: "Approved",
+    label: "간지나게 숨쉬기",
+  },
+  {
+    status: "Approved",
+    label: "간지나게 숨쉬기",
+  },
+  {
+    status: "In review",
+    label: "간지나게 숨쉬기",
+  },
+  {
+    status: "In progress",
+    label: "간지나게 숨쉬기",
+  },
+];
+
 const App = () => {
+  const badgeValues = [10, 10, 5, 0];
+
   return (
     <Container>
       <TodolistContainer>
@@ -12,13 +36,11 @@ const App = () => {
           <TodayTaskTitle>Today Task</TodayTaskTitle>
           <FloatingButton />
         </Header>
-        <Nav />
+        <Nav badgeValues={badgeValues} />
         <CheckboxListContainer>
-          <CheckboxList status="Approved" label="간지나게 숨쉬기" />
-          <CheckboxList status="Approved" label="간지나게 숨쉬기" />
-          <CheckboxList status="In review" label="간지나게 숨쉬기" />
-          <CheckboxList status="In progress" label="허용" />
-          <CheckboxList status="Approved" label="허용" />
+          {dummyList.map((it) => (
+            <CheckboxList status={it.status} label={it.label} />
+          ))}
         </CheckboxListContainer>
         <UpcomingTaskTitleContainer>
           <UpcomingTaskTitle>Upcoming Tasks</UpcomingTaskTitle>
