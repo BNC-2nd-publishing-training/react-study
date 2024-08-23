@@ -8,6 +8,7 @@ import All from "@/components/Buttons/AllButton";
 import Approved from "@/components/Buttons/Approved";
 import InReview from "@/components/Buttons/InReviewButton";
 import InProgress from "@/components/Buttons/InProgressButton";
+import Badge from "@/components/TagUI/Badge";
 
 interface Task {
   id: number;
@@ -60,9 +61,14 @@ export default function Todo() {
     return task.tag?.label === selectedTag;
   });
 
+  const waitingTasks = tasks.filter((task) => task.tag?.label === "Waiting");
+
+  const totalTasksCount = filteredTasks.length + waitingTasks.length;
+
   return (
     <>
       <ButtonContainer>
+        <Badge count={totalTasksCount} />
         <All
           isSelected={selectedTag === "All"}
           onClick={() => handleButtonClick("All")}
@@ -101,26 +107,25 @@ export default function Todo() {
         ))}
       </TaskList>
       <UpcomingTaskList>
-        {tasks
-          .filter((task) => task.tag?.label === "Waiting")
-          .map((task) => (
-            <TaskItem key={task.id}>
-              <Checkbox
-                isChecked={task.isChecked}
-                onChange={() => toggleCheckbox(task.id)}
-              />
-              {task.title}{" "}
-              {task.tag && (
-                <Tag bgColor={task.tag.bgColor} textColor={task.tag.textColor}>
-                  {task.tag.label}
-                </Tag>
-              )}
-            </TaskItem>
-          ))}
+        {waitingTasks.map((task) => (
+          <TaskItem key={task.id}>
+            <Checkbox
+              isChecked={task.isChecked}
+              onChange={() => toggleCheckbox(task.id)}
+            />
+            {task.title}{" "}
+            {task.tag && (
+              <Tag bgColor={task.tag.bgColor} textColor={task.tag.textColor}>
+                {task.tag.label}
+              </Tag>
+            )}
+          </TaskItem>
+        ))}
       </UpcomingTaskList>
     </>
   );
 }
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -128,6 +133,7 @@ const ButtonContainer = styled.div`
   margin-top: 2%;
   width: 80%;
   margin-left: 8vw;
+  position: relative;
 `;
 
 const Text1 = styled.div`
