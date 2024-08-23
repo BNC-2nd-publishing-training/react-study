@@ -8,6 +8,7 @@ import { useTaskContext } from '@/components/Modal/CreateTask';
 function SelectType() {
     const [isOption, setIsOption] = useState<boolean>(false);
     const { selectedType, setSelectedType } = useTaskContext();
+    const options = ["In Review", "In Progress", "Approved", "Waiting"];
 
     const onClickLabel = () => {
         setIsOption(!isOption);
@@ -29,10 +30,11 @@ function SelectType() {
                     {selectedType}
                 </SelectTypeLabel>
                 <SelectTypeUl toggle={isOption}>
-                    <SelectTypeLi onClick={() => handleClickSelectType("In Review")}>In Review</SelectTypeLi>
-                    <SelectTypeLi onClick={() => handleClickSelectType("In Progress")}>In Progress</SelectTypeLi>
-                    <SelectTypeLi onClick={() => handleClickSelectType("Approved")}>Approved</SelectTypeLi>
-                    <SelectTypeLi onClick={() => handleClickSelectType("Waiting")}>Waiting</SelectTypeLi>
+                    {options.map(option => (
+                        <SelectTypeLi key={option} onClick={() => handleClickSelectType(option)}>
+                            {option}
+                        </SelectTypeLi>
+                    ))}
                 </SelectTypeUl>
             </SelectTypeBox>
         </div>
