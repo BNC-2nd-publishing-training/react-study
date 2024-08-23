@@ -15,11 +15,12 @@ const BadgeContainer = styled.div`
   font-weight: ${theme.font.textSmall.fontWeight};
   line-height: ${theme.font.textSmall.lineHeight};
   color: ${theme.color.primary20};
-  width: 29px;
-  height: 20px;
+  width: fit-content;
+  height: fit-content;
   border-radius: 10px;
-  padding: 4px 8px;
+  padding: 3px 8px;
   background-color: ${theme.color.primary10};
+  margin-right: 8px;
 `;
 
 export default Badge;
