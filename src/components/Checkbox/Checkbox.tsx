@@ -1,5 +1,3 @@
-// src/components/Checkbox/Checkbox.tsx
-
 import React from 'react';
 import styled from "@emotion/styled";
 interface CheckboxProps {
@@ -7,10 +5,10 @@ interface CheckboxProps {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     disabled?: boolean;
     label?: string;
-    id?: string;
+    id: string;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange, disabled, label, id }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange, disabled = false, label, id }) => {
     return (
         <CheckboxContainer>
             <StyledCheckbox
@@ -24,6 +22,11 @@ const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange, disabled, label,
         </CheckboxContainer>
     );
 };
+
+// Checkbox.defaultProps = {
+//     disabled: false,
+//     label: '',
+// };
 
 const CheckboxContainer = styled.div`
     display: flex;
