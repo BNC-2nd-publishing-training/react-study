@@ -5,66 +5,84 @@ import { UnChecked, Checked } from "@/assets/images";
 
 interface ListProps {
   title: string;
-  status: string;
+  status: "Approved" | "InReview" | "InProgress" | "Wating";
 }
 
+const statusColors = {
+  Approved: {
+    background: `${theme.color.primary10}`,
+    text: `${theme.color.primary20}`,
+  },
+  InReview: {
+    background: `${theme.color.red10}`,
+    text: `${theme.color.red30}`,
+  },
+  InProgress: {
+    background: `${theme.color.green10}`,
+    text: `${theme.color.green30}`,
+  },
+  Wating: {
+    background: `${theme.color.gray10}`,
+    text: `${theme.color.gray60}`,
+  },
+};
+
 const CheckListContainer = ({ title, status }: ListProps) => {
+  const [isChecked, setIsChecked] = useState(false);
 
-    const [isChecked, setIsChecked] = useState(false);
+  const handleCheckBoxChange = () => {
+    setIsChecked(!isChecked);
+  };
 
-    const handleCheckBoxChange = () => {
-      setIsChecked(!isChecked);
-    };
+  const { background, text } = statusColors[status];
 
   return (
     <Container>
       <div>
         <CheckBox onClick={handleCheckBoxChange}>
-        <img src={isChecked ? Checked : UnChecked} alt="checkbox" />
+          <img src={isChecked ? Checked : UnChecked} alt="checkbox" />
         </CheckBox>
         <Title>{title}</Title>
       </div>
-      <Tag>{status}</Tag>
+      <Tag backgroundcolor={background} color={text}>
+        {status}
+      </Tag>
     </Container>
   );
 };
-
-  
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 18px;
   align-items: center;
-  div{
+  div {
     display: flex;
   }
 `;
 
-const CheckBox = styled.div
-`
-width: 20px;  // 체크박스의 크기를 조정
+const CheckBox = styled.div`
+  width: 20px;
   height: 20px;
-  margin-right: 10px;  // 제목과의 간격 조정
-  accent-color: ${theme.color.primary20}; // 체크박스 색상 (선택적)
+  margin-right: 12px;
+  accent-color: ${theme.color.primary20};
 `;
 
 const Title = styled.div``;
 
-const Tag = styled.span`
-display: flex;
-justify-content: center;
+const Tag = styled.span<{ backgroundcolor: string; color: string }>`
+  display: flex;
+  justify-content: center;
   width: 75px;
   height: 28px;
   padding: 7px 11px;
   gap: 10px;
   border-radius: 14px;
-  background-color: ${theme.color.primary10};
+  background-color: ${({ backgroundcolor }) => backgroundcolor};
+  color: ${({ color }) => color};
   font-size: ${theme.font.textSmall.fontSize};
   font-weight: ${theme.font.textSmall.fontWeight};
   line-height: ${theme.font.textSmall.lineHeight};
-  color: ${theme.color.primary20};
 `;
-
 
 export default CheckListContainer;
