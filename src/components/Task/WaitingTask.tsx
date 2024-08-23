@@ -1,3 +1,5 @@
+// Waiting Type Task 컴포넌트
+
 import styled from "@emotion/styled";
 
 function WaitingTask() {

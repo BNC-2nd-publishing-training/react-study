@@ -1,3 +1,5 @@
+// Checkbox List 컴포넌트
+
 import React from 'react';
 import Checkbox from '@/components/Checkbox/Checkbox';
 
