@@ -1,18 +1,20 @@
 import styled from '@emotion/styled';
+import Reset_Center from "@/styles/reset-center"
 import { theme } from "@/styles/theme";
 import { FaRegSquare, FaSquareCheck } from "react-icons/fa6";
 import Tag from "@/components/Tag";
 import { TodoProps } from "@/utils/interfaces/todoInterfaces";
 
 const Todo = ({ check, text, tag, onToggle, onClick }: TodoProps) => {
-    // Prevent checkbox click from triggering the onClick event for editing
+    
     const handleCheckboxClick = (e: React.MouseEvent) => {
         e.stopPropagation();
         onToggle();
     };
 
     return (
-        <CheckBoxContainer onClick={onClick}>
+        <TodoBoxContainer onClick={onClick}>
+
             {check === "false" ? (
                 <FaRegSquareIcon onClick={handleCheckboxClick} />
             ) : (
@@ -20,15 +22,13 @@ const Todo = ({ check, text, tag, onToggle, onClick }: TodoProps) => {
             )}
             <TaskText>{text}</TaskText>
             <Tag tag={tag} />
-        </CheckBoxContainer>
+        </TodoBoxContainer>
     );
 };
 
-const CheckBoxContainer = styled.div`
+const TodoBoxContainer = styled(Reset_Center.withComponent('li'))`
     width: 100%;
-    display: flex;
     justify-content: left;
-    align-items: center;
     cursor: pointer;
 `;
 

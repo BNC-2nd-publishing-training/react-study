@@ -32,16 +32,13 @@ const TabList = ({ onTabSelect, todoCounts }: TabListProps) => {
     );
 };
 
-const TabContainer = styled.div`
-    display: flex;
-    flex-direction: row;
+const TabContainer = styled(Reset_Center.withComponent('div'))`
     justify-content: left;
-    align-items: center;
     box-sizing: border-box;
     margin: 1vw;
 `;
 
-const BadgeTitle = styled(Reset_Center.withComponent('div'))<BadgeTitleProps>`
+const BadgeTitle = styled(Reset_Center.withComponent('button'))<BadgeTitleProps>`
     width: 7vw;
     box-sizing: border-box;
     box-shadow: ${({ active }) => active ? `inset 0px -1px 0px 0px ${theme.color.primary20}` : 'none'};
