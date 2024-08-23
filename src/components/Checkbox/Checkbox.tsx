@@ -2,8 +2,6 @@
 
 import React from 'react';
 import styled from "@emotion/styled";
-
-// Checkbox 컴포넌트의 props 타입 정의
 interface CheckboxProps {
     checked: boolean;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
