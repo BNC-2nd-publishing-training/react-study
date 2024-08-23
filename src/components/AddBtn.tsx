@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "@emotion/styled";
+import Reset_Center from "@/styles/reset-center"
 import { theme } from "@/styles/theme";
 import { GrAdd } from "react-icons/gr";
 
@@ -11,7 +12,7 @@ const AddBtn = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   );
 };
 
-const Container = styled.button`
+const Container = styled(Reset_Center.withComponent('button'))`
   width: 52px;
   height: 51px;
   background-color: ${theme.color.primary20};
@@ -20,9 +21,6 @@ const Container = styled.button`
   color: ${theme.color.white};
   font-size: ${theme.font.textMedium.fontSize};
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border: none;
   cursor: pointer;
   
