@@ -40,7 +40,7 @@ const SelectBox: React.FC<SelectBoxProps> = ({ options, value, onChange }) => {
       ...styles,
       fontSize: theme.font.textMedium.fontSize,
       fontWeight: theme.font.textMedium.fontWeight,
-      lineHeight: theme.font.textMedium.lineHeight
+      lineHeight: theme.font.textMedium.lineHeight,
     }),
     singleValue: (styles) => ({
       ...styles,
