@@ -1,5 +1,5 @@
 // CreateTaskModal.tsx
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import AddTask from "@/components/Button/addTaskButton";
@@ -12,13 +12,18 @@ function CreateTask() {
     const [taskInput, setTaskInput] = useState<string>('');
     const { addTask, selectedType } = useTaskContext();
 
-    const onOpenModal = useCallback(() => {
+    const onOpenModal = () => {
         setOpenModal(true);
-    }, []);
+    };
 
-    const onCloseModal = useCallback(() => {
+    const onCloseModal = () => {
         setOpenModal(false);
-    }, []);
+    };
+
+    // onOpenModal(), onCloseModal() 함수 useCallback() 사용하지 않고 다른 방법으로 구현해야하는 이유 (*공부)
+    // 1. useCallback()은 컴포넌트가 리렌더링 될 때마다 함수가 새로 만들어지는 것을 방지하고 사용하지만, 두 함수는 간단해서 굳이 useCallback()을 사용할 필요가 없음
+    // 2. 코드가 간결해짐
+    // 3. 메모리 낭비 방지
 
     const addTaskHandler = () => {
         if (taskInput.trim()) {
