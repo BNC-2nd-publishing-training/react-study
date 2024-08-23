@@ -6,7 +6,7 @@ import { theme } from "@/styles/theme";
 import { useTaskContext } from '@/components/Modal/CreateTask';
 
 function SelectType() {
-    const [isOption, setIsOption] = useState(false);
+    const [isOption, setIsOption] = useState<boolean>(false);
     const { selectedType, setSelectedType } = useTaskContext();
 
     const onClickLabel = () => {
