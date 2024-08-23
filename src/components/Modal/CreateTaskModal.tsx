@@ -1,10 +1,10 @@
-// CreateTaskModal.tsx
 import { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 import AddTask from "@/components/Button/addTaskButton";
 import SelectBox from "@/components/Button/SelectButton";
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useTaskContext } from '@/components/Modal/CreateTask';
 
 function CreateTask() {
@@ -130,7 +130,7 @@ const Modal = styled.div`
 
 const ModalTitle = styled.div`
     margin-top: 45px;
-    font-size: 1.5rem;
+    font-size: ${theme.font.titleLarge};
 `;
 
 const CloseButton = styled.div`

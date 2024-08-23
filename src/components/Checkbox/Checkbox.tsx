@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "@emotion/styled";
+import { theme } from "@/styles/theme";
 
 import CheckboxProps from "@/utils/interfaces/CheckboxProps";
 
@@ -34,7 +35,7 @@ const StyledCheckbox = styled.input`
 `;
 
 const Label = styled.label`
-    font-size: 14px;
+    font-size: ${theme.font.textMedium.fontSize};
     cursor: pointer;
 `;
 

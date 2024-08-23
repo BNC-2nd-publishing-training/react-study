@@ -52,7 +52,7 @@ const SelectTypeBox = styled.div<{toggle:boolean}>`
 
 const SelectTypeLabel = styled.div<{isDefault: boolean}>`
     display: flex;
-    font-size: 1rem;
+    font-size: ${theme.font.textMedium.fontSize};
     color: ${({ isDefault }) => (isDefault ? 'gray' : 'black')};
     cursor: pointer;
 `;
@@ -71,7 +71,7 @@ const SelectTypeUl = styled.ul<{toggle:boolean}>`
 const SelectTypeLi = styled.li`
     height: 50px;
     padding: 13px 15px;
-    font-size: 1rem;
+    font-size: ${theme.font.textMedium.fontSize};
     cursor: pointer;
 `;
 
