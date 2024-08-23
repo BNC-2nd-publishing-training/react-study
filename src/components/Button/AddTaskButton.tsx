@@ -6,10 +6,10 @@ import styled from "@emotion/styled";
 
 import { ModalDefaultType } from "@/utils/interfaces/ModalDefaultType";
 
-function AddTaskModal({
+const AddTaskModal = ({
     onClickPlusButton,
     children,
-} : PropsWithChildren<ModalDefaultType>) {
+}: PropsWithChildren<ModalDefaultType>) => {
     return (
         <Container>
             <CreateTaskModal>{children}</CreateTaskModal>
@@ -24,7 +24,7 @@ function AddTaskModal({
             />
         </Container>
     );
-}
+};
 
 const Container = styled.div`
     position: fixed;
