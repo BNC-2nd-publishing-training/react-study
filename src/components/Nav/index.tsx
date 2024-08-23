@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-import Badge from "@/components/Badge";
+import Badge from "../Badge";
 
 interface NavProps {
   badgeValues: number[];
+  onNavClick: (status: string) => void; // 상태 변경 핸들러
 }
 
-const labels = ["All", "In Review", "In Progress", "Approved"];
+const labels = ["All", "In review", "In progress", "Approved"];
 
-const Nav = ({ badgeValues }: NavProps) => {
+const Nav = ({ badgeValues, onNavClick }: NavProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleClick = (index: number, status: string) => {
+    setActiveIndex(index);
+    onNavClick(status); // 상태 변경 핸들러 호출
+  };
 
   return (
     <NavContainer>
@@ -18,7 +24,7 @@ const Nav = ({ badgeValues }: NavProps) => {
         <NavItem
           key={index}
           isActive={index === activeIndex}
-          onClick={() => setActiveIndex(index)}
+          onClick={() => handleClick(index, label)}
         >
           <BadgeWrapper>
             {badgeValues[index] > 0 && <Badge value={badgeValues[index]} />}
@@ -38,6 +44,11 @@ const NavContainer = styled.div`
   height: 90px;
 `;
 
+const BadgeWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const NavItem = styled.div<{ isActive: boolean }>`
   display: flex;
   flex-direction: column;
@@ -51,11 +62,6 @@ const NavItem = styled.div<{ isActive: boolean }>`
   font-size: ${theme.font.textMedium.fontSize};
   line-height: ${theme.font.textMedium.lineHeight};
   position: relative;
-`;
-
-const BadgeWrapper = styled.div`
-  display: flex;
-  align-items: center;
 `;
 
 const Line = styled.div<{ isActive: boolean }>`
