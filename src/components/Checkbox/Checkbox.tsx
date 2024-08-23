@@ -1,12 +1,7 @@
 import React from 'react';
 import styled from "@emotion/styled";
-interface CheckboxProps {
-    checked: boolean;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    disabled?: boolean;
-    label?: string;
-    id: string;
-}
+
+import CheckboxProps from "@/utils/interfaces/CheckboxProps";
 
 const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange, disabled = false, label, id }) => {
     return (
