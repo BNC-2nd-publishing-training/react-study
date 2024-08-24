@@ -110,17 +110,14 @@ const TaskContent = styled.div`
 `;
 
 const TaskType = styled.div`
-    // flex-shrink: 0;
     width: 75px;
     height: 28px;
-    border-radius: 20px;
-    font-size: 12px;
-    
-    margin-right: 10%;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 10%;
+    border-radius: 20px;
+    font-size: 12px;
     
     &.in-review {
         color: ${theme.color.red30};
