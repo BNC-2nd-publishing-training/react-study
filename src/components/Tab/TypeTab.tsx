@@ -67,7 +67,7 @@ const TypeTab = styled.ul`
     align-items: center;
     justify-content: center;
     top: 16%;
-    left: 37%;
+    left: 37.5%;
     padding: 0;
     box-sizing: border-box;
     background-color: transparent;
