@@ -76,4 +76,3 @@ const SelectTypeLi = styled.li`
 `;
 
 export default SelectType;
-
