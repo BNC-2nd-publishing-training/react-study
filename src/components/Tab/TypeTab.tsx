@@ -45,7 +45,9 @@ const Tab = () => {
                 {filteredTasks().map((task, index) => (
                     <TaskItem key={index}>
                         <TaskContent>{task.title}</TaskContent>
-                        <TaskType>{TypeArr[currentTab].name}</TaskType>
+                        <TaskType className={task.type.toLowerCase().replace(' ', '-')}>
+                           {task.type}
+                        </TaskType>
                     </TaskItem>
                 ))}
             </Desc>
@@ -108,8 +110,37 @@ const TaskContent = styled.div`
 `;
 
 const TaskType = styled.div`
-    flex-shrink: 0;
-    color: ${theme.color.primary20};
+    // flex-shrink: 0;
+    width: 75px;
+    height: 28px;
+    border-radius: 20px;
+    font-size: 12px;
+    
+    margin-right: 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &.in-review {
+        color: ${theme.color.red30};
+        background-color: ${theme.color.red10};
+    }
+
+    &.in-progress {
+        color: ${theme.color.green30};
+        background-color: ${theme.color.green10};
+    }
+
+    &.approved {
+        color: ${theme.color.primary20};
+        background-color: ${theme.color.primary10};
+    }
+
+    &.waiting {
+        color: ${theme.color.gray30};
+        background-color: ${theme.color.gray10};
+    }
 `;
 
 export default Tab;
