@@ -1,7 +1,9 @@
-import React, { createContext, Component, ReactNode } from 'react';
+import React, { createContext, Component, ReactNode, Key } from 'react';
 
 interface TaskContextType {
-    tasks: { title: string; type: string }[];
+    tasks: {
+        id: Key | null | undefined; title: string; type: string 
+}[];
     addTask: (title: string, type: string) => void;
     selectedType: string;
     setSelectedType: (type: string) => void;

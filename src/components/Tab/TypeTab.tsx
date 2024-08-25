@@ -1,9 +1,14 @@
-// Task Type별 Tab 버튼 컴포넌트
-
 import React from 'react';
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import { useTaskContext } from '@/components/Modal/CreateTask';
+import WaitingTask from '@/components/Task/WaitingTask';
+
+interface Task {
+    id: number;
+    title: string;
+    type: string;
+}
 
 const Tab = () => {
     const [currentTab, setCurrentTab] = React.useState<number>(0);
@@ -21,11 +26,18 @@ const Tab = () => {
         setSelectedType(TypeArr[index].name);
     };
 
-    const filteredTasks = () => {
+    const filteredTasks = (): Task[] => {
         if (TypeArr[currentTab].name === 'All') {
-            return tasks;
+            // 'Waiting' 타입 제외
+            return tasks.filter(task => task.type !== 'Waiting').map(task => ({
+                ...task,
+                id: task.id ?? -1, // id가 없을 경우 기본값으로 -1 사용
+            })) as Task[];
         }
-        return tasks.filter(task => task.type === TypeArr[currentTab].name);
+        return tasks.filter(task => task.type === TypeArr[currentTab].name).map(task => ({
+            ...task,
+            id: task.id ?? -1, // id가 없을 경우 기본값으로 -1 사용
+        })) as Task[];
     };
 
     return (
@@ -42,15 +54,16 @@ const Tab = () => {
                 ))}
             </TypeTab>
             <Desc>
-                {filteredTasks().map((task, index) => (
-                    <TaskItem key={index}>
+                {filteredTasks().map((task) => (
+                    <TaskItem key={task.id}>
                         <TaskContent>{task.title}</TaskContent>
                         <TaskType className={task.type.toLowerCase().replace(' ', '-')}>
-                           {task.type}
+                            {task.type}
                         </TaskType>
                     </TaskItem>
                 ))}
             </Desc>
+            <WaitingTask tasks={tasks as Task[]} />
         </Container>
     );
 };
@@ -118,7 +131,7 @@ const TaskType = styled.div`
     margin-right: 10%;
     border-radius: 20px;
     font-size: 12px;
-    
+
     &.in-review {
         color: ${theme.color.red30};
         background-color: ${theme.color.red10};
@@ -132,11 +145,6 @@ const TaskType = styled.div`
     &.approved {
         color: ${theme.color.primary20};
         background-color: ${theme.color.primary10};
-    }
-
-    &.waiting {
-        color: ${theme.color.gray30};
-        background-color: ${theme.color.gray10};
     }
 `;
 
