@@ -6,12 +6,12 @@ const NavButton = ({
   selected = false,
   title,
   count = 0,
-  ...props
+  onClick,
 }: NavButtonProps) => {
   return (
-    <S.NavButtonContainer selected={selected} {...props}>
-      <S.TitleContent selected={selected}>
-        <Badge count={count} label={title} />
+    <S.NavButtonContainer selected={selected} onClick={onClick}>
+      <S.TitleContent>
+        <Badge count={count} label={title} selected={selected} />
       </S.TitleContent>
     </S.NavButtonContainer>
   );
