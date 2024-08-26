@@ -6,5 +6,4 @@ export const ListContainer = styled.div`
   justify-content: space-between;
   padding: 10px;
   width: 100%;
-  margin-right: 219px;
 `;

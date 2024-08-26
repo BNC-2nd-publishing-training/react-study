@@ -1,8 +1,9 @@
-import { TagStatus } from "../tag/type";
 import { Todo } from "../todoitem/type";
+import { TagStatus } from "../tag/type";
 
 export interface ListProps {
   status: TagStatus;
-  onToggle: (id: number) => void;
   todo: Todo;
+  onToggle: (id: number) => void;
+  onClick: (todo: Todo) => void;
 }
