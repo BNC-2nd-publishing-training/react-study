@@ -8,8 +8,12 @@ export const TextAreaContainer = styled.textarea`
   border-radius: 6px;
   border: 1px solid ${theme.color.gray40};
   background-color: ${theme.color.white};
-  ${theme.font.textMedium};
   color: ${theme.color.black};
+  ${theme.font.textMedium};
   resize: none;
   outline: none;
+
+  &::placeholder {
+    color: ${theme.color.gray40};
+  }
 `;
