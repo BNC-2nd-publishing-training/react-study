@@ -4,7 +4,7 @@ import { theme } from "../../../styles/theme";
 export const TodoItemContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 `;
 
 export const CheckBox = styled.input`
