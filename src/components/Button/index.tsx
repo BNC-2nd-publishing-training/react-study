@@ -5,8 +5,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   width?: string;
 }
 
-const Button = ({ width = "480px", ...props }: ButtonProps) => {
-  return <ButtonContainer width={width} {...props} />;
+const Button = ({ width = "480px", type, ...props }: ButtonProps) => {
+  return <ButtonContainer width={width} type={type} {...props} />;
 };
 
 const ButtonContainer = styled.button<{ width?: string }>`
