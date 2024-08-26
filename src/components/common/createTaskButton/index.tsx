@@ -1,10 +1,11 @@
 import * as S from "./style";
-import PlusIcon from "@/assets/images/plus";
+import plusIcon from "@/assets/images/plus.svg";
+import { CreateTaskButtonProps } from "./type";
 
-const CreateTaskButton = () => {
+const CreateTaskButton = ({ onClick }: CreateTaskButtonProps) => {
   return (
-    <S.CreateTaskButtonContainer>
-      <PlusIcon />
+    <S.CreateTaskButtonContainer onClick={onClick}>
+      <img src={plusIcon} />
     </S.CreateTaskButtonContainer>
   );
 };
