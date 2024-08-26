@@ -1,20 +1,15 @@
 import styled from "@emotion/styled";
 import CheckListContainer from ".";
+import { List } from "../constants";
 
-type Status = "Approved" | "InReview" | "InProgress" | "Wating";
+interface CheckListProps {
+  items: typeof List;
+}
 
-const List: { title: string; status: Status }[] = [
-  { title: "간지나게 숨쉬기", status: "Approved" },
-  { title: "간지나게 숨쉬기", status: "InReview" },
-  { title: "간지나게 숨쉬기", status: "InProgress" },
-  { title: "간지나게 숨쉬기", status: "InProgress" },
-  { title: "간지나게 숨쉬기", status: "Wating" },
-];
-
-const CheckList = () => {
+const CheckList = ({ items }: CheckListProps) => {
   return (
     <Container>
-      {List.map((item, index) => (
+      {items.map((item, index) => (
         <CheckListContainer
           key={index}
           title={item.title}
@@ -29,5 +24,6 @@ const Container = styled.div`
   margin-top: 40px;
   width: 423px;
   height: 258px;
+  overflow-y: scroll;
 `;
 export default CheckList;
