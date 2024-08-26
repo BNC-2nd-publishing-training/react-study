@@ -78,10 +78,14 @@ const UpdateTask = ({
             />
           </InputForm>
           <ButtonContainer>
-            <GeneralButton isCancel onClick={deleteTodo} width="230px">
+            <GeneralButton
+              buttonType="cancel"
+              onClick={deleteTodo}
+              width="calc(50% - 10px)"
+            >
               Task 삭제하기
             </GeneralButton>
-            <GeneralButton onClick={updateTodo} width="230px">
+            <GeneralButton onClick={updateTodo} width="calc(50% - 10px)">
               Task 수정하기
             </GeneralButton>
           </ButtonContainer>
@@ -94,6 +98,8 @@ const UpdateTask = ({
 export default UpdateTask;
 
 const InputForm = styled.div`
+  display: flex;
+  flex-direction: column;
   & > textarea {
     margin-bottom: 30px;
   }

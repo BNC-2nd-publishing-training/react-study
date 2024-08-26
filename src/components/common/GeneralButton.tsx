@@ -2,11 +2,11 @@ import { color, font } from "@/styles";
 import styled from "@emotion/styled";
 
 interface IGeneralButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  isCancel?: boolean;
+  buttonType?: "cancel" | "general";
   width?: string;
 }
 const GeneralButton = ({
-  isCancel = false,
+  buttonType = "general",
   width = "100%",
   ...buttonProps
 }: IGeneralButton) => {
@@ -14,7 +14,7 @@ const GeneralButton = ({
     <Container
       type="button"
       {...buttonProps}
-      isCancel={isCancel}
+      isCancel={buttonType === "cancel"}
       width={width}
     />
   );

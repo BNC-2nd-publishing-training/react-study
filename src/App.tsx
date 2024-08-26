@@ -1,11 +1,7 @@
 import MainPage from "./views/pages/main";
 
 const App = () => {
-  return (
-    <>
-      <MainPage />
-    </>
-  );
+  return <MainPage />;
 };
 
 export default App;

@@ -23,6 +23,7 @@ const Container = styled.textarea`
   border: 1px solid ${color.gray40};
   border-radius: 6px;
   resize: none;
+  display: block;
 
   &::placeholder {
     color: ${color.gray40};
