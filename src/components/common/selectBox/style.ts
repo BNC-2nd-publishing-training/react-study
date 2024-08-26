@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
   width: 480px;
   height: 42px;
   position: relative;
