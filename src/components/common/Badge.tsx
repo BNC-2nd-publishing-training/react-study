@@ -18,4 +18,5 @@ const Container = styled.span`
   color: ${color.primary20};
   padding: 4px 8px;
   border-radius: 10px;
+  margin-right: 8px;
 `;

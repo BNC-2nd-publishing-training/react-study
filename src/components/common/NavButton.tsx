@@ -34,8 +34,6 @@ const Container = styled.button<{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
 
   border-bottom: ${({ selected }) =>
     selected ? `1px solid ${color.primary20}` : "1px solid transparent"};

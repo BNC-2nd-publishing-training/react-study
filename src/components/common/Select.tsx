@@ -44,6 +44,7 @@ const ValueContainerStyle = css`
   padding: 11px 16px;
   width: 100%;
   cursor: pointer;
+  height: 42px;
 `;
 const Container = styled.div`
   position: relative;
@@ -67,9 +68,9 @@ const DefaultLabel = styled.label`
   white-space: nowrap;
 `;
 
-const OptionContainer = styled.ol`
+const OptionContainer = styled.ul`
   position: absolute;
-  top: 45.5px;
+  top: 42px;
   left: 0px;
   width: 100%;
   border: solid ${color.gray40};

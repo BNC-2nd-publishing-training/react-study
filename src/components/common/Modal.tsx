@@ -22,9 +22,7 @@ const Modal = ({ title, children, setIsOpen }: IModalProps) => {
         <CloseButton onClick={closeModal}>
           <CloseIcon />
         </CloseButton>
-        <TitleContainer>
-          <h1>{title}</h1>
-        </TitleContainer>
+        <Title>{title}</Title>
         <ChildrenContainer>{children}</ChildrenContainer>
       </Container>
     </Backdrop>
@@ -66,15 +64,12 @@ const CloseButton = styled.button`
   position: absolute;
   right: 24px;
   top: 26px;
-  height: 30px;
 `;
 
-const TitleContainer = styled.div`
+const Title = styled.h1`
   text-align: center;
-  margin: 4px 0px 40px 0px;
-  h1 {
-    ${font.titleLarge}
-  }
+  margin-bottom: 40px;
+  ${font.titleLarge}
 `;
 
 const ChildrenContainer = styled.div`

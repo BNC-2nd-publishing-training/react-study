@@ -94,15 +94,13 @@ const UpdateTask = ({
 export default UpdateTask;
 
 const InputForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  > textarea {
+  & > textarea {
     margin-bottom: 30px;
   }
 `;
 
 const ButtonContainer = styled.div`
-  > button:first-child {
-    margin-right: 20px;
+  > button + button {
+    margin-left: 20px;
   }
 `;

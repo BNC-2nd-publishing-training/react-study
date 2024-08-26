@@ -53,22 +53,20 @@ const CreateTask = ({
     <>
       {isOpen && (
         <Modal title="Create Task" setIsOpen={setIsOpen}>
-          <Container>
-            <InputForm>
-              <TextArea
-                placeholder="Task 제목을 입력해주세요"
-                value={label}
-                onChange={onChangeLabel}
-              />
-              <Select
-                defaultText="Task의 상태를 선택해주세요"
-                options={selectStatus}
-                value={statusValue}
-                setValue={setStatusValue}
-              />
-            </InputForm>
-            <GeneralButton onClick={addTodo}>Task 추가하기</GeneralButton>
-          </Container>
+          <InputForm>
+            <TextArea
+              placeholder="Task 제목을 입력해주세요"
+              value={label}
+              onChange={onChangeLabel}
+            />
+            <Select
+              defaultText="Task의 상태를 선택해주세요"
+              options={selectStatus}
+              value={statusValue}
+              setValue={setStatusValue}
+            />
+          </InputForm>
+          <GeneralButton onClick={addTodo}>Task 추가하기</GeneralButton>
         </Modal>
       )}
     </>
@@ -77,14 +75,10 @@ const CreateTask = ({
 
 export default CreateTask;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 200px;
-`;
-
 const InputForm = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  & > textarea {
+    margin-bottom: 30px;
+  }
 `;

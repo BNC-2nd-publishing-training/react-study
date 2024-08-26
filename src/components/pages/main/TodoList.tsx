@@ -86,7 +86,7 @@ const NavFilter = styled.nav`
   margin-bottom: 40px;
 `;
 
-const TodoContainer = styled.li`
+const TodoContainer = styled.ul`
   padding: 0px 47px;
   display: flex;
   flex-direction: column;
