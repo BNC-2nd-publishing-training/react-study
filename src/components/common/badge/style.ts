@@ -11,18 +11,22 @@ export const BadgeContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${theme.color.primary10};
-  border-radius: 10px;
-  width: 29px;
-  height: 20px;
 `;
 
 export const Count = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 20px;
+  background-color: ${theme.color.primary10};
+  border-radius: 10px;
   color: ${theme.color.primary20};
   font-size: 12px;
 `;
 
-export const Text = styled.p`
+export const Text = styled.p<{ selected: boolean }>`
   ${theme.font.textMedium};
-  color: ${theme.color.gray50};
+  color: ${({ selected }) =>
+    selected ? theme.color.black : theme.color.gray50};
 `;
