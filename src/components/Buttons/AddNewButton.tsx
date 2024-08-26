@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { FaPlus } from "react-icons/fa";
+import { theme } from "@/styles/theme";
 
 interface FixedButtonProps {
   onClick: () => void;
@@ -19,7 +20,7 @@ const StyledFixedButton = styled.div`
   height: 51px;
   border-radius: 12px 0 12px 12px;
   margin: 11px 12px;
-  background-color: #623ce7;
+  background-color: ${theme.color.primary20};
   display: flex;
   align-items: center;
   justify-content: center;

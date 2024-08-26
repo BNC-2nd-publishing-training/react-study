@@ -3,13 +3,16 @@ import { theme } from "@/styles/theme";
 
 type DropdownProps = {
   onSelect: (value: string) => void;
+  initialTag?: string;
 };
 
-export default function TagDropdown({ onSelect }: DropdownProps) {
+export default function TagDropdown({ onSelect, initialTag }: DropdownProps) {
   return (
     <Container>
-      <TagDropdownSelect onChange={(e) => onSelect(e.target.value)}>
-        <option disabled hidden selected>
+      <TagDropdownSelect
+        value={initialTag || ""}
+        onChange={(e) => onSelect(e.target.value)}>
+        <option disabled hidden value="">
           Task의 상태를 선택해주세요
         </option>
         <option value="In review">In review</option>
@@ -27,9 +30,6 @@ const Container = styled.div`
   padding-left: 0.7%;
   margin-top: 5%;
   padding-top: 25%;
-  option[value=""] {
-    color: gray;
-  }
 `;
 
 const TagDropdownSelect = styled.select`
@@ -37,9 +37,11 @@ const TagDropdownSelect = styled.select`
   height: 42px;
   border-radius: 4px;
   border: 1px solid gray;
-  left: 20px;
   padding: 10px;
   color: ${theme.color.gray60};
   font-size: ${theme.font.textMedium.fontSize};
   appearance: none;
+  option[value=""] {
+    color: gray;
+  }
 `;

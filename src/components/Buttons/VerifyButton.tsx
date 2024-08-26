@@ -1,23 +1,26 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 
-interface NewButtonProps {
+interface VerifyButtonProps {
   onClick: () => void;
   children: React.ReactNode;
 }
 
-export default function NewButton({ onClick, children }: NewButtonProps) {
-  return <StyledNewButton onClick={onClick}>{children}</StyledNewButton>;
-}
+const Verify = ({ onClick }: VerifyButtonProps) => {
+  return <StyledVerifyButton onClick={onClick}>확인</StyledVerifyButton>;
+};
 
-const StyledNewButton = styled.button`
-  width: 480px;
+const StyledVerifyButton = styled.button`
+  position: absolute;
+  margin-left: 15vw;
+  margin-top: 60%;
+  width: 230px;
   height: 50px;
   border-radius: 4px;
-  margin-top: 110px;
-  justify-content: center;
   background-color: ${theme.color.primary20};
   font-weight: ${theme.font.titleMedium.fontWeight};
   font-size: ${theme.font.titleMedium.fontSize};
   color: ${theme.color.white};
 `;
+
+export default Verify;

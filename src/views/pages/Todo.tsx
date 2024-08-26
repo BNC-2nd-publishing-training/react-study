@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import NewButton from "@/components/Buttons/AddNewButton";
-import CreateTaskModal from "@/components/Modal/CreateTaskModal";
+import CreateTaskModal from "@/components/Modal/CreateModal";
+import EditTaskModal from "@/components/Modal/EditTaskModal";
 import Checkbox from "@/components/Input/TodoInput";
 import All from "@/components/Buttons/AllButton";
 import Approved from "@/components/Buttons/Approved";
@@ -22,16 +23,18 @@ interface Task {
 }
 
 export default function Todo() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [nextId, setNextId] = useState(1);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>("All");
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openCreateModal = () => {
+    setIsCreateModalOpen(true);
   };
 
-  const closeModal = (task: Task) => {
+  const closeCreateModal = (task: Task) => {
     if (task.title) {
       setTasks((prevTasks) => [
         ...prevTasks,
@@ -39,7 +42,28 @@ export default function Todo() {
       ]);
       setNextId(nextId + 1);
     }
-    setIsModalOpen(false);
+    setIsCreateModalOpen(false);
+  };
+
+  const openEditModal = (task: Task) => {
+    setSelectedTask(task);
+    setIsEditModalOpen(true);
+  };
+
+  const closeEditModal = (updatedTask: Task) => {
+    if (updatedTask.title === "") {
+      setTasks((prevTasks) =>
+        prevTasks.filter((task) => task.id !== updatedTask.id)
+      );
+    } else {
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task.id === updatedTask.id ? updatedTask : task
+        )
+      );
+    }
+    setIsEditModalOpen(false);
+    setSelectedTask(null);
   };
 
   const toggleCheckbox = (id: number) => {
@@ -87,9 +111,12 @@ export default function Todo() {
         />
       </ButtonContainer>
       <Text1>Today Task</Text1>
-      <NewButton onClick={openModal}>Add New Task</NewButton>
+      <NewButton onClick={openCreateModal}>Add New Task</NewButton>
       <Text2>Upcoming Task</Text2>
-      {isModalOpen && <CreateTaskModal onClose={closeModal} />}
+      {isCreateModalOpen && <CreateTaskModal onClose={closeCreateModal} />}
+      {isEditModalOpen && selectedTask && (
+        <EditTaskModal onClose={closeEditModal} initialTask={selectedTask} />
+      )}
       <TaskList>
         {filteredTasks.map((task) => (
           <TaskItem key={task.id}>
@@ -97,7 +124,9 @@ export default function Todo() {
               isChecked={task.isChecked}
               onChange={() => toggleCheckbox(task.id)}
             />
-            {task.title}{" "}
+            <TaskTitle onClick={() => openEditModal(task)}>
+              {task.title}
+            </TaskTitle>
             {task.tag && (
               <Tag bgColor={task.tag.bgColor} textColor={task.tag.textColor}>
                 {task.tag.label}
@@ -113,7 +142,9 @@ export default function Todo() {
               isChecked={task.isChecked}
               onChange={() => toggleCheckbox(task.id)}
             />
-            {task.title}{" "}
+            <TaskTitle onClick={() => openEditModal(task)}>
+              {task.title}
+            </TaskTitle>
             {task.tag && (
               <Tag bgColor={task.tag.bgColor} textColor={task.tag.textColor}>
                 {task.tag.label}
@@ -181,6 +212,10 @@ const TaskItem = styled.div`
   display: flex;
   align-items: center;
   gap: 18px;
+`;
+
+const TaskTitle = styled.div`
+  cursor: pointer;
 `;
 
 const Tag = styled.div<{ bgColor: string; textColor: string }>`
