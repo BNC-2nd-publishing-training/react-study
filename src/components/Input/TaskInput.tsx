@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 
 interface CreateTaskProps {
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder: string;
 }
 
@@ -14,11 +14,15 @@ const CreateTask: React.FC<CreateTaskProps> = ({
   placeholder,
 }) => {
   return (
-    <CreateInput placeholder={placeholder} value={value} onChange={onChange} />
+    <CreateTextArea
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+    />
   );
 };
 
-const CreateInput = styled.input`
+const CreateTextArea = styled.textarea`
   width: 480px;
   height: 130px;
   position: absolute;
@@ -27,15 +31,16 @@ const CreateInput = styled.input`
   transform: translateX(-50%);
   border-radius: 6px;
   border: 0.2px solid gray;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
+  padding: 10px;
+  font-weight: ${theme.font.textMedium.fontWeight};
+  font-size: ${theme.font.textMedium.fontSize};
+  color: ${theme.color.gray60};
+  resize: none;
+  line-height: 1.2;
   ::placeholder {
-    vertical-align: top;
-    font-weight: ${theme.font.textMedium.fontWeight};
     font-size: ${theme.font.textMedium.fontSize};
     color: ${theme.color.gray60};
+    vertical-align: top;
   }
 `;
 
