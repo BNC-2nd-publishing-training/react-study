@@ -83,7 +83,7 @@ const CreateTaskModal = ({ onClose }: CreateTaskModalProps) => {
   );
 };
 
-const TextInput = styled.div`
+const TextInput = styled.h1`
   font-weight: ${theme.font.titleLarge.fontWeight};
   font-size: ${theme.font.titleLarge.fontSize};
   text-align: center;

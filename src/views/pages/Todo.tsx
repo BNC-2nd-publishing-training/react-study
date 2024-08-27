@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import NewButton from "@/components/Buttons/AddNewButton";
-import CreateTaskModal from "@/components/Modal/CreateModal";
+import CreateTaskModal from "@/components/Modal/CreateTaskModal";
 import EditTaskModal from "@/components/Modal/EditTaskModal";
 import Checkbox from "@/components/Input/TodoInput";
 import All from "@/components/Buttons/AllButton";
