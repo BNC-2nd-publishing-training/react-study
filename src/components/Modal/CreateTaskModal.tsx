@@ -19,7 +19,7 @@ interface CreateTaskModalProps {
   onClose: (task: Task) => void;
 }
 const CreateTaskModal = ({ onClose }: CreateTaskModalProps) => {
-  const [taskTitle, setTaskTitle] = useState("");
+  const [taskTitle, setTaskTitle] = useState<string>("");
   const [selectedTag, setSelectedTag] = useState<Task["tag"] | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
