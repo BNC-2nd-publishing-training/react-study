@@ -33,9 +33,11 @@ export default function Todo() {
   const CreateModalSetter = () => {
     setIsCreateModalOpen(!isCreateModalOpen);
   };
+
   const EditModalSetter = () => {
     setIsEditModalOpen(!isEditModalOpen);
   };
+
   const openCreateModal = () => {
     setIsCreateModalOpen(true);
   };
@@ -84,14 +86,17 @@ export default function Todo() {
     setSelectedTag(tag);
   };
 
+  // 필터링 로직 수정
   const filteredTasks = tasks.filter((task) => {
     if (selectedTag === "All") {
-      return task.isChecked;
+      return true;
     }
-    return task.isChecked && task.tag?.label === selectedTag;
+    return task.tag?.label === selectedTag;
   });
 
-  const upcomingTasks = tasks.filter((task) => !task.isChecked);
+  const upcomingTasks = tasks.filter((task) => {
+    return task.tag?.label === "Waiting" && !task.isChecked;
+  });
 
   const totalTasksCount = filteredTasks.length + upcomingTasks.length;
 
