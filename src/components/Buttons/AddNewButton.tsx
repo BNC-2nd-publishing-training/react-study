@@ -5,6 +5,7 @@ import { theme } from "@/styles/theme";
 interface FixedButtonProps {
   onClick: () => void;
 }
+
 const FixedButton = ({ onClick }: FixedButtonProps) => {
   return (
     <StyledFixedButton onClick={onClick}>
@@ -13,7 +14,7 @@ const FixedButton = ({ onClick }: FixedButtonProps) => {
   );
 };
 
-const StyledFixedButton = styled.div`
+const StyledFixedButton = styled.button`
   position: fixed;
   width: 52px;
   height: 51px;
@@ -27,10 +28,13 @@ const StyledFixedButton = styled.div`
   top: 8%;
   left: 60%;
   transform: translate(-50%, -50%);
+  border: none;
+  outline: none;
 
   svg {
     color: white;
     font-size: 20px;
   }
 `;
+
 export default FixedButton;

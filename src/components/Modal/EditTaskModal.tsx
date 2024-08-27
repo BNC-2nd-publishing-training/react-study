@@ -22,7 +22,6 @@ interface EditTaskModalProps {
   initialTask: Task;
   onClose: (task: Task) => void;
 }
-
 const EditTaskModal = ({ initialTask, onClose }: EditTaskModalProps) => {
   const [taskTitle, setTaskTitle] = useState(initialTask.title);
   const [selectedTag, setSelectedTag] = useState<Task["tag"] | null>(
@@ -79,12 +78,11 @@ const EditTaskModal = ({ initialTask, onClose }: EditTaskModalProps) => {
   return (
     <ModalContainer>
       <ModalContent>
-        <ModalHeader>
-          <TextInput>Edit Task</TextInput>
-          <CloseButton onClick={() => onClose(initialTask)}>
-            <CloseIcon />
-          </CloseButton>
-        </ModalHeader>
+        <TextInput>Edit Task</TextInput>
+        <CloseButton onClick={() => onClose(initialTask)}>
+          <CloseIcon />
+        </CloseButton>
+
         <Body>
           <CreateTask
             placeholder="Task 제목을 입력해주세요"
@@ -95,15 +93,20 @@ const EditTaskModal = ({ initialTask, onClose }: EditTaskModalProps) => {
             onSelect={handleTagSelect}
             initialTag={initialTask.tag ? initialTask.tag.label : ""}
           />
-          <ButtonGroup>
-            <Verify onClick={handleVerifyClick} />
-            <Delete onClick={handleDeleteClick} />
-          </ButtonGroup>
+          <Verify onClick={handleVerifyClick} />
+          <Delete onClick={handleDeleteClick} />
         </Body>
       </ModalContent>
     </ModalContainer>
   );
 };
+
+const TextInput = styled.div`
+  font-weight: ${theme.font.titleLarge.fontWeight};
+  font-size: ${theme.font.titleLarge.fontSize};
+  text-align: center;
+  margin-top: 50px;
+`;
 
 const ModalContainer = styled.div`
   width: 100%;
@@ -130,18 +133,12 @@ const ModalContent = styled.div`
   z-index: 1001;
 `;
 
-const ModalHeader = styled.div`
+const Body = styled.div`
+  margin-top: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-`;
-
-const TextInput = styled.div`
-  font-weight: ${theme.font.titleLarge.fontWeight};
-  font-size: ${theme.font.titleLarge.fontSize};
-  text-align: center;
-  margin-top: 50px;
+  height: auto;
 `;
 
 const CloseButton = styled.button`
@@ -149,24 +146,12 @@ const CloseButton = styled.button`
   border: none;
   background: none;
   cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 
   svg {
     font-size: 24px;
   }
 `;
-
-const Body = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: auto;
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 20px;
-`;
-
 export default EditTaskModal;
