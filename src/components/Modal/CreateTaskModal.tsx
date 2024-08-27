@@ -18,6 +18,7 @@ interface Task {
 interface CreateTaskModalProps {
   onClose: (task: Task) => void;
 }
+
 const CreateTaskModal = ({ onClose }: CreateTaskModalProps) => {
   const [taskTitle, setTaskTitle] = useState<string>("");
   const [selectedTag, setSelectedTag] = useState<Task["tag"] | null>(null);
@@ -50,15 +51,22 @@ const CreateTaskModal = ({ onClose }: CreateTaskModalProps) => {
       },
     };
 
-    setSelectedTag(tagOptions[tag]);
+    setSelectedTag(tagOptions[tag] || null);
   };
 
   const handleSubmit = () => {
-    if (taskTitle.trim()) {
+    if (taskTitle.trim() && selectedTag) {
       onClose({ title: taskTitle.trim(), tag: selectedTag });
       setTaskTitle("");
+      setSelectedTag(null);
     } else {
-      alert("작업 제목을 입력해주세요.");
+      if (!taskTitle.trim() && !selectedTag) {
+        alert("작업 제목과 태그를 입력해주세요.");
+      } else if (!taskTitle.trim()) {
+        alert("작업 제목을 입력해주세요.");
+      } else if (!selectedTag) {
+        alert("태그를 선택해주세요.");
+      }
     }
   };
 
@@ -135,4 +143,5 @@ const CloseButton = styled.button`
   top: 10px;
   right: 10px;
 `;
+
 export default CreateTaskModal;

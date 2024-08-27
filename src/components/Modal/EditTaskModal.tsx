@@ -22,6 +22,7 @@ interface EditTaskModalProps {
   initialTask: Task;
   onClose: (task: Task) => void;
 }
+
 const EditTaskModal = ({ initialTask, onClose }: EditTaskModalProps) => {
   const [taskTitle, setTaskTitle] = useState(initialTask.title);
   const [selectedTag, setSelectedTag] = useState<Task["tag"] | null>(
@@ -60,14 +61,20 @@ const EditTaskModal = ({ initialTask, onClose }: EditTaskModalProps) => {
         textColor: theme.color.gray60,
       },
     };
-    setSelectedTag(tagOptions[tag]);
+    setSelectedTag(tagOptions[tag] || null);
   };
 
   const handleVerifyClick = () => {
-    if (taskTitle.trim()) {
+    if (taskTitle.trim() && selectedTag) {
       onClose({ ...initialTask, title: taskTitle.trim(), tag: selectedTag });
     } else {
-      alert("작업 제목을 입력해주세요.");
+      if (!taskTitle.trim() && !selectedTag) {
+        alert("작업 제목과 태그를 입력해주세요.");
+      } else if (!taskTitle.trim()) {
+        alert("작업 제목을 입력해주세요.");
+      } else if (!selectedTag) {
+        alert("태그를 선택해주세요.");
+      }
     }
   };
 
@@ -154,4 +161,5 @@ const CloseButton = styled.button`
     font-size: 24px;
   }
 `;
+
 export default EditTaskModal;

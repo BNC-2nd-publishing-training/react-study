@@ -86,7 +86,6 @@ export default function Todo() {
     setSelectedTag(tag);
   };
 
-  // 필터링 로직 수정
   const filteredTasks = tasks.filter((task) => {
     if (selectedTag === "All") {
       return true;
