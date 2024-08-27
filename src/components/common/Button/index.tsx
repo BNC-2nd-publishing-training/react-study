@@ -16,6 +16,7 @@ const Button = ({
       width={width}
       height={height}
       color={color}
+      type="button"
     >
       {text}
     </S.Button>
