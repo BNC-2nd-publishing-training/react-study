@@ -7,7 +7,7 @@ const Checkbox = ({ isChecked, onChange }) => {
   return (
     <Label>
       <CheckboxContainer isChecked={isChecked} onClick={onChange}>
-        {isChecked && <FaCheck color="white" size={12} />}
+        {isChecked && <FaCheck />}
         <HiddenCheckbox type="checkbox" checked={isChecked} readOnly />
       </CheckboxContainer>
     </Label>
@@ -31,6 +31,11 @@ const CheckboxContainer = styled.div<{ isChecked: boolean }>`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  svg {
+    color: white;
+    font-size: 12px;
+  }
 `;
 
 const HiddenCheckbox = styled.input`

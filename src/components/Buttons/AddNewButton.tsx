@@ -8,7 +8,7 @@ interface FixedButtonProps {
 const FixedButton = ({ onClick }: FixedButtonProps) => {
   return (
     <StyledFixedButton onClick={onClick}>
-      <FaPlus style={{ color: "white", fontSize: "20px" }} />
+      <FaPlus />
     </StyledFixedButton>
   );
 };
@@ -27,5 +27,10 @@ const StyledFixedButton = styled.div`
   top: 8%;
   left: 60%;
   transform: translate(-50%, -50%);
+
+  svg {
+    color: white;
+    font-size: 20px;
+  }
 `;
 export default FixedButton;
