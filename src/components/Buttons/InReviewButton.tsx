@@ -6,19 +6,14 @@ interface InReviewButtonProps {
   onClick: () => void;
 }
 
-const InReview = ({ isSelected, onClick }: InReviewButtonProps) => {
-  return (
-    <InReviewButton isSelected={isSelected} onClick={onClick}>
-      In review
-    </InReviewButton>
-  );
+const InReview = ({ onClick }: InReviewButtonProps) => {
+  return <InReviewButton onClick={onClick}>In review</InReviewButton>;
 };
 
 const InReviewButton = styled.button<{ isSelected: boolean }>`
   font-weight: ${theme.font.titleMedium.fontWeight};
   font-size: ${theme.font.titleMedium.fontSize};
-  color: ${({ isSelected }) =>
-    isSelected ? theme.color.black : theme.color.gray50};
+  color: ${theme.color.black};
   margin-top: 6.9%;
   background: none;
   border: none;

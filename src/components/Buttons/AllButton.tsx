@@ -7,18 +7,13 @@ interface AllButtonProps {
 }
 
 const All = ({ isSelected, onClick }: AllButtonProps) => {
-  return (
-    <AllButton isSelected={isSelected} onClick={onClick}>
-      All
-    </AllButton>
-  );
+  return <AllButton onClick={onClick}>All</AllButton>;
 };
 
 const AllButton = styled.button<{ isSelected: boolean }>`
   font-size: ${theme.font.textMedium};
   font-weight: ${theme.font.textSmall.fontWeight};
-  color: ${({ isSelected }) =>
-    isSelected ? theme.color.black : theme.color.gray50};
+  color: ${theme.color.gray50};
   margin-top: 7%;
   margin-left: 39%;
   background: none;
