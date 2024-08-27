@@ -14,7 +14,8 @@ export const MainContainer = styled.div`
   background-color: ${theme.color.white};
   width: 517px;
   height: 840px;
-  border: 0px 1px 0px 1px solid ${theme.color.gray20};
+  border: solid ${theme.color.gray20};
+  border-width: 0px 1px 0px 1px;
   border-radius: 10px;
 `;
 
