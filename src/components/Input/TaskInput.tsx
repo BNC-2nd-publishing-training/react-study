@@ -8,7 +8,11 @@ interface CreateTaskProps {
   placeholder: string;
 }
 
-const CreateTask = ({ value, onChange, placeholder }: CreateTaskProps) => {
+const CreateTask: React.FC<CreateTaskProps> = ({
+  value,
+  onChange,
+  placeholder,
+}) => {
   return (
     <CreateInput placeholder={placeholder} value={value} onChange={onChange} />
   );
