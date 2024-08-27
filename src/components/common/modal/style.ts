@@ -19,13 +19,3 @@ export const Modal = styled.div`
   background-color: white;
   padding: 20px;
 `;
-
-export const CansleImage = styled.img`
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-self: flex-end;
-  margin-top: 26px;
-  margin-right: 24px;
-  cursor: pointer;
-`;
