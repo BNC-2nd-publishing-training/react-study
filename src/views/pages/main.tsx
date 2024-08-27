@@ -7,6 +7,7 @@ import TypeTab from "@/components/Tab/TypeTab";
 import { TaskProvider } from "@/components/Modal/CreateTask";
 
 import WaitingTask from "@/components/Task/WaitingTask";
+// import TaskCorrection from "@/components/Modal/TaskCorrectionModal";
 
 // import List from "@/components/Checkbox/CheckboxList";
  
@@ -20,6 +21,8 @@ function Main() {
                     <TypeTab />
                 </TaskProvider>
                 <WaitingTask />
+
+                {/* <TaskCorrection /> */}
             </TaskContainer>
         </Container>
     );

@@ -4,6 +4,8 @@ import { theme } from "@/styles/theme";
 import { useTaskContext } from '@/components/Modal/CreateTask';
 import WaitingTask from '@/components/Task/WaitingTask';
 
+import CorrectionTask from "@/components/Modal/TaskCorrectionModal";
+
 interface Task {
     id: number;
     title: string;
@@ -12,6 +14,8 @@ interface Task {
 
 const Tab = () => {
     const [currentTab, setCurrentTab] = React.useState<number>(0);
+    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
+    const [selectedTask, setSelectedTask] = React.useState<Task | null>(null);
     const { tasks, setSelectedType } = useTaskContext();
 
     const TypeArr = [
@@ -28,16 +32,25 @@ const Tab = () => {
 
     const filteredTasks = (): Task[] => {
         if (TypeArr[currentTab].name === 'All') {
-            // 'Waiting' 타입 제외
             return tasks.filter(task => task.type !== 'Waiting').map(task => ({
                 ...task,
-                id: task.id ?? -1, // id가 없을 경우 기본값으로 -1 사용
+                id: task.id ?? -1,
             })) as Task[];
         }
         return tasks.filter(task => task.type === TypeArr[currentTab].name).map(task => ({
             ...task,
-            id: task.id ?? -1, // id가 없을 경우 기본값으로 -1 사용
+            id: task.id ?? -1,
         })) as Task[];
+    };
+
+    const openModal = (task: Task) => {
+        setSelectedTask(task);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedTask(null);
     };
 
     return (
@@ -55,7 +68,7 @@ const Tab = () => {
             </TypeTab>
             <Desc>
                 {filteredTasks().map((task) => (
-                    <TaskItem key={task.id}>
+                    <TaskItem key={task.id} onClick={() => openModal(task)}>
                         <TaskContent>{task.title}</TaskContent>
                         <TaskType className={task.type.toLowerCase().replace(' ', '-')}>
                             {task.type}
@@ -64,6 +77,8 @@ const Tab = () => {
                 ))}
             </Desc>
             <WaitingTask tasks={tasks as Task[]} />
+
+            {isModalOpen && <CorrectionTask task={selectedTask} onClose={closeModal} />}
         </Container>
     );
 };
