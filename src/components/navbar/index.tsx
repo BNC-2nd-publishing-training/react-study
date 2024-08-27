@@ -73,6 +73,9 @@ margin-right: 420px;
   font-weight: ${theme.font.textSmall.fontWeight};
   line-height: ${theme.font.textSmall.lineHeight};
   color: ${theme.color.primary20};
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
 `;
 
