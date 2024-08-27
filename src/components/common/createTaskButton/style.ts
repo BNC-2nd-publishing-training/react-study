@@ -11,5 +11,4 @@ export const CreateTaskButtonContainer = styled.button`
   border-radius: 12px 0px 12px 12px;
   box-shadow: 0px 2px 10px 0px #623ce780;
   border: none;
-  cursor: pointer;
 `;

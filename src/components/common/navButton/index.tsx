@@ -10,9 +10,7 @@ const NavButton = ({
 }: NavButtonProps) => {
   return (
     <S.NavButtonContainer selected={selected} onClick={onClick} type="button">
-      <S.TitleContent>
-        <Badge count={count} label={title} selected={selected} />
-      </S.TitleContent>
+      <Badge count={count} label={title} selected={selected} />
     </S.NavButtonContainer>
   );
 };

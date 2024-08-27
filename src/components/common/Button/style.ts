@@ -5,7 +5,6 @@ import { ButtonStyleProps } from "./type";
 export const Button = styled.button<ButtonStyleProps>`
   border: none;
   border-radius: 4px;
-  cursor: pointer;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   ${theme.font.titleMedium};

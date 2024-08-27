@@ -11,8 +11,3 @@ export const NavButtonContainer = styled.button<{ selected: boolean }>`
   border-bottom: 1px solid
     ${({ selected }) => (selected ? theme.color.primary20 : "transparent")};
 `;
-
-export const TitleContent = styled.div`
-  display: flex;
-  justify-content: center;
-`;

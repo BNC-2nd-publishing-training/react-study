@@ -4,7 +4,7 @@ import TextArea from "@/components/common/TextArea";
 import SelectBox from "@/components/common/SelectBox";
 import { CreateTodoModalProps } from "./type";
 import { TagStatus } from "@/components/common/tag/type";
-import Button from "@/components/common/Button";
+import Button from "@/components/common/button";
 import { Todo } from "@/components/common/todoitem/type";
 import { theme } from "@/styles/theme";
 import * as S from "./style";
