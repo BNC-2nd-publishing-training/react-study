@@ -6,10 +6,10 @@ import CreateTaskModal from "@/components/Modal/CreateTaskModal";
 import EditTaskModal from "@/components/Modal/EditTaskModal";
 import Checkbox from "@/components/Input/TodoInput";
 import All from "@/components/Buttons/AllButton";
-import Approved from "@/components/Buttons/Approved";
 import InReview from "@/components/Buttons/InReviewButton";
 import InProgress from "@/components/Buttons/InProgressButton";
 import Badge from "@/components/TagUI/Badge";
+import Waiting from "@/components/Buttons/WaitingButton";
 
 interface Task {
   id: number;
@@ -86,14 +86,14 @@ export default function Todo() {
 
   const filteredTasks = tasks.filter((task) => {
     if (selectedTag === "All") {
-      return task.tag?.label !== "Waiting";
+      return task.isChecked;
     }
-    return task.tag?.label === selectedTag;
+    return task.isChecked && task.tag?.label === selectedTag;
   });
 
-  const waitingTasks = tasks.filter((task) => task.tag?.label === "Waiting");
+  const upcomingTasks = tasks.filter((task) => !task.isChecked);
 
-  const totalTasksCount = filteredTasks.length + waitingTasks.length;
+  const totalTasksCount = filteredTasks.length + upcomingTasks.length;
 
   return (
     <>
@@ -107,13 +107,13 @@ export default function Todo() {
           isSelected={selectedTag === "In review"}
           onClick={() => handleButtonClick("In review")}
         />
-        <Approved
-          isSelected={selectedTag === "Approved"}
-          onClick={() => handleButtonClick("Approved")}
-        />
         <InProgress
           isSelected={selectedTag === "In progress"}
           onClick={() => handleButtonClick("In progress")}
+        />
+        <Waiting
+          isSelected={selectedTag === "Waiting"}
+          onClick={() => handleButtonClick("Waiting")}
         />
       </ButtonContainer>
       <Text1>Today Task</Text1>
@@ -142,7 +142,7 @@ export default function Todo() {
         ))}
       </TaskList>
       <UpcomingTaskList>
-        {waitingTasks.map((task) => (
+        {upcomingTasks.map((task) => (
           <TaskItem key={task.id}>
             <Checkbox
               isChecked={task.isChecked}
