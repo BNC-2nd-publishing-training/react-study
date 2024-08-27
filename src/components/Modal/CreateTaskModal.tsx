@@ -75,7 +75,10 @@ const CreateTaskModal = ({ onClose }: CreateTaskModalProps) => {
             value={taskTitle}
             onChange={handleChange}
           />
-          <TagDropdown onSelect={handleTagSelect} />
+          <TagDropdown
+            onSelect={handleTagSelect}
+            initialTag={selectedTag?.label}
+          />
           <NewButton onClick={handleSubmit}>Task 추가하기</NewButton>
         </Body>
       </ModalContent>

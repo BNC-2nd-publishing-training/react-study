@@ -91,7 +91,7 @@ const EditTaskModal = ({ initialTask, onClose }: EditTaskModalProps) => {
           />
           <TagDropdown
             onSelect={handleTagSelect}
-            initialTag={initialTask.tag ? initialTask.tag.label : ""}
+            initialTag={selectedTag?.label}
           />
           <Verify onClick={handleVerifyClick} />
           <Delete onClick={handleDeleteClick} />
