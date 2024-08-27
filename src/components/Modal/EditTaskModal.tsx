@@ -129,7 +129,7 @@ const ModalContent = styled.div`
   border-radius: 10px;
   width: 630px;
   height: 645px;
-  position: relative;
+  position: fixed;
   z-index: 1001;
 `;
 
