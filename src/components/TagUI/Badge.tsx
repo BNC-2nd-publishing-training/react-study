@@ -15,7 +15,7 @@ const Badge = ({ count }: BadgeProps) => {
 };
 
 const BadgeWrapper = styled.div`
-  padding: 4px, 8px, 4px, 8px;
+  padding: 4px 8px 4px 8px;
   border-radius: 10px;
   background-color: ${theme.color.primary10};
   position: absolute;

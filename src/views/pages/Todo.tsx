@@ -230,7 +230,7 @@ const Tag = styled.div<{ bgColor: string; textColor: string }>`
   font-weight: ${theme.font.textSmall.fontWeight};
   width: 75px;
   height: 28px;
-  margin-left: auto; /* 자동으로 남은 공간을 채워서 오른쪽 정렬 */
+  margin-left: auto;
 `;
 
 const TaskTitle = styled.div`
