@@ -21,8 +21,7 @@ export const MainContainer = styled.div`
 
 export const Header = styled.div`
   display: flex;
-  margin: 0px 47px;
-  margin-top: 52px;
+  margin: 52px 47px 0px 47px;
   justify-content: space-between;
   align-items: center;
 
