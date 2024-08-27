@@ -5,7 +5,7 @@ import { CreateTaskButtonProps } from "./type";
 const CreateTaskButton = ({ onClick }: CreateTaskButtonProps) => {
   return (
     <S.CreateTaskButtonContainer onClick={onClick}>
-      <img src={plusIcon} />
+      <img src={plusIcon} alt="plusIcon" />
     </S.CreateTaskButtonContainer>
   );
 };
