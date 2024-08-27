@@ -6,15 +6,15 @@ import CreateTodoModal from "@/components/pages/createTodoModal";
 import UpdateTodoModal from "@/components/pages/updateTodoModal";
 import { Todo } from "@/components/common/todoitem/type";
 import { TodoStatusType } from "@/components/pages/todoList/type";
-import * as _ from "./style";
+import * as S from "./style";
 
 const Main = () => {
   const [todo, setTodo] = useState<Todo[]>([]);
   const [upcomingTodo, setUpComingTodo] = useState<Todo[]>([]);
   const [nowNav, setNowNav] = useState<TodoStatusType>("All");
-  const [createTodoModal, setCreateTodoModal] = useState(false);
+  const [createTodoModal, setCreateTodoModal] = useState<boolean>(false);
   const [selectedTodo, setSelecteTodo] = useState<Todo | null>(null);
-  const [updateTodoModal, setUpdateTodoModal] = useState(false);
+  const [updateTodoModal, setUpdateTodoModal] = useState<boolean>(false);
   const [nextId, setNextId] = useState<number>(1);
 
   const handleAddTodo = (todo: Todo) => {
@@ -55,12 +55,12 @@ const Main = () => {
   };
 
   return (
-    <_.Container>
-      <_.MainContainer>
-        <_.Header>
+    <S.Container>
+      <S.MainContainer>
+        <S.Header>
           <p>Today Task</p>
           <CreateTaskButton onClick={() => setCreateTodoModal(true)} />
-        </_.Header>
+        </S.Header>
         <TodoList
           todoList={todo}
           setTodoList={setTodo}
@@ -73,7 +73,7 @@ const Main = () => {
           setTodoList={setUpComingTodo}
           onTodoClick={handleTodoClick}
         />
-      </_.MainContainer>
+      </S.MainContainer>
 
       {createTodoModal && (
         <CreateTodoModal
@@ -92,7 +92,7 @@ const Main = () => {
           deleteTodo={handleDeleteTodo}
         />
       )}
-    </_.Container>
+    </S.Container>
   );
 };
 
