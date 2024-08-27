@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+import styled from "@emotion/styled";
 import { FaCheck } from "react-icons/fa";
-
 const Checkbox = ({ isChecked, onChange }) => {
   return (
     <Label>
