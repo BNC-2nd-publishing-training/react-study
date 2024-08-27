@@ -220,10 +220,6 @@ const TaskItem = styled.div`
   gap: 18px;
 `;
 
-const TaskTitle = styled.div`
-  cursor: pointer;
-`;
-
 const Tag = styled.div<{ bgColor: string; textColor: string }>`
   padding-top: 6px;
   border-radius: 14px;
@@ -234,5 +230,9 @@ const Tag = styled.div<{ bgColor: string; textColor: string }>`
   font-weight: ${theme.font.textSmall.fontWeight};
   width: 75px;
   height: 28px;
-  margin-left: 8px;
+  margin-left: auto; /* 자동으로 남은 공간을 채워서 오른쪽 정렬 */
+`;
+
+const TaskTitle = styled.div`
+  cursor: pointer;
 `;
