@@ -5,14 +5,13 @@ import { theme } from "@/styles/theme";
 interface FixedButtonProps {
   onClick: () => void;
 }
-
-export default function FixedButton({ onClick }: FixedButtonProps) {
+const FixedButton = ({ onClick }: FixedButtonProps) => {
   return (
     <StyledFixedButton onClick={onClick}>
       <FaPlus style={{ color: "white", fontSize: "20px" }} />
     </StyledFixedButton>
   );
-}
+};
 
 const StyledFixedButton = styled.div`
   position: fixed;
@@ -29,3 +28,4 @@ const StyledFixedButton = styled.div`
   left: 60%;
   transform: translate(-50%, -50%);
 `;
+export default FixedButton;

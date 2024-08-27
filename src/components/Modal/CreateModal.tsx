@@ -18,8 +18,7 @@ interface Task {
 interface CreateTaskModalProps {
   onClose: (task: Task) => void;
 }
-
-export default function CreateTaskModal({ onClose }: CreateTaskModalProps) {
+const CreateTaskModal = ({ onClose }: CreateTaskModalProps) => {
   const [taskTitle, setTaskTitle] = useState("");
   const [selectedTag, setSelectedTag] = useState<Task["tag"] | null>(null);
 
@@ -82,7 +81,7 @@ export default function CreateTaskModal({ onClose }: CreateTaskModalProps) {
       </ModalContent>
     </ModalContainer>
   );
-}
+};
 
 const TextInput = styled.div`
   font-weight: ${theme.font.titleLarge.fontWeight};
@@ -133,3 +132,4 @@ const CloseButton = styled.button`
   top: 10px;
   right: 10px;
 `;
+export default CreateTaskModal;

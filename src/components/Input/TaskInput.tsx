@@ -8,15 +8,11 @@ interface CreateTaskProps {
   placeholder: string;
 }
 
-export default function CreateTask({
-  value,
-  onChange,
-  placeholder,
-}: CreateTaskProps) {
+const CreateTask = ({ value, onChange, placeholder }: CreateTaskProps) => {
   return (
     <CreateInput placeholder={placeholder} value={value} onChange={onChange} />
   );
-}
+};
 
 const CreateInput = styled.input`
   width: 480px;
@@ -38,3 +34,5 @@ const CreateInput = styled.input`
     color: ${theme.color.gray60};
   }
 `;
+
+export default CreateTask;

@@ -5,10 +5,9 @@ interface NewButtonProps {
   onClick: () => void;
   children: React.ReactNode;
 }
-
-export default function NewButton({ onClick, children }: NewButtonProps) {
+const NewButton = ({ onClick, children }: NewButtonProps) => {
   return <StyledNewButton onClick={onClick}>{children}</StyledNewButton>;
-}
+};
 
 const StyledNewButton = styled.button`
   width: 480px;
@@ -21,3 +20,4 @@ const StyledNewButton = styled.button`
   font-size: ${theme.font.titleMedium.fontSize};
   color: ${theme.color.white};
 `;
+export default NewButton;

@@ -5,8 +5,7 @@ type DropdownProps = {
   onSelect: (value: string) => void;
   initialTag?: string;
 };
-
-export default function TagDropdown({ onSelect, initialTag }: DropdownProps) {
+const TagDropdown = ({ onSelect, initialTag }: DropdownProps) => {
   return (
     <Container>
       <TagDropdownSelect
@@ -22,7 +21,7 @@ export default function TagDropdown({ onSelect, initialTag }: DropdownProps) {
       </TagDropdownSelect>
     </Container>
   );
-}
+};
 
 const Container = styled.div`
   display: flex;
@@ -45,3 +44,5 @@ const TagDropdownSelect = styled.select`
     color: gray;
   }
 `;
+
+export default TagDropdown;

@@ -22,11 +22,7 @@ interface EditTaskModalProps {
   initialTask: Task;
   onClose: (task: Task) => void;
 }
-
-export default function EditTaskModal({
-  initialTask,
-  onClose,
-}: EditTaskModalProps) {
+const EditTaskModal = ({ initialTask, onClose }: EditTaskModalProps) => {
   const [taskTitle, setTaskTitle] = useState(initialTask.title);
   const [selectedTag, setSelectedTag] = useState<Task["tag"] | null>(
     initialTask.tag
@@ -103,7 +99,7 @@ export default function EditTaskModal({
       </ModalContent>
     </ModalContainer>
   );
-}
+};
 
 const TextInput = styled.div`
   font-weight: ${theme.font.titleLarge.fontWeight};
@@ -154,3 +150,4 @@ const CloseButton = styled.button`
   top: 10px;
   right: 10px;
 `;
+export default EditTaskModal;
