@@ -23,13 +23,19 @@ interface Task {
 }
 
 export default function Todo() {
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [nextId, setNextId] = useState(1);
+  const [nextId, setNextId] = useState<number>(1);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>("All");
 
+  const CreateModalSetter = () => {
+    setIsCreateModalOpen(!isCreateModalOpen);
+  };
+  const EditModalSetter = () => {
+    setIsEditModalOpen(!isEditModalOpen);
+  };
   const openCreateModal = () => {
     setIsCreateModalOpen(true);
   };
@@ -42,7 +48,7 @@ export default function Todo() {
       ]);
       setNextId(nextId + 1);
     }
-    setIsCreateModalOpen(false);
+    CreateModalSetter();
   };
 
   const openEditModal = (task: Task) => {
@@ -62,7 +68,7 @@ export default function Todo() {
         )
       );
     }
-    setIsEditModalOpen(false);
+    EditModalSetter();
     setSelectedTask(null);
   };
 
