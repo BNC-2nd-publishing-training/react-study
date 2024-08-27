@@ -17,10 +17,11 @@ const Badge = ({ count }: BadgeProps) => {
 const BadgeWrapper = styled.div`
   padding: 4px 8px 4px 8px;
   border-radius: 10px;
+  height: fixed;
   background-color: ${theme.color.primary10};
   position: absolute;
-  margin-top: 7.3%;
-  margin-left: 37%;
+  margin-top: 7%;
+  margin-left: 36%;
 `;
 
 const BadgeNumber = styled.div`
@@ -30,7 +31,7 @@ const BadgeNumber = styled.div`
   width: 13px;
   height: 14px;
   color: ${theme.color.primary20};
-  font-size: 12px;
+  font-size: ${theme.font.textSmall.fontSize};
 `;
 
 export default Badge;
