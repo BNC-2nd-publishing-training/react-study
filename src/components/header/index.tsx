@@ -3,7 +3,7 @@ import { theme } from "@/styles/theme";
 import { AddBtn } from "@/assets/images";
 import { useState } from 'react';
 import DefaultModal from "../modal";
-import { Status , ListItem} from "../constants";
+import { ListItem, Status} from "../constants";
 
 
 
@@ -16,12 +16,12 @@ const Header = () => {
 
   const addTask = (title: string, status: Status) => {
     const newTask = {
-      id: list.length + 1,  // 고유 ID 생성
+      id: list.length + 1,  
       title: title,
       status: status,
     };
-    setList([...list, newTask]);  // 리스트 업데이트
-    setIsOpenModal(false);  // 모달 닫기
+    setList([...list, newTask]); 
+    setIsOpenModal(false);  
     console.log("New task added:", newTask);
   };
 
@@ -29,10 +29,10 @@ const Header = () => {
   return (
     <HeaderContainer>
       <p>Today Task</p>
-      <AddButton onClick={openModal}>
+      <AddButton onClick={openModal} aria-label='추가'>
         <img src={AddBtn}/>
       </AddButton>
-      {isOpenModal && <DefaultModal  addTask={addTask} closeModal={closeModal} />}
+      {isOpenModal && <DefaultModal addTask={addTask} closeModal={closeModal} />}
     </HeaderContainer>
   );
 };

@@ -11,8 +11,6 @@ import { Status, List } from "./components/constants";
 
 const App = () => {
 
-  
-  
   const [currentStatus, setCurrentStatus] = useState<Status>("All");
 
   const handleStatusChange = (status: Status) => {

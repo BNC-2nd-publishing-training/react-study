@@ -8,7 +8,6 @@ export  const List: ListItem[] = [
 ];
   
 
-
 export interface ListItem {
   id: number;
   title: string;

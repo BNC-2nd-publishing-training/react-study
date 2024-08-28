@@ -41,7 +41,7 @@ const CheckListContainer = ({ title, status }: ListProps) => {
         <CheckBox onClick={handleCheckBoxChange}>
           <img src={isChecked ? Checked : UnChecked} alt="checkbox" />
         </CheckBox>
-        <Title>{title}</Title>
+        <span>{title}</span>
       </div>
       <Tag backgroundcolor={background} color={text}>
         {status}
@@ -67,7 +67,7 @@ const CheckBox = styled.div`
   accent-color: ${theme.color.primary20};
 `;
 
-const Title = styled.div``;
+
 
 const Tag = styled.span<{ backgroundcolor: string; color: string }>`
   display: flex;

@@ -49,7 +49,7 @@ const DefaultModal = ({ closeModal, addTask }: DefaultModalProps) => {
           value={selectedOption}
           onChange={handleSelectChange}
         />
-        <TaskAddButton onClick={handleAddTask}>Task 추가하기</TaskAddButton>
+        <TaskAddButton onClick={handleAddTask} aria-label='Task추가'>Task 추가하기</TaskAddButton>
       </ModalBox>
     </Container>
   );
@@ -88,7 +88,6 @@ const CloseButton = styled.button`
   }
   background: none;
   border: none;
-  cursor: pointer;
 `;
 
 const TaskInput = styled.textarea`
