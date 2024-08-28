@@ -3,6 +3,6 @@ export interface TabProps{
     number?: number;
     isActive?: boolean;
     onClick?: () => void;  
-    todos?: any[];
+    todos?: string[];
     count?: number;
 }
