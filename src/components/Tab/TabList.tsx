@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 import { TabProps } from "@/utils/interfaces/TabProps";
 import TodoList from "../Todo/TodoList";
 import UpCommingList from "../Todo/UpcomingList";
+import { Todo } from "@/utils/interfaces/Todo";
 
 const TabList = (props: TabProps) => {
     const menu = ['All', 'In Review', 'In Progress', 'Approved'];
     const [selectTab, setSelectTab] = useState<number>(0);
-    const [filteredTodos, setFilteredTodos] = useState<any[]>([]);
-    const [upcomingTodos, setUpcomingTodos] = useState<any[]>([]);
+    const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
+    const [upcomingTodos, setUpcomingTodos] = useState<Todo[]>([]);
     const [ countTask , setCountTask] = useState<number>(0);
 
     useEffect(() => {
@@ -19,14 +20,14 @@ const TabList = (props: TabProps) => {
         const filterByStatus = (status: string) => {
             const statusLower = status.toLowerCase();
             if (statusLower === 'all') {
-                return todos.filter((todo: any) => todo.status.toLowerCase() != 'waiting');
+                return todos.filter((todo: Todo) => todo.status.toLowerCase() != 'waiting');
             }
-            return todos.filter((todo: any) => todo.status.toLowerCase() === statusLower);
+            return todos.filter((todo: Todo) => todo.status.toLowerCase() === statusLower);
         };
 
         
         const filterUpcoming = () => {
-            return todos.filter((todo: any) => todo.status.toLowerCase() === 'waiting');
+            return todos.filter((todo: Todo) => todo.status.toLowerCase() === 'waiting');
         };
         
         const selectedStatus = menu[selectTab];
