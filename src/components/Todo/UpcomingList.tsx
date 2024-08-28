@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Todo from "./Todo";
+import Todos from "./Todos";
 import { theme } from "@/styles/theme";
 import { TodoProps } from "@/utils/interfaces/TodoProps";
 
@@ -9,7 +9,7 @@ const UpCommingList = ({ todos = [], onClick }: TodoProps) => {
             <Text>UpComming Task</Text>
             <TodoBox>
                 {todos.slice().reverse().map((todo, index) => (
-                    <Todo
+                    <Todos
                         key={index}
                         onClick={onClick}
                         text={todo.text}
