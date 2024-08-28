@@ -89,7 +89,6 @@ export default function Todo() {
     return task.tag?.label === selectedTag;
   });
 
-  // totalTasksCount를 filteredTasks의 길이로 설정
   const totalTasksCount = filteredTasks.length;
 
   return (

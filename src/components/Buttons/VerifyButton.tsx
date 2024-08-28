@@ -7,7 +7,11 @@ interface VerifyButtonProps {
 }
 
 const Verify = ({ onClick }: VerifyButtonProps) => {
-  return <StyledVerifyButton onClick={onClick}>확인</StyledVerifyButton>;
+  return (
+    <StyledVerifyButton onClick={onClick} type="button" aria-labe="확인하기">
+      확인
+    </StyledVerifyButton>
+  );
 };
 
 const StyledVerifyButton = styled.button`

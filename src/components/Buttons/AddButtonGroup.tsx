@@ -11,7 +11,11 @@ const AddButtonGroup = ({ onAddButtonClick }: TodayTasksSectionProps) => {
   return (
     <SectionWrapper>
       <Text1>Today Task</Text1>
-      <NewButton onClick={onAddButtonClick} />
+      <NewButton
+        onClick={onAddButtonClick}
+        type="button"
+        aria-label="task 추가하기"
+      />
     </SectionWrapper>
   );
 };

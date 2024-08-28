@@ -8,7 +8,10 @@ interface FixedButtonProps {
 
 const FixedButton = ({ onClick }: FixedButtonProps) => {
   return (
-    <StyledFixedButton onClick={onClick}>
+    <StyledFixedButton
+      onClick={onClick}
+      type="button"
+      aria-label="모달 창에서 task추가하기">
       <FaPlus />
     </StyledFixedButton>
   );

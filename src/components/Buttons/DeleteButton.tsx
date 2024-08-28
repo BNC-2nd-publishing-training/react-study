@@ -7,7 +7,11 @@ interface DeleteButtonProps {
 }
 
 const Delete = ({ onClick }: DeleteButtonProps) => {
-  return <StyledDeleteButton onClick={onClick}>삭제하기</StyledDeleteButton>;
+  return (
+    <StyledDeleteButton onClick={onClick} type="button" aria-labe="삭제하기">
+      삭제하기
+    </StyledDeleteButton>
+  );
 };
 
 const StyledDeleteButton = styled.button`

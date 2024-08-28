@@ -74,7 +74,10 @@ const CreateTaskModal = ({ onClose }: CreateTaskModalProps) => {
     <ModalContainer>
       <ModalContent>
         <TextInput>Create Task</TextInput>
-        <CloseButton onClick={() => onClose({ title: "", tag: null })}>
+        <CloseButton
+          onClick={() => onClose({ title: "", tag: null })}
+          type="button"
+          aria-label="닫기">
           <CloseIcon size={24} />
         </CloseButton>
         <Body>

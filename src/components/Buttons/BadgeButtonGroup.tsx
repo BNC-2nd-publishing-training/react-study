@@ -20,28 +20,32 @@ const BadgeButtonGroup = ({
         <BadgeAndAllWrapper isSelected={selectedTag === "All"}>
           <Badge count={totalTasksCount} />
           <StyledButton
-            type="All"
+            type="button"
             isSelected={selectedTag === "All"}
-            onClick={() => onButtonClick("All")}>
+            onClick={() => onButtonClick("All")}
+            aria-label="전체보기">
             All
           </StyledButton>
         </BadgeAndAllWrapper>
         <StyledButton
-          type="In review"
+          type="button"
           isSelected={selectedTag === "In review"}
-          onClick={() => onButtonClick("In review")}>
+          onClick={() => onButtonClick("In review")}
+          aria-label="In review 태그 보기">
           In review
         </StyledButton>
         <StyledButton
-          type="In progress"
+          type="button"
           isSelected={selectedTag === "In progress"}
-          onClick={() => onButtonClick("In progress")}>
+          onClick={() => onButtonClick("In progress")}
+          aria-label="In progress 태그 보기">
           In progress
         </StyledButton>
         <StyledButton
-          type="Waiting"
+          type="button"
           isSelected={selectedTag === "Waiting"}
-          onClick={() => onButtonClick("Waiting")}>
+          onClick={() => onButtonClick("Waiting")}
+          aria-label="Waiting 태그 보기">
           Waiting
         </StyledButton>
       </BadgeAndButtonsWrapper>

@@ -86,7 +86,10 @@ const EditTaskModal = ({ initialTask, onClose }: EditTaskModalProps) => {
     <ModalContainer>
       <ModalContent>
         <TextInput>Edit Task</TextInput>
-        <CloseButton onClick={() => onClose(initialTask)}>
+        <CloseButton
+          onClick={() => onClose(initialTask)}
+          type="button"
+          aria-label="닫기">
           <CloseIcon />
         </CloseButton>
 

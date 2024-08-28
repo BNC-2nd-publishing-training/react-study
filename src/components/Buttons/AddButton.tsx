@@ -6,7 +6,11 @@ interface NewButtonProps {
   children: React.ReactNode;
 }
 const NewButton = ({ onClick, children }: NewButtonProps) => {
-  return <StyledNewButton onClick={onClick}>{children}</StyledNewButton>;
+  return (
+    <StyledNewButton type="button" onClick={onClick} aria-label="추가하기">
+      {children}
+    </StyledNewButton>
+  );
 };
 
 const StyledNewButton = styled.button`
