@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import Todo from "./Todo";
+import Todos from "./Todos";
 import { TodoProps } from "@/utils/interfaces/TodoProps";
 import { useTodoContext } from "@/context/TodoContext";
+import { Todo } from "@/utils/interfaces/Todo";
 
 const TodoList = ({ todos = [], onClick, selectedTodoId }: TodoProps) => {
     const { setSelectedTodo } = useTodoContext();
@@ -9,7 +10,7 @@ const TodoList = ({ todos = [], onClick, selectedTodoId }: TodoProps) => {
     const handleTodoClick = (id: string) => {
         const storedTodos = localStorage.getItem('tasks');
         const todos = storedTodos ? JSON.parse(storedTodos) : [];
-        const selectedTodo = todos.find((todo: any) => todo.id === id);
+        const selectedTodo = todos.find((todo: Todo) => todo.id === id);
 
         if (selectedTodo) {
             setSelectedTodo(selectedTodo); 
@@ -24,7 +25,7 @@ const TodoList = ({ todos = [], onClick, selectedTodoId }: TodoProps) => {
     return (
         <TodoContainer>
             {todos.slice().reverse().map((todo) => (
-                <Todo
+                <Todos
                     key={todo.id}
                     onClick={() => handleTodoClick(todo.id)}
                     text={todo.text}
