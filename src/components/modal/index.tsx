@@ -26,7 +26,7 @@ const DefaultModal = ({ closeModal, addTask }: DefaultModalProps) => {
     if (title && selectedOption !== "Task의 상태를 선택해주세요") {
       addTask(title, selectedOption);
       console.log("Task added:", title, selectedOption);
-      closeModal(); 
+      closeModal();
     } else {
       console.log("Task not added - missing title or status");
     }
@@ -49,7 +49,9 @@ const DefaultModal = ({ closeModal, addTask }: DefaultModalProps) => {
           value={selectedOption}
           onChange={handleSelectChange}
         />
-        <TaskAddButton onClick={handleAddTask} aria-label='Task추가'>Task 추가하기</TaskAddButton>
+        <TaskAddButton onClick={handleAddTask} aria-label="Task추가">
+          Task 추가하기
+        </TaskAddButton>
       </ModalBox>
     </Container>
   );
@@ -59,6 +61,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   position: fixed;
+  z-index: 9999;
   top: 0;
   left: 0;
   display: flex;

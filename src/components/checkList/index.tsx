@@ -67,8 +67,6 @@ const CheckBox = styled.div`
   accent-color: ${theme.color.primary20};
 `;
 
-
-
 const Tag = styled.span<{ backgroundcolor: string; color: string }>`
   display: flex;
   justify-content: center;

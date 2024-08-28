@@ -11,9 +11,7 @@ interface NavButtonProps {
   active: boolean;
 }
 
-
 const NavBar = ({ currentStatus, onStatusChange, totalCount }: NavBarProps) => {
-
   const statuses: Status[] = ["All", "Approved", "InReview", "InProgress"];
 
   return (
@@ -58,12 +56,12 @@ const Container = styled.div`
   align-items: center;
   padding: 0, 14.5px;
   height: 90px;
- 
 `;
 
 const Count = styled.div`
-position: absolute; 
-margin-right: 420px;
+  position: absolute;
+  z-index: 1;
+  margin-right: 420px;
   width: 29px;
   height: 20px;
   padding: 4px 8px 4px 8px;
@@ -76,7 +74,6 @@ margin-right: 420px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
 `;
 
 export default NavBar;
