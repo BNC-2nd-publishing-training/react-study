@@ -1,27 +1,43 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import { AddBtn } from "@/assets/images";
-import { useState } from "react";
+import { useState } from 'react';
 import DefaultModal from "../modal";
+import { Status , ListItem} from "../constants";
+
+
 
 const Header = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false); 
+  const [list, setList] = useState<ListItem[]>([]);  
 
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
 
+  const addTask = (title: string, status: Status) => {
+    const newTask = {
+      id: list.length + 1,  // 고유 ID 생성
+      title: title,
+      status: status,
+    };
+    setList([...list, newTask]);  // 리스트 업데이트
+    setIsOpenModal(false);  // 모달 닫기
+    console.log("New task added:", newTask);
+  };
+
+
   return (
-    <Container>
+    <HeaderContainer>
       <p>Today Task</p>
       <AddButton onClick={openModal}>
-        <img src={AddBtn} />
+        <img src={AddBtn}/>
       </AddButton>
-      {isOpenModal && <DefaultModal closeModal={closeModal} />}
-    </Container>
+      {isOpenModal && <DefaultModal  addTask={addTask} closeModal={closeModal} />}
+    </HeaderContainer>
   );
 };
 
-const Container = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

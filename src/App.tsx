@@ -7,7 +7,12 @@ import NavBar from "./components/navbar";
 import { useState } from "react";
 import { Status, List } from "./components/constants";
 
+
+
 const App = () => {
+
+  
+  
   const [currentStatus, setCurrentStatus] = useState<Status>("All");
 
   const handleStatusChange = (status: Status) => {
@@ -20,9 +25,6 @@ const App = () => {
     currentStatus === "All"
       ? List.filter((item) => item.status !== "Waiting")
       : List.filter((item) => item.status === currentStatus);
-
-  console.log("전체 리스트:", List);
-  console.log("필터링된 리스트:", filteredList);
 
   return (
     <Container>

@@ -4,7 +4,7 @@ import CheckList from "./checkListContainer";
 import { List } from "../constants";
 
 const UpComingTask = () => {
-  const upcomingTodos = List.filter((item) => item.status === "Wating");
+  const upcomingTodos = List.filter((item) => item.status === "Waiting");
 
   return (
     <>
@@ -20,7 +20,8 @@ const Container = styled.div`
   margin-top: 40x;
   width: 422px;
   height: 230px;
-  overflow-y: scroll;
+overflow-y: scroll;
+
 `;
 
 const Title = styled.div`

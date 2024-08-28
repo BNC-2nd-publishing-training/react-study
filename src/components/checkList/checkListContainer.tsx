@@ -1,17 +1,17 @@
 import styled from "@emotion/styled";
 import CheckListContainer from ".";
-import { List } from "../constants";
+import { ListItem } from "../constants";
 
 interface CheckListProps {
-  items: typeof List;
+  items: ListItem[];
 }
 
 const CheckList = ({ items }: CheckListProps) => {
   return (
     <Container>
-      {items.map((item, index) => (
+      {items.map((item) => (
         <CheckListContainer
-          key={index}
+          key={item.id}
           title={item.title}
           status={item.status}
         />

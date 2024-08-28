@@ -5,7 +5,7 @@ import { UnChecked, Checked } from "@/assets/images";
 
 interface ListProps {
   title: string;
-  status: "Approved" | "InReview" | "InProgress" | "Wating";
+  status: "Approved" | "InReview" | "InProgress" | "Waiting";
 }
 
 const statusColors = {
@@ -21,12 +21,11 @@ const statusColors = {
     background: `${theme.color.green10}`,
     text: `${theme.color.green30}`,
   },
-  Wating: {
+  Waiting: {
     background: `${theme.color.gray10}`,
     text: `${theme.color.gray60}`,
   },
 };
-
 const CheckListContainer = ({ title, status }: ListProps) => {
   const [isChecked, setIsChecked] = useState(false);
 

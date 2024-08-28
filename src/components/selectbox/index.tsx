@@ -7,7 +7,7 @@ interface SelectBoxProps {
   onChange: (selectedOption: { value: string; label: string } | null) => void;
 }
 
-const SelectBox: React.FC<SelectBoxProps> = ({ options, value, onChange }) => {
+const SelectBox = ({ options, value, onChange }: SelectBoxProps) => {
   const customStyles: StylesConfig<unknown, false> = {
     container: (styles) => ({
       ...styles,

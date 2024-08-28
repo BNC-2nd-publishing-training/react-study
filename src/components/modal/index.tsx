@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import { CloseBtn } from "@/assets/images";
@@ -6,18 +6,30 @@ import SelectBox from "../selectbox";
 
 interface DefaultModalProps {
   closeModal: () => void;
+  addTask: (title: string, status: string) => void;
 }
 
-const DefaultModal: React.FC<DefaultModalProps> = ({ closeModal }) => {
+const DefaultModal = ({ closeModal, addTask }: DefaultModalProps) => {
   const [selectedOption, setSelectedOption] =
     useState("Task의 상태를 선택해주세요");
 
   const options = ["In review", "In progress", "Approved", "Waiting"];
+  const [title, setTitle] = useState("");
 
   const handleSelectChange = (selectedOption: { value: string } | null) => {
     setSelectedOption(
       selectedOption ? selectedOption.value : "Task의 상태를 선택해주세요"
     );
+  };
+
+  const handleAddTask = () => {
+    if (title && selectedOption !== "Task의 상태를 선택해주세요") {
+      addTask(title, selectedOption);
+      console.log("Task added:", title, selectedOption);
+      closeModal(); 
+    } else {
+      console.log("Task not added - missing title or status");
+    }
   };
 
   return (
@@ -27,13 +39,17 @@ const DefaultModal: React.FC<DefaultModalProps> = ({ closeModal }) => {
           <img src={CloseBtn} alt="Close" />
         </CloseButton>
         <p>Create Task</p>
-        <TaskInput placeholder="Task 제목을 입력해주세요" />
+        <TaskInput
+          placeholder="Task 제목을 입력해주세요"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
         <SelectBox
           options={options}
           value={selectedOption}
           onChange={handleSelectChange}
         />
-        <TaskAddButton>Task 추가하기</TaskAddButton>
+        <TaskAddButton onClick={handleAddTask}>Task 추가하기</TaskAddButton>
       </ModalBox>
     </Container>
   );
