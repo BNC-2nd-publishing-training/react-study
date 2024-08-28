@@ -1,6 +1,11 @@
 import { theme } from "@/styles/theme";
 import styled from "@emotion/styled";
 import { FaCheck } from "react-icons/fa";
+interface CheckboxProps {
+  isChecked: boolean;
+  onChange: () => void;
+}
+
 const Checkbox = ({ isChecked, onChange }) => {
   return (
     <Label>
