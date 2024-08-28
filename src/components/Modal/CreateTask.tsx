@@ -1,12 +1,17 @@
 import React, { createContext, Component, ReactNode, Key } from 'react';
 
+interface Task {
+    id: number;
+    title: string;
+    type: string;
+}
+
 interface TaskContextType {
-    tasks: {
-        id: Key | null | undefined; title: string; type: string 
-}[];
+    tasks: Task[];
     addTask: (title: string, type: string) => void;
     selectedType: string;
     setSelectedType: (type: string) => void;
+    setTasks: (fn: (prevTasks: Task[]) => Task[]) => void;
 }
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -26,7 +31,7 @@ interface TaskProviderProps {
 }
 
 interface TaskProviderState {
-    tasks: { title: string; type: string }[];
+    tasks: Task[];
     selectedType: string;
 }
 
@@ -42,12 +47,21 @@ export class TaskProvider extends Component<TaskProviderProps, TaskProviderState
 
     addTask = (title: string, type: string) => {
         this.setState(prevState => ({
-            tasks: [...prevState.tasks, { title, type }],
+            tasks: [
+                ...prevState.tasks,
+                { id: Date.now(), title, type }  // id 추가
+            ],
         }));
     };
 
     setSelectedType = (type: string) => {
         this.setState({ selectedType: type });
+    };
+
+    setTasks = (fn: (prevTasks: Task[]) => Task[]) => {
+        this.setState(prevState => ({
+            tasks: fn(prevState.tasks)
+        }));
     };
 
     render() {
@@ -56,6 +70,7 @@ export class TaskProvider extends Component<TaskProviderProps, TaskProviderState
             addTask: this.addTask,
             selectedType: this.state.selectedType,
             setSelectedType: this.setSelectedType,
+            setTasks: this.setTasks,
         };
 
         return (

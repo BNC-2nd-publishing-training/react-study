@@ -1,25 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import SelectBox from "@/components/Button/SelectButton";
-
 import DeleteButton from "@/components/Button/DeleteButton";
 import UpdateButton from "@/components/Button/UpdateButton";
+
+interface Task {
+    id: number;
+    title: string;
+    type: string;
+}
 
 interface CorrectionTaskProps {
     task: Task | null;
     onClose: () => void;
+    onUpdate: (updatedTask: Task) => void;
+    onDelete: (taskId: number) => void;
 }
 
-const CorrectionTask: React.FC<CorrectionTaskProps> = ({ task, onClose }) => {
+const CorrectionTask: React.FC<CorrectionTaskProps> = ({ task, onClose, onUpdate, onDelete }) => {
+    const [editedTitle, setEditedTitle] = useState<string>(task?.title || '');
+
+    // 작업이 없으면 null을 반환
     if (!task) return null;
+
+    // 업데이트 핸들러
+    const handleUpdate = () => {
+        if (task) {
+            onUpdate({ ...task, title: editedTitle });
+            onClose(); // 업데이트 후 모달 닫기
+        }
+    };
+
+    // 삭제 핸들러
+    const handleDelete = () => {
+        if (task) {
+            onDelete(task.id); // 삭제 핸들러 호출
+            onClose(); // 삭제 후 모달 닫기
+        }
+    };
 
     return (
         <Container>
-            <Back onClick={onClose} />  {/* 모달 외부 클릭 시 닫히도록 설정 */}
+            <Back onClick={onClose} />
             <Modal>
-                <ModalTitle>Create Task</ModalTitle>
+                <ModalTitle>작업 수정하기</ModalTitle>
                 <CloseButton onClick={onClose}>
                     <i className="bi bi-x-lg CloseButton"></i>
                 </CloseButton>
@@ -28,15 +54,15 @@ const CorrectionTask: React.FC<CorrectionTaskProps> = ({ task, onClose }) => {
                     <input
                         type="text"
                         placeholder="작업 내용을 입력하세요"
-                        value={task.title}
-                        readOnly
+                        value={editedTitle}
+                        onChange={(e) => setEditedTitle(e.target.value)}
                     />
                 </TaskContent>
                 <SelectBox />
 
                 <Buttons>
-                    <DeleteButton />
-                    <UpdateButton />
+                    <DeleteButton onClick={handleDelete} /> {/* 삭제 버튼에 핸들러 추가 */}
+                    <UpdateButton onClick={handleUpdate} />
                 </Buttons>
             </Modal>
         </Container>
@@ -52,7 +78,7 @@ const Container = styled.div`
     justify-content: center;
     top: 0;
     left: 0;
-    z-index: 9999;  /* 우선순위 높이기 */
+    z-index: 9999;
 `;
 
 const Modal = styled.div`
@@ -66,7 +92,7 @@ const Modal = styled.div`
     border-radius: 10px;
     box-shadow: 0 0 30px rgba(30, 30, 30, 0.185);
     box-sizing: border-box;
-    z-index: 10000;  /* Container보다 더 높은 z-index */
+    z-index: 10000;
 `;
 
 const Back = styled.div`
@@ -76,7 +102,7 @@ const Back = styled.div`
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9998;  /* 모달보다 뒤에 위치 */
+    z-index: 9998;
 `;
 
 const ModalTitle = styled.div`
@@ -118,6 +144,7 @@ const Buttons = styled.div`
     box-sizing: border-box;
     margin-top: 33%;
     margin-left: 3%;
+    z-index: 10000;
 `;
 
 export default CorrectionTask;
