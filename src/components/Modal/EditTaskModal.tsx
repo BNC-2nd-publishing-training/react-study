@@ -108,8 +108,6 @@ const EditTaskModal = ({ onClose }: PopupProps) => {
     );
 };
 
-// Styled components remain unchanged
-
 const Background = styled.div`
     position: fixed;
     display: flex;
@@ -126,8 +124,8 @@ const Background = styled.div`
 
 const PopupBox = styled.div`
     position: relative;
-    width: 35vw;
-    height: 38vw;
+    width: 630px;
+    height: 645px;
     background-color: ${theme.color.white};
     border-radius: 10px;
 `;
@@ -139,7 +137,7 @@ const PaddingBox = styled.div`
     align-items: center;
     width: 100%;
     height: 100%;
-    padding: 4vw;
+    padding: 60px 75px;
 `;
 
 const InputContainer = styled.div`
