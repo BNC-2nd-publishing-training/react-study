@@ -89,11 +89,8 @@ export default function Todo() {
     return task.tag?.label === selectedTag;
   });
 
-  const upcomingTasks = tasks.filter((task) => {
-    return task.tag?.label === "Waiting" && !task.isChecked;
-  });
-
-  const totalTasksCount = filteredTasks.length + upcomingTasks.length;
+  // totalTasksCount를 filteredTasks의 길이로 설정
+  const totalTasksCount = filteredTasks.length;
 
   return (
     <>
@@ -127,22 +124,24 @@ export default function Todo() {
         ))}
       </TaskList>
       <UpcomingTaskList>
-        {upcomingTasks.map((task) => (
-          <TaskItem key={task.id}>
-            <Checkbox
-              isChecked={task.isChecked}
-              onChange={() => toggleCheckbox(task.id)}
-            />
-            <TaskTitle onClick={() => openEditModal(task)}>
-              {task.title}
-            </TaskTitle>
-            {task.tag && (
-              <Tag bgColor={task.tag.bgColor} textColor={task.tag.textColor}>
-                {task.tag.label}
-              </Tag>
-            )}
-          </TaskItem>
-        ))}
+        {tasks
+          .filter((task) => task.tag?.label === "Waiting")
+          .map((task) => (
+            <TaskItem key={task.id}>
+              <Checkbox
+                isChecked={task.isChecked}
+                onChange={() => toggleCheckbox(task.id)}
+              />
+              <TaskTitle onClick={() => openEditModal(task)}>
+                {task.title}
+              </TaskTitle>
+              {task.tag && (
+                <Tag bgColor={task.tag.bgColor} textColor={task.tag.textColor}>
+                  {task.tag.label}
+                </Tag>
+              )}
+            </TaskItem>
+          ))}
       </UpcomingTaskList>
     </>
   );
