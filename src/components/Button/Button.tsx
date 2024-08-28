@@ -5,6 +5,7 @@ import { theme } from "@/styles/theme";
 const Button = (props: ButtonProps) => {
     return (
         <ButtonStyle
+            type="button"
             backgroundColor={props.backgroundColor}
             onClick={props.onClick}>
             {props.text}
