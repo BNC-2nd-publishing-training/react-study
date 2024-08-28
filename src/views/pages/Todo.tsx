@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-import NewButton from "@/components/Buttons/AddNewButton";
 import CreateTaskModal from "@/components/Modal/CreateTaskModal";
 import EditTaskModal from "@/components/Modal/EditTaskModal";
 import Checkbox from "@/components/Input/TodoInput";
 import BadgeButtonGroup from "@/components/Buttons/BadgeButtonGroup";
+import TodayTasksSection from "@/components/Buttons/AddButtonGroup";
 
 interface Task {
   id: number;
@@ -102,8 +102,7 @@ export default function Todo() {
         selectedTag={selectedTag}
         onButtonClick={handleButtonClick}
       />
-      <Text1>Today Task</Text1>
-      <NewButton onClick={openCreateModal}>Add New Task</NewButton>
+      <TodayTasksSection onAddButtonClick={openCreateModal} />
       <Text2>Upcoming Task</Text2>
       {isCreateModalOpen && <CreateTaskModal onClose={closeCreateModal} />}
       {isEditModalOpen && selectedTask && (
@@ -148,15 +147,6 @@ export default function Todo() {
     </>
   );
 }
-
-const Text1 = styled.div`
-  position: absolute;
-  top: 8%;
-  left: 37%;
-  color: ${theme.color.black};
-  font-size: ${theme.font.titleLarge.fontSize};
-  font-weight: ${theme.font.titleLarge.fontWeight};
-`;
 
 const Text2 = styled.div`
   position: absolute;
