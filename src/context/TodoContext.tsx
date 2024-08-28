@@ -6,7 +6,7 @@ import { TodoContextProps } from "@/utils/interfaces/TodoContextProps";
 const TodoContext = createContext<TodoContextProps | undefined>(undefined);
 
 
-export function TodoProvider({ children }: TodoProviderProps) {
+export const TodoProvider = ({ children }: TodoProviderProps) => {
     const [todos, setTodos] = useState<TodoProps[]>([]);
     const [selectedTodo, setSelectedTodo] = useState<TodoProps | null>(null);
 
