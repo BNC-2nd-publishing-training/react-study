@@ -203,3 +203,7 @@ main {
         url("../assets/fonts/Pretendard-Bold.woff") format("woff");
     font-display: swap;
 }
+
+::-webkit-scrollbar{
+    display: none;
+}
