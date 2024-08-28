@@ -50,7 +50,7 @@ const HeaderStyle = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 50px 50px 0 50px;
+    padding: 52px 47px 0 47px;
 `;
 
 
