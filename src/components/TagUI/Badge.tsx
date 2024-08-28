@@ -19,9 +19,6 @@ const BadgeWrapper = styled.div`
   border-radius: 10px;
   height: fixed;
   background-color: ${theme.color.primary10};
-  position: absolute;
-  margin-top: 7%;
-  margin-left: 36%;
 `;
 
 const BadgeNumber = styled.div`

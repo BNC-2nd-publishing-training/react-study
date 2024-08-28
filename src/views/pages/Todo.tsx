@@ -5,11 +5,7 @@ import NewButton from "@/components/Buttons/AddNewButton";
 import CreateTaskModal from "@/components/Modal/CreateTaskModal";
 import EditTaskModal from "@/components/Modal/EditTaskModal";
 import Checkbox from "@/components/Input/TodoInput";
-import All from "@/components/Buttons/AllButton";
-import InReview from "@/components/Buttons/InReviewButton";
-import InProgress from "@/components/Buttons/InProgressButton";
-import Badge from "@/components/TagUI/Badge";
-import Waiting from "@/components/Buttons/WaitingButton";
+import BadgeButtonGroup from "@/components/Buttons/BadgeButtonGroup";
 
 interface Task {
   id: number;
@@ -28,7 +24,7 @@ export default function Todo() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [nextId, setNextId] = useState<number>(1);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
-  const [selectedTag, setSelectedTag] = useState<string | null>("All");
+  const [selectedTag, setSelectedTag] = useState<string>("All");
 
   const CreateModalSetter = () => {
     setIsCreateModalOpen(!isCreateModalOpen);
@@ -101,25 +97,11 @@ export default function Todo() {
 
   return (
     <>
-      <ButtonContainer>
-        <Badge count={totalTasksCount} />
-        <All
-          isSelected={selectedTag === "All"}
-          onClick={() => handleButtonClick("All")}
-        />
-        <InReview
-          isSelected={selectedTag === "In review"}
-          onClick={() => handleButtonClick("In review")}
-        />
-        <InProgress
-          isSelected={selectedTag === "In progress"}
-          onClick={() => handleButtonClick("In progress")}
-        />
-        <Waiting
-          isSelected={selectedTag === "Waiting"}
-          onClick={() => handleButtonClick("Waiting")}
-        />
-      </ButtonContainer>
+      <BadgeButtonGroup
+        totalTasksCount={totalTasksCount}
+        selectedTag={selectedTag}
+        onButtonClick={handleButtonClick}
+      />
       <Text1>Today Task</Text1>
       <NewButton onClick={openCreateModal}>Add New Task</NewButton>
       <Text2>Upcoming Task</Text2>
@@ -166,16 +148,6 @@ export default function Todo() {
     </>
   );
 }
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  gap: 33px;
-  margin-top: 2%;
-  width: 80%;
-  margin-left: 8vw;
-  position: relative;
-`;
 
 const Text1 = styled.div`
   position: absolute;
