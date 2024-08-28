@@ -15,7 +15,7 @@ const Tab = () => {
     const [currentTab, setCurrentTab] = React.useState<number>(0);
     const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
     const [selectedTask, setSelectedTask] = React.useState<Task | null>(null);
-    const [checkedTasks, setCheckedTasks] = React.useState<Set<number>>(new Set()); // 체크박스 상태 관리
+    const [checkedTasks, setCheckedTasks] = React.useState<Set<number>>(new Set());
     const { tasks, setTasks, setSelectedType } = useTaskContext(); 
 
     const TypeArr = [
@@ -30,10 +30,8 @@ const Tab = () => {
         setSelectedType(TypeArr[index].name);
     };
 
-    // 전체 태스크 개수 계산
     const totalTasksCount = tasks.length;
 
-    // 필터링된 태스크 계산
     const filteredTasks = (): Task[] => {
         if (TypeArr[currentTab].name === 'All') {
             return tasks.filter(task => task.type !== 'Waiting').map(task => ({
@@ -92,8 +90,8 @@ const Tab = () => {
                         className={index === currentTab ? "subType focused" : "subType"}
                         onClick={() => selectTypeHandler(index)}
                     >
+                        {el.name === 'All' && <TaskCounter>{totalTasksCount}</TaskCounter>}
                         {el.name}
-                        {el.name === 'All' && ` (${totalTasksCount})`} {/* 전체 태스크 개수 표시 */}
                     </li>
                 ))}
             </TypeTab>
@@ -119,7 +117,7 @@ const Tab = () => {
                     task={selectedTask} 
                     onClose={closeModal}
                     onUpdate={handleUpdateTask}
-                    onDelete={handleDeleteTask} // 삭제 핸들러 전달
+                    onDelete={handleDeleteTask}
                 />
             )}
         </Container>
@@ -170,15 +168,28 @@ const Desc = styled.div`
     font-size: 20px;
 `;
 
+const TaskCounter = styled.div`
+    width: 29px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10%;
+    border-radius: 10px;
+    background-color: ${theme.color.primary10};
+    font-size: 10px;
+    color: ${theme.color.primary20};
+`;
+
 const TaskItem = styled.div`
     display: flex;
-    align-items: center; /* 체크박스와 내용이 수직으로 정렬되도록 수정 */
+    align-items: center;
     margin-bottom: 20px;
     cursor: pointer;
 `;
 
 const Checkbox = styled.input`
-    margin-right: 10px; /* 체크박스와 태스크 내용 사이의 간격 조정 */
+    margin-right: 10px;
 `;
 
 const TaskContent = styled.div`
