@@ -49,7 +49,7 @@ export class TaskProvider extends Component<TaskProviderProps, TaskProviderState
         this.setState(prevState => ({
             tasks: [
                 ...prevState.tasks,
-                { id: Date.now(), title, type }  // id 추가
+                { id: Date.now(), title, type }
             ],
         }));
     };

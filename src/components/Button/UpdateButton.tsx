@@ -27,10 +27,7 @@ const UpdateBtn = styled.button`
     border-radius: 5px;
     background-color: ${theme.color.primary20};
     color: white;
-    cursor: pointer;  // 버튼에 커서가 나타나도록 설정
-    border: none;     // 버튼의 기본 테두리 제거
-    outline: none;    // 버튼 클릭 시 테두리 제거
-    font-size: 16px;  // 버튼 텍스트 크기 조정
+    cursor: pointer;
 `;
 
 export default UpdateButton;

@@ -22,22 +22,19 @@ interface CorrectionTaskProps {
 const CorrectionTask: React.FC<CorrectionTaskProps> = ({ task, onClose, onUpdate, onDelete }) => {
     const [editedTitle, setEditedTitle] = useState<string>(task?.title || '');
 
-    // 작업이 없으면 null을 반환
     if (!task) return null;
 
-    // 업데이트 핸들러
     const handleUpdate = () => {
         if (task) {
             onUpdate({ ...task, title: editedTitle });
-            onClose(); // 업데이트 후 모달 닫기
+            onClose();
         }
     };
 
-    // 삭제 핸들러
     const handleDelete = () => {
         if (task) {
-            onDelete(task.id); // 삭제 핸들러 호출
-            onClose(); // 삭제 후 모달 닫기
+            onDelete(task.id);
+            onClose();
         }
     };
 
@@ -45,7 +42,7 @@ const CorrectionTask: React.FC<CorrectionTaskProps> = ({ task, onClose, onUpdate
         <Container>
             <Back onClick={onClose} />
             <Modal>
-                <ModalTitle>작업 수정하기</ModalTitle>
+                <ModalTitle>Create Task</ModalTitle>
                 <CloseButton onClick={onClose}>
                     <i className="bi bi-x-lg CloseButton"></i>
                 </CloseButton>
@@ -61,7 +58,7 @@ const CorrectionTask: React.FC<CorrectionTaskProps> = ({ task, onClose, onUpdate
                 <SelectBox />
 
                 <Buttons>
-                    <DeleteButton onClick={handleDelete} /> {/* 삭제 버튼에 핸들러 추가 */}
+                    <DeleteButton onClick={handleDelete} /> 
                     <UpdateButton onClick={handleUpdate} />
                 </Buttons>
             </Modal>
@@ -143,7 +140,7 @@ const Buttons = styled.div`
     padding: 30px 66px;
     box-sizing: border-box;
     margin-top: 33%;
-    margin-left: 3%;
+    margin-left: 1%;
     z-index: 10000;
 `;
 
