@@ -6,7 +6,7 @@ interface CheckboxProps {
   onChange: () => void;
 }
 
-const Checkbox = ({ isChecked, onChange }) => {
+const Checkbox = ({ isChecked, onChange }: CheckboxProps) => {
   return (
     <Label>
       <CheckboxContainer isChecked={isChecked} onClick={onChange}>
