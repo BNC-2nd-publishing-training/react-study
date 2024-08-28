@@ -6,7 +6,7 @@ import { PopupProps } from '../../utils/interfaces/PopupProps'
 const AddTodoBtn = (props: PopupProps) => {
 
     return(
-        <AddBtn onClick={props.onClick}>
+        <AddBtn type="button" onClick={props.onClick}>
             <Icon icon="ic:round-add"/>
         </AddBtn>
     );
@@ -22,7 +22,6 @@ const AddBtn = styled.button`
     background-color: ${theme.color.primary20};
     box-shadow: rgb(98, 60, 231, 0.5) 0 2px 10px;
     color: ${theme.color.white};
-    font-size: ${theme.font.titleLarge};
-    cursor: pointer;
+    font-size: ${theme.font.titleLarge.fontSize};
 `;
 export default AddTodoBtn;
