@@ -13,7 +13,7 @@ const Verify = ({ onClick }: publicButtonProps) => {
 const StyledVerifyButton = styled.button`
   position: absolute;
   margin-left: 15vw;
-  margin-top: 60%;
+  margin-top: 68%;
   width: 230px;
   height: 50px;
   border-radius: 4px;

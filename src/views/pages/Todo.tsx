@@ -197,6 +197,4 @@ const Tag = styled.div<{ bgColor: string; textColor: string }>`
   margin-left: auto;
 `;
 
-const TaskTitle = styled.div`
-  cursor: pointer;
-`;
+const TaskTitle = styled.div``;

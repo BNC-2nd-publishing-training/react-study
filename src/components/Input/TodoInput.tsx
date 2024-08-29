@@ -30,7 +30,6 @@ const CheckboxContainer = styled.div<{ isChecked: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 
   svg {
     color: white;

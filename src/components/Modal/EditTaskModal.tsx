@@ -141,7 +141,6 @@ const CloseButton = styled.button`
   color: black;
   border: none;
   background: none;
-  cursor: pointer;
   position: absolute;
   top: 10px;
   right: 10px;

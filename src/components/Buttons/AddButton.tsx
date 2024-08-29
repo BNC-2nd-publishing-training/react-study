@@ -14,7 +14,7 @@ const StyledNewButton = styled.button`
   width: 480px;
   height: 50px;
   border-radius: 4px;
-  margin-top: 110px;
+  margin-top: 190px;
   justify-content: center;
   background-color: ${theme.color.primary20};
   font-weight: ${theme.font.titleMedium.fontWeight};

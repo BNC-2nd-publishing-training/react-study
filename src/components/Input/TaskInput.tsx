@@ -21,6 +21,7 @@ const CreateTextArea = styled.textarea`
   width: 480px;
   height: 130px;
   position: absolute;
+  z-index: 1000;
   top: 150px;
   left: 50%;
   transform: translateX(-50%);

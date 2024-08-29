@@ -13,7 +13,7 @@ const Delete = ({ onClick }: publicButtonProps) => {
 const StyledDeleteButton = styled.button`
   position: absolute;
   margin-right: 14vw;
-  margin-top: 60%;
+  margin-top: 68%;
   width: 230px;
   height: 50px;
   border-radius: 4px;
