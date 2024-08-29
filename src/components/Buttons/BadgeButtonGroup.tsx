@@ -2,18 +2,13 @@ import React from "react";
 import styled from "@emotion/styled";
 import Badge from "@/components/TagUI/Badge";
 import { theme } from "@/styles/theme";
-
-interface BadgeButtonGroupProps {
-  totalTasksCount: number;
-  selectedTag: string;
-  onButtonClick: (tag: string) => void;
-}
+import { badgeButtonGroupProps } from "@/utils/interfaces/badgeButtonGroupProps";
 
 const BadgeButtonGroup = ({
   totalTasksCount,
   selectedTag,
   onButtonClick,
-}: BadgeButtonGroupProps) => {
+}: badgeButtonGroupProps) => {
   return (
     <Container>
       <BadgeAndButtonsWrapper>

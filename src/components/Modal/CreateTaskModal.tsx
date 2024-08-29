@@ -5,23 +5,12 @@ import { MdOutlineClose as CloseIcon } from "react-icons/md";
 import CreateTask from "@/components/Input/TaskInput";
 import TagDropdown from "@/components/Input/TagSelect";
 import NewButton from "@/components/Buttons/AddButton";
+import { task } from "@/utils/interfaces/createTask";
+import { createTaskModalProps } from "@/utils/interfaces/createTaskModalProps";
 
-interface Task {
-  title: string;
-  tag: {
-    label: string;
-    bgColor: string;
-    textColor: string;
-  } | null;
-}
-
-interface CreateTaskModalProps {
-  onClose: (task: Task) => void;
-}
-
-const CreateTaskModal = ({ onClose }: CreateTaskModalProps) => {
+const CreateTaskModal = ({ onClose }: createTaskModalProps) => {
   const [taskTitle, setTaskTitle] = useState<string>("");
-  const [selectedTag, setSelectedTag] = useState<Task["tag"] | null>(null);
+  const [selectedTag, setSelectedTag] = useState<task["tag"] | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTaskTitle(e.target.value);

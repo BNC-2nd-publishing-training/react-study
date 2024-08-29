@@ -1,14 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+import { buttonProps } from "@/utils/interfaces/buttonProps";
 
-interface ButtonProps {
-  type: string;
-  isSelected: boolean;
-  onClick: () => void;
-}
-
-const Button = ({ type, isSelected, onClick }: ButtonProps) => {
+const Button = ({ type, isSelected, onClick }: buttonProps) => {
   return (
     <StyledButton
       isSelected={isSelected}

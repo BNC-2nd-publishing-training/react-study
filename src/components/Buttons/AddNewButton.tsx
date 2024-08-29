@@ -1,12 +1,9 @@
 import { theme } from "@/styles/theme";
 import styled from "@emotion/styled";
 import { FaPlus } from "react-icons/fa";
+import { fixedButtonProps } from "@/utils/interfaces/fixedButtonProps";
 
-interface FixedButtonProps {
-  onClick: () => void;
-}
-
-const FixedButton = ({ onClick }: FixedButtonProps) => {
+const FixedButton = ({ onClick }: fixedButtonProps) => {
   return (
     <StyledFixedButton
       onClick={onClick}

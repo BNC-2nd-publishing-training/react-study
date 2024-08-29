@@ -1,14 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+import { createTaskProps } from "@/utils/interfaces/createTaskProps";
 
-interface CreateTaskProps {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  placeholder: string;
-}
-
-const CreateTask: React.FC<CreateTaskProps> = ({
+const CreateTask: React.FC<createTaskProps> = ({
   value,
   onChange,
   placeholder,

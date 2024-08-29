@@ -2,12 +2,9 @@ import React from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import NewButton from "@/components/Buttons/AddNewButton";
+import { todayTasksSectionProps } from "@/utils/interfaces/todayTasksSectionProps";
 
-interface TodayTasksSectionProps {
-  onAddButtonClick: () => void;
-}
-
-const AddButtonGroup = ({ onAddButtonClick }: TodayTasksSectionProps) => {
+const AddButtonGroup = ({ onAddButtonClick }: todayTasksSectionProps) => {
   return (
     <SectionWrapper>
       <Text1>Today Task</Text1>

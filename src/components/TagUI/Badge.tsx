@@ -1,12 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+import { badgeProps } from "@/utils/interfaces/badgeProps";
 
-interface BadgeProps {
-  count: number;
-}
-
-const Badge = ({ count }: BadgeProps) => {
+const Badge = ({ count }: badgeProps) => {
   return (
     <BadgeWrapper>
       <BadgeNumber>{count}</BadgeNumber>

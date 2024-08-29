@@ -6,26 +6,12 @@ import CreateTask from "@/components/Input/TaskInput";
 import TagDropdown from "@/components/Input/TagSelect";
 import Verify from "@/components/Buttons/VerifyButton";
 import Delete from "@/components/Buttons/DeleteButton";
+import { task } from "@/utils/interfaces/editTask";
+import { editTaskModalProps } from "@/utils/interfaces/editTaskModalProps";
 
-interface Task {
-  id: number;
-  title: string;
-  tag: {
-    label: string;
-    bgColor: string;
-    textColor: string;
-  } | null;
-  isChecked: boolean;
-}
-
-interface EditTaskModalProps {
-  initialTask: Task;
-  onClose: (task: Task) => void;
-}
-
-const EditTaskModal = ({ initialTask, onClose }: EditTaskModalProps) => {
+const EditTaskModal = ({ initialTask, onClose }: editTaskModalProps) => {
   const [taskTitle, setTaskTitle] = useState(initialTask.title);
-  const [selectedTag, setSelectedTag] = useState<Task["tag"] | null>(
+  const [selectedTag, setSelectedTag] = useState<task["tag"] | null>(
     initialTask.tag
   );
 
