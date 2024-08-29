@@ -132,7 +132,7 @@ input,
 img {
     vertical-align: middle;
 }
-input,
+/* input, */
 button {
     border-radius: 0;
     -webkit-appearance: none;
