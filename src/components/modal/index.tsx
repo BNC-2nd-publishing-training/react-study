@@ -3,39 +3,51 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import { CloseBtn } from "@/assets/images";
 import SelectBox from "../selectbox";
+import { Status, ListItem } from "../constants";
 
 interface DefaultModalProps {
   closeModal: () => void;
-  addTask: (title: string, status: string) => void;
+  addTask: (title: string, status: Status) => void;
+  setTasks: React.Dispatch<React.SetStateAction<ListItem[]>>;
 }
 
-const DefaultModal = ({ closeModal, addTask }: DefaultModalProps) => {
-  const [selectedOption, setSelectedOption] =
-    useState("Task의 상태를 선택해주세요");
-
-  const options = ["In review", "In progress", "Approved", "Waiting"];
+const DefaultModal = ({ closeModal, addTask, setTasks }: DefaultModalProps) => {
+  const [selectedOption, setSelectedOption] = useState<
+    Status | "Task의 상태를 선택해주세요"
+  >("Task의 상태를 선택해주세요");
+  const options: (Status | "")[] = [
+    "",
+    "InReview",
+    "InProgress",
+    "Approved",
+    "Waiting",
+  ];
   const [title, setTitle] = useState("");
 
   const handleSelectChange = (selectedOption: { value: string } | null) => {
-    setSelectedOption(
-      selectedOption ? selectedOption.value : "Task의 상태를 선택해주세요"
-    );
+    if (selectedOption && options.includes(selectedOption.value as Status)) {
+      setSelectedOption(selectedOption.value as Status);
+    } else {
+      setSelectedOption("Task의 상태를 선택해주세요");
+    }
   };
 
   const handleAddTask = () => {
     if (title && selectedOption !== "Task의 상태를 선택해주세요") {
-      addTask(title, selectedOption);
-      console.log("Task added:", title, selectedOption);
+      const newTask : ListItem = {
+        id: Date.now(),
+        title,
+        status: selectedOption,
+      };
+      setTasks((prevTasks) => [...prevTasks, newTask]);
       closeModal();
-    } else {
-      console.log("Task not added - missing title or status");
     }
   };
 
   return (
     <Container>
       <ModalBox>
-        <CloseButton onClick={closeModal}>
+        <CloseButton onClick={closeModal} aria-label="닫기">
           <img src={CloseBtn} alt="Close" />
         </CloseButton>
         <p>Create Task</p>
@@ -46,7 +58,7 @@ const DefaultModal = ({ closeModal, addTask }: DefaultModalProps) => {
         />
         <SelectBox
           options={options}
-          value={selectedOption}
+          value={selectedOption || ""}
           onChange={handleSelectChange}
         />
         <TaskAddButton onClick={handleAddTask} aria-label="Task추가">

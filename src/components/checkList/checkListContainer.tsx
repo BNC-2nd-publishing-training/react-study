@@ -4,6 +4,7 @@ import { ListItem } from "../constants";
 
 interface CheckListProps {
   items: ListItem[];
+  
 }
 
 const CheckList = ({ items }: CheckListProps) => {
@@ -24,6 +25,6 @@ const Container = styled.div`
   margin-top: 40px;
   width: 423px;
   height: 258px;
-  overflow-y: scroll;
+  overflow-y: auto
 `;
 export default CheckList;

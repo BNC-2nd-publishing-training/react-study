@@ -2,10 +2,11 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import { useState } from "react";
 import { UnChecked, Checked } from "@/assets/images";
+import { Status } from "../constants";
 
 interface ListProps {
   title: string;
-  status: "Approved" | "InReview" | "InProgress" | "Waiting";
+  status: Status;
 }
 
 const statusColors = {

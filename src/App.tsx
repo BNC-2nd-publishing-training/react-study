@@ -4,37 +4,59 @@ import Header from "./components/header";
 import CheckList from "./components/checklist/checkListContainer";
 import UpComingTask from "./components/checklist/upComingTask";
 import NavBar from "./components/navbar";
-import { useState } from "react";
-import { Status, List } from "./components/constants";
-
-
+import { useEffect, useState } from "react";
+import { Status, ListItem, AllStatus } from "./components/constants";
+import DefaultModal from "./components/modal";
 
 const App = () => {
+  const [currentStatus, setCurrentStatus] = useState<AllStatus>("All");
+  const [tasks, setTasks] = useState<ListItem[]>([]);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const [currentStatus, setCurrentStatus] = useState<Status>("All");
-
-  const handleStatusChange = (status: Status) => {
+  const handleStatusChange = (status: AllStatus) => {
     setCurrentStatus(status);
   };
 
-  const totalCount = List.length;
+  const closeModal = () => {
+    setIsOpenModal(false);
+  };
+
+  const addTask = (title: string, status: Status) => {
+    const newTask = {
+      id: tasks.length + 1,
+      title,
+      status,
+    };
+    console.log("title", title, "status", status);
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+  };
 
   const filteredList =
     currentStatus === "All"
-      ? List.filter((item) => item.status !== "Waiting")
-      : List.filter((item) => item.status === currentStatus);
+      ? tasks
+      : tasks.filter((item) => item.status === currentStatus);
 
+  useEffect(() => {
+    console.log(tasks);
+  }, [tasks]);
   return (
     <Container>
       <TodoBox>
         <Header />
         <NavBar
-          totalCount={totalCount}
+          totalCount={tasks.length}
           currentStatus={currentStatus}
           onStatusChange={handleStatusChange}
         />
         <CheckList items={filteredList} />
         <UpComingTask />
+        {isOpenModal && (
+          <DefaultModal
+            closeModal={closeModal}
+            addTask={addTask}
+            setTasks={setTasks}
+          />
+        )}
       </TodoBox>
     </Container>
   );

@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-import { Status } from "../constants";
+import { AllStatus } from "../constants";
 
 interface NavBarProps {
-  currentStatus: Status;
-  onStatusChange: (status: Status) => void;
+  currentStatus: AllStatus;
+  onStatusChange: (status: AllStatus) => void;
   totalCount: number;
 }
 interface NavButtonProps {
@@ -12,7 +12,7 @@ interface NavButtonProps {
 }
 
 const NavBar = ({ currentStatus, onStatusChange, totalCount }: NavBarProps) => {
-  const statuses: Status[] = ["All", "Approved", "InReview", "InProgress"];
+  const statuses: AllStatus[] = ["All", "Approved", "InReview", "InProgress"];
 
   return (
     <Container>

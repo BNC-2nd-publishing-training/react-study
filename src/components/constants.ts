@@ -1,5 +1,5 @@
-
-export type Status = "All"|"Approved" | "InReview" | "InProgress" | "Waiting";
+export type Status = "Approved" | "InReview" | "InProgress" | "Waiting";
+export type AllStatus = "All"| Status;
 
 export  const List: ListItem[] = [
   { id :1,title: "간지나게 숨쉬기", status: "Approved" },
@@ -7,7 +7,6 @@ export  const List: ListItem[] = [
   { id :3, title: "간지나게 숨쉬기", status: "Waiting" },
 ];
   
-
 export interface ListItem {
   id: number;
   title: string;
