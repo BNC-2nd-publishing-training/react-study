@@ -6,7 +6,6 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 60px;
 `;
 
 export const Header = styled.p`
