@@ -7,6 +7,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 60px;
+  position: relative;
 `;
 
 export const Header = styled.p`
@@ -36,4 +37,10 @@ export const Input = styled.input`
 export const ButtonContainer = styled.div`
   display: flex;
   gap: 20px;
+`;
+
+export const CloseButton = styled.img`
+  position: absolute;
+  top: 26px;
+  right: 24px;
 `;

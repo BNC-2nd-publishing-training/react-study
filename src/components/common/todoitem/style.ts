@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { theme } from "../../../styles/theme";
 
-export const TodoItemContainer = styled.div`
+export const TodoItemContainer = styled.li`
   display: flex;
   align-items: center;
   gap: 10px;

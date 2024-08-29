@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const ListContainer = styled.div`
+export const ListContainer = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-between;

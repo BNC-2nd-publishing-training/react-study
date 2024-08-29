@@ -8,6 +8,7 @@ import Button from "@/components/common/button";
 import { Todo } from "@/components/common/todoitem/type";
 import * as S from "./style";
 import { theme } from "@/styles/theme";
+import { CansleImage } from "@/assets/images";
 
 const statusList: TagStatus[] = [
   "In review",
@@ -55,6 +56,11 @@ const UpdateTodoModal = ({
   return (
     <Modal isOpen={updateTodoModal} setModal={setUpdateTodoModal}>
       <S.Container>
+        <S.CloseButton
+          src={CansleImage}
+          alt="CansleImage"
+          onClick={() => setUpdateTodoModal(false)}
+        />
         <S.Header>Create Task</S.Header>
         <S.Form>
           <TextArea placeholder="" value={todoTitle} onChange={setTodoTitle} />

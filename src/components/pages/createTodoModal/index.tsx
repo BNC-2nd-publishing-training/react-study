@@ -7,6 +7,7 @@ import { TagStatus } from "@/components/common/tag/type";
 import Button from "@/components/common/button";
 import { Todo } from "@/components/common/todoitem/type";
 import { theme } from "@/styles/theme";
+import { CansleImage } from "@/assets/images";
 import * as S from "./style";
 
 const statusList: TagStatus[] = [
@@ -50,6 +51,11 @@ const CreateTodoModal = ({
   return (
     <Modal isOpen={createTodoModal} setModal={setCreateTodoModal}>
       <S.Container>
+        <S.CloseButton
+          src={CansleImage}
+          alt="CansleImage"
+          onClick={() => setCreateTodoModal(false)}
+        />
         <S.Header>Create Task</S.Header>
         <S.Form>
           <TextArea
