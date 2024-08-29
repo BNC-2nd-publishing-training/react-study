@@ -3,27 +3,18 @@ import { theme } from "@/styles/theme";
 import { AddBtn } from "@/assets/images";
 import { useState } from 'react';
 import DefaultModal from "../modal";
-import { ListItem, Status} from "../constants";
+import { Status } from "../constants";
+
+interface HeaderProps {
+  addTask: (title: string, status: Status) => void;  // addTask 함수 prop 추가
+}
 
 
-
-const Header = () => {
+const Header = ({ addTask }: HeaderProps) => {
   const [isOpenModal, setIsOpenModal] = useState(false); 
-  const [list, setList] = useState<ListItem[]>([]);  
 
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
-
-  const addTask = (title: string, status: Status) => {
-    const newTask = {
-      id: list.length + 1,  
-      title: title,
-      status: status,
-    };
-    setList([...list, newTask]); 
-    setIsOpenModal(false);  
-    console.log("New task added:", newTask);
-  };
 
 
   return (
@@ -32,7 +23,7 @@ const Header = () => {
       <AddButton onClick={openModal} aria-label='추가'>
         <img src={AddBtn}/>
       </AddButton>
-      {isOpenModal && <DefaultModal addTask={addTask} closeModal={closeModal} />}
+      {isOpenModal && <DefaultModal onAddTask={addTask} closeModal={closeModal} />}
     </HeaderContainer>
   );
 };

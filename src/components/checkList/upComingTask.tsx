@@ -1,10 +1,16 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import CheckList from "./checkListContainer";
-import { List } from "../constants";
+import { ListItem } from "../constants";
 
-const UpComingTask = () => {
-  const upcomingTodos = List.filter((item) => item.status === "Waiting");
+
+interface UpComingTaskProps {
+  tasks: ListItem[];
+}
+
+const UpComingTask = ({ tasks }: UpComingTaskProps) => {
+  const upcomingTodos = tasks.filter((item) => item.status === "Waiting");
+
 
   return (
     <>

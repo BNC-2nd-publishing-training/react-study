@@ -3,15 +3,14 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import { CloseBtn } from "@/assets/images";
 import SelectBox from "../selectbox";
-import { Status, ListItem } from "../constants";
+import { Status } from "../constants";
 
 interface DefaultModalProps {
   closeModal: () => void;
-  addTask: (title: string, status: Status) => void;
-  setTasks: React.Dispatch<React.SetStateAction<ListItem[]>>;
+  onAddTask: (title: string, status: Status) => void;
 }
 
-const DefaultModal = ({ closeModal, addTask, setTasks }: DefaultModalProps) => {
+const DefaultModal = ({ closeModal,onAddTask }: DefaultModalProps) => {
   const [selectedOption, setSelectedOption] = useState<
     Status | "Task의 상태를 선택해주세요"
   >("Task의 상태를 선택해주세요");
@@ -23,6 +22,7 @@ const DefaultModal = ({ closeModal, addTask, setTasks }: DefaultModalProps) => {
     "Waiting",
   ];
   const [title, setTitle] = useState("");
+  
 
   const handleSelectChange = (selectedOption: { value: string } | null) => {
     if (selectedOption && options.includes(selectedOption.value as Status)) {
@@ -34,15 +34,13 @@ const DefaultModal = ({ closeModal, addTask, setTasks }: DefaultModalProps) => {
 
   const handleAddTask = () => {
     if (title && selectedOption !== "Task의 상태를 선택해주세요") {
-      const newTask : ListItem = {
-        id: Date.now(),
-        title,
-        status: selectedOption,
-      };
-      setTasks((prevTasks) => [...prevTasks, newTask]);
+      onAddTask(title, selectedOption as Status);
       closeModal();
+    } else {
+      alert("제목과 상태를 모두 입력해주세요!");
     }
   };
+
 
   return (
     <Container>
@@ -61,7 +59,7 @@ const DefaultModal = ({ closeModal, addTask, setTasks }: DefaultModalProps) => {
           value={selectedOption || ""}
           onChange={handleSelectChange}
         />
-        <TaskAddButton onClick={handleAddTask} aria-label="Task추가">
+        <TaskAddButton onClick={handleAddTask}  aria-label="Task추가">
           Task 추가하기
         </TaskAddButton>
       </ModalBox>
