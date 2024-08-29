@@ -6,7 +6,7 @@ import DefaultModal from "../modal";
 import { Status } from "../constants";
 
 interface HeaderProps {
-  addTask: (title: string, status: Status) => void;  // addTask 함수 prop 추가
+  addTask: (title: string, status: Status) => void;  
 }
 
 
