@@ -1,29 +1,29 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import { AddBtn } from "@/assets/images";
-import { useState } from 'react';
+import { useState } from "react";
 import DefaultModal from "../modal";
 import { Status } from "../constants";
 
 interface HeaderProps {
-  addTask: (title: string, status: Status) => void;  
+  addTask: (title: string, status: Status) => void;
 }
 
-
 const Header = ({ addTask }: HeaderProps) => {
-  const [isOpenModal, setIsOpenModal] = useState(false); 
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
 
-
   return (
     <HeaderContainer>
       <p>Today Task</p>
-      <AddButton onClick={openModal} aria-label='추가'>
-        <img src={AddBtn}/>
+      <AddButton onClick={openModal} aria-label="추가">
+        <img src={AddBtn} />
       </AddButton>
-      {isOpenModal && <DefaultModal onAddTask={addTask} closeModal={closeModal} />}
+      {isOpenModal && (
+        <DefaultModal onAddTask={addTask} closeModal={closeModal} />
+      )}
     </HeaderContainer>
   );
 };

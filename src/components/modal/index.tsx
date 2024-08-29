@@ -10,7 +10,7 @@ interface DefaultModalProps {
   onAddTask: (title: string, status: Status) => void;
 }
 
-const DefaultModal = ({ closeModal,onAddTask }: DefaultModalProps) => {
+const DefaultModal = ({ closeModal, onAddTask }: DefaultModalProps) => {
   const [selectedOption, setSelectedOption] = useState<
     Status | "Task의 상태를 선택해주세요"
   >("Task의 상태를 선택해주세요");
@@ -22,7 +22,6 @@ const DefaultModal = ({ closeModal,onAddTask }: DefaultModalProps) => {
     "Waiting",
   ];
   const [title, setTitle] = useState("");
-  
 
   const handleSelectChange = (selectedOption: { value: string } | null) => {
     if (selectedOption && options.includes(selectedOption.value as Status)) {
@@ -41,7 +40,6 @@ const DefaultModal = ({ closeModal,onAddTask }: DefaultModalProps) => {
     }
   };
 
-
   return (
     <Container>
       <ModalBox>
@@ -59,7 +57,7 @@ const DefaultModal = ({ closeModal,onAddTask }: DefaultModalProps) => {
           value={selectedOption || ""}
           onChange={handleSelectChange}
         />
-        <TaskAddButton onClick={handleAddTask}  aria-label="Task추가">
+        <TaskAddButton onClick={handleAddTask} aria-label="Task추가">
           Task 추가하기
         </TaskAddButton>
       </ModalBox>

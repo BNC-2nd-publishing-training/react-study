@@ -3,14 +3,12 @@ import { theme } from "@/styles/theme";
 import CheckList from "./checkListContainer";
 import { ListItem } from "../constants";
 
-
 interface UpComingTaskProps {
   tasks: ListItem[];
 }
 
 const UpComingTask = ({ tasks }: UpComingTaskProps) => {
   const upcomingTodos = tasks.filter((item) => item.status === "Waiting");
-
 
   return (
     <>
@@ -26,8 +24,7 @@ const Container = styled.div`
   margin-top: 40x;
   width: 422px;
   height: 230px;
-overflow-y: scroll;
-
+  overflow-y: scroll;
 `;
 
 const Title = styled.div`

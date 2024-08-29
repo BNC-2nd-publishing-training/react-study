@@ -4,15 +4,14 @@ import Header from "./components/header";
 import CheckList from "./components/checklist/checkListContainer";
 import UpComingTask from "./components/checklist/upComingTask";
 import NavBar from "./components/navbar";
-import {  useState } from "react";
-import {  ListItem, AllStatus } from "./components/constants";
+import { useState } from "react";
+import { ListItem, AllStatus } from "./components/constants";
 
 import { Status } from "./components/constants";
 
 const App = () => {
   const [currentStatus, setCurrentStatus] = useState<AllStatus>("All");
   const [tasks, setTasks] = useState<ListItem[]>([]);
-
 
   const handleStatusChange = (status: AllStatus) => {
     setCurrentStatus(status);
@@ -26,24 +25,23 @@ const App = () => {
     };
     setTasks((prevTasks) => [...prevTasks, newTask]);
   };
-  
+
   const filteredList =
     currentStatus === "All"
-      ? tasks.filter((item) => item.status !== "Waiting") 
+      ? tasks.filter((item) => item.status !== "Waiting")
       : tasks.filter((item) => item.status === currentStatus);
-
 
   return (
     <Container>
       <TodoBox>
-        <Header addTask={addTask}  />
+        <Header addTask={addTask} />
         <NavBar
           totalCount={tasks.length}
           currentStatus={currentStatus}
           onStatusChange={handleStatusChange}
         />
         <CheckList items={filteredList} />
-        <UpComingTask tasks={tasks} />  
+        <UpComingTask tasks={tasks} />
       </TodoBox>
     </Container>
   );
