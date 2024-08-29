@@ -1,11 +1,8 @@
 import { theme } from "@/styles/theme";
 import styled from "@emotion/styled";
+import { publicButtonProps } from "@/utils/interfaces/publicButtonProps";
 
-interface NewButtonProps {
-  onClick: () => void;
-  children: React.ReactNode;
-}
-const NewButton = ({ onClick, children }: NewButtonProps) => {
+const NewButton = ({ onClick, children }: publicButtonProps) => {
   return (
     <StyledNewButton type="button" onClick={onClick} aria-label="추가하기">
       {children}

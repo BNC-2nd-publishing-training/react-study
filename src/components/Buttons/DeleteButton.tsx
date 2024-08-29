@@ -1,12 +1,8 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+import { publicButtonProps } from "@/utils/interfaces/publicButtonProps";
 
-interface DeleteButtonProps {
-  onClick: () => void;
-  children: React.ReactNode;
-}
-
-const Delete = ({ onClick }: DeleteButtonProps) => {
+const Delete = ({ onClick }: publicButtonProps) => {
   return (
     <StyledDeleteButton onClick={onClick} type="button" aria-labe="삭제하기">
       삭제하기

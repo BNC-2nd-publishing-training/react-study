@@ -1,12 +1,8 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+import { publicButtonProps } from "@/utils/interfaces/publicButtonProps";
 
-interface VerifyButtonProps {
-  onClick: () => void;
-  children: React.ReactNode;
-}
-
-const Verify = ({ onClick }: VerifyButtonProps) => {
+const Verify = ({ onClick }: publicButtonProps) => {
   return (
     <StyledVerifyButton onClick={onClick} type="button" aria-labe="확인하기">
       확인
