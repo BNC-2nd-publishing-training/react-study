@@ -30,19 +30,11 @@ const Tab = () => {
         setSelectedType(TypeArr[index].name);
     };
 
-    const totalTasksCount = tasks.length;
-
     const filteredTasks = (): Task[] => {
         if (TypeArr[currentTab].name === 'All') {
-            return tasks.filter(task => task.type !== 'Waiting').map(task => ({
-                ...task,
-                id: task.id ?? -1,
-            })) as Task[];
+            return tasks.filter(task => task.type !== 'Waiting');
         }
-        return tasks.filter(task => task.type === TypeArr[currentTab].name).map(task => ({
-            ...task,
-            id: task.id ?? -1,
-        })) as Task[];
+        return tasks.filter(task => task.type === TypeArr[currentTab].name);
     };
 
     const openModal = (task: Task) => {
@@ -56,15 +48,15 @@ const Tab = () => {
     };
 
     const handleUpdateTask = (updatedTask: Task) => {
-        setTasks((prevTasks: Task[]) =>
-            prevTasks.map((task) =>
+        setTasks(prevTasks =>
+            prevTasks.map(task =>
                 task.id === updatedTask.id ? updatedTask : task
             )
         );
-    };    
+    };
 
     const handleDeleteTask = (taskId: number) => {
-        setTasks((prevTasks: Task[]) =>
+        setTasks(prevTasks =>
             prevTasks.filter(task => task.id !== taskId)
         );
     };
@@ -90,7 +82,7 @@ const Tab = () => {
                         className={index === currentTab ? "subType focused" : "subType"}
                         onClick={() => selectTypeHandler(index)}
                     >
-                        {el.name === 'All' && <TaskCounter>{totalTasksCount}</TaskCounter>}
+                        {el.name === 'All' && <TaskCounter>{tasks.length}</TaskCounter>}
                         {el.name}
                     </li>
                 ))}
@@ -110,7 +102,12 @@ const Tab = () => {
                     </TaskItem>
                 ))}
             </Desc>
-            <WaitingTask tasks={tasks as Task[]} />
+
+            <WaitingTask 
+                tasks={tasks} 
+                onUpdate={handleUpdateTask} 
+                onDelete={handleDeleteTask} 
+            />
 
             {isModalOpen && (
                 <CorrectionTask 
@@ -189,11 +186,17 @@ const TaskItem = styled.div`
 `;
 
 const Checkbox = styled.input`
+    width: 16px;
+    height: 16px;
+    margin-left: -10px;
     margin-right: 10px;
 `;
 
 const TaskContent = styled.div`
     flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 `;
 
 const TaskType = styled.div`
