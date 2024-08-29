@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import SelectBox from "@/components/Button/SelectButton";
+import SelectType from "@/components/Button/SelectButton";
 import DeleteButton from "@/components/Button/DeleteButton";
 import UpdateButton from "@/components/Button/UpdateButton";
 
@@ -21,12 +21,13 @@ interface CorrectionTaskProps {
 
 const CorrectionTask: React.FC<CorrectionTaskProps> = ({ task, onClose, onUpdate, onDelete }) => {
     const [editedTitle, setEditedTitle] = useState<string>(task?.title || '');
+    const [selectedType, setSelectedType] = useState<string>(task?.type || 'Task 상태를 선택해주세요');
 
     if (!task) return null;
 
     const handleUpdate = () => {
         if (task) {
-            onUpdate({ ...task, title: editedTitle });
+            onUpdate({ ...task, title: editedTitle, type: selectedType });
             onClose();
         }
     };
@@ -42,7 +43,7 @@ const CorrectionTask: React.FC<CorrectionTaskProps> = ({ task, onClose, onUpdate
         <Container>
             <Back onClick={onClose} />
             <Modal>
-                <ModalTitle>Create Task</ModalTitle>
+                <ModalTitle>작업 수정</ModalTitle>
                 <CloseButton onClick={onClose}>
                     <i className="bi bi-x-lg CloseButton"></i>
                 </CloseButton>
@@ -55,7 +56,11 @@ const CorrectionTask: React.FC<CorrectionTaskProps> = ({ task, onClose, onUpdate
                         onChange={(e) => setEditedTitle(e.target.value)}
                     />
                 </TaskContent>
-                <SelectBox />
+                
+                <SelectType
+                    selectedType={selectedType}
+                    setSelectedType={setSelectedType}
+                />
 
                 <Buttons>
                     <DeleteButton onClick={handleDelete} /> 

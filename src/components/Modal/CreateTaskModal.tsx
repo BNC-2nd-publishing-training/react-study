@@ -1,18 +1,17 @@
-// Task 생성 모달 컴포넌트
-
 import { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import AddTask from "@/components/Button/addTaskButton";
-import SelectBox from "@/components/Button/SelectButton";
+import SelectBox from "@/components/Button/SelectButton"; // Updated import
 import { useTaskContext } from '@/components/Modal/CreateTask';
 
 function CreateTask() {
     const [isOpenModal, setOpenModal] = useState<boolean>(false);
     const [taskInput, setTaskInput] = useState<string>('');
-    const { addTask, selectedType } = useTaskContext();
+    const [selectedType, setSelectedType] = useState<string>('Task 상태를 선택해주세요'); // Default type
+    const { addTask } = useTaskContext(); // Remove selectedType from context
 
     const onOpenModal = () => {
         setOpenModal(true);
@@ -22,15 +21,11 @@ function CreateTask() {
         setOpenModal(false);
     };
 
-    // onOpenModal(), onCloseModal() 함수 useCallback() 사용하지 않고 다른 방법으로 구현해야하는 이유 (*공부)
-    // 1. useCallback()은 컴포넌트가 리렌더링 될 때마다 함수가 새로 만들어지는 것을 방지하고 사용하지만, 두 함수는 간단해서 굳이 useCallback()을 사용할 필요가 없음
-    // 2. 코드가 간결해짐
-    // 3. 메모리 낭비 방지
-
     const addTaskHandler = () => {
-        if (taskInput.trim()) {
+        if (taskInput.trim() && selectedType !== 'Task 상태를 선택해주세요') { // Ensure a type is selected
             addTask(taskInput, selectedType);
             setTaskInput('');
+            setSelectedType('Task 상태를 선택해주세요'); // Reset selected type
             onCloseModal();
         }
     };
@@ -58,7 +53,10 @@ function CreateTask() {
                                 onChange={(e) => setTaskInput(e.target.value)}
                             />
                         </TaskContent>
-                        <SelectBox />
+                        <SelectBox 
+                            selectedType={selectedType}
+                            setSelectedType={setSelectedType}
+                        />
                         <AddButton onClick={addTaskHandler}>
                             <button>Task 추가하기</button>
                         </AddButton>
@@ -90,15 +88,13 @@ const Title = styled.div`
     line-height: ${theme.font.titleLarge.lineHeight};
 `;
 
-const PlusButton = styled.div<{ onClick: () => void }>`
+const PlusButton = styled.div`
     width: 52px;
     height: 51px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
     box-shadow: 0 0 10px ${theme.color.primary20};
     background-color: ${theme.color.primary20};
     color: white;

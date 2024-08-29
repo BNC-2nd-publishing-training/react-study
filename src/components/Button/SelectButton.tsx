@@ -1,78 +1,80 @@
-// Task 생성시 상태 선택창 컴포넌트
-
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-import { useTaskContext } from '@/components/Modal/CreateTask';
 
-function SelectType() {
-    const [isOption, setIsOption] = useState<boolean>(false);
-    const { selectedType, setSelectedType } = useTaskContext();
+interface SelectBoxProps {
+    selectedType: string;
+    setSelectedType: (type: string) => void;
+}
+
+const SelectBox: React.FC<SelectBoxProps> = ({ selectedType, setSelectedType }) => {
+    const [isOptionOpen, setIsOptionOpen] = useState<boolean>(false);
     const options = ["In Review", "In Progress", "Approved", "Waiting"];
 
-    const onClickLabel = () => {
-        setIsOption(!isOption);
+    const toggleOptions = () => {
+        setIsOptionOpen(!isOptionOpen);
     };
 
-    const defaultText = "Task 상태를 선택해주세요";
-    const handleClickSelectType = (type: string) => {
+    const handleSelectType = (type: string) => {
         setSelectedType(type);
-        setIsOption(!isOption);
+        setIsOptionOpen(false);
     };
 
     return (
-        <div>
-            <SelectTypeBox toggle={isOption}>
-                <SelectTypeLabel 
-                    onClick={onClickLabel} 
-                    isDefault={selectedType === defaultText}
-                >
-                    {selectedType}
-                </SelectTypeLabel>
-                <SelectTypeUl toggle={isOption}>
+        <SelectBoxContainer>
+            <SelectBoxLabel onClick={toggleOptions}>
+                {selectedType || "Task 상태를 선택해주세요"}
+            </SelectBoxLabel>
+            {isOptionOpen && (
+                <OptionsList>
                     {options.map(option => (
-                        <SelectTypeLi key={option} onClick={() => handleClickSelectType(option)}>
+                        <OptionItem key={option} onClick={() => handleSelectType(option)}>
                             {option}
-                        </SelectTypeLi>
+                        </OptionItem>
                     ))}
-                </SelectTypeUl>
-            </SelectTypeBox>
-        </div>
+                </OptionsList>
+            )}
+        </SelectBoxContainer>
     );
-}
+};
 
-const SelectTypeBox = styled.div<{toggle:boolean}>`
+const SelectBoxContainer = styled.div`
     position: relative;
     width: 480px;
     height: 50px;
+    border: 2px solid ${theme.color.gray30};
     margin-top: 20px;
     padding: 15px;
-    border: 2px solid ${theme.color.gray30};
 `;
 
-const SelectTypeLabel = styled.div<{isDefault: boolean}>`
-    display: flex;
+const SelectBoxLabel = styled.div`
     font-size: ${theme.font.textMedium.fontSize};
-    color: ${({ isDefault }) => (isDefault ? 'gray' : 'black')};
+    color: black;
     cursor: pointer;
 `;
 
-const SelectTypeUl = styled.ul<{toggle:boolean}>`
+const OptionsList = styled.ul`
     position: absolute;
-    width: 480px;
-    display: ${props => (props.toggle ? 'block' : 'none')};
+    width: 100%;
     top: 100%;
     left: 0;
     border: 2px solid ${theme.color.gray30};
     list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: white;
     cursor: pointer;
 `;
 
-const SelectTypeLi = styled.li`
+const OptionItem = styled.li`
     height: 50px;
     padding: 13px 15px;
     font-size: ${theme.font.textMedium.fontSize};
     cursor: pointer;
+
+    &:hover {
+        background-color: ${theme.color.gray10};
+    }
 `;
 
-export default SelectType;
+export default SelectBox;
