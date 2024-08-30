@@ -6,10 +6,22 @@ import styles from '@/styles/tags/tags.module.css';
 const TagLayout: React.FC<TagProps> = ({ type }) => {
     const tagStyle = getTagStyle(type);
     const textColor = getTextColor(type);
-    const displayText = (type === "Waiting") ? "Approved" : 
-                        (type === "In progress" ) ? "In progress" : 
-                        (type ==="In review") ? "In review":
-                        type;
+
+    let displayText;
+    switch (type) {
+        case "Waiting":
+            displayText = "Waiting";
+            break;
+        case "In progress":
+            displayText = "In progress";
+            break;
+        case "In review":
+            displayText = "In review";
+            break;
+        default:
+            displayText = type;
+            break;
+    }
 
     return (
         <div className={`${styles.tag}`} style={{ ...tagStyle, ...textColor }}>
