@@ -1,11 +1,6 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-
-interface TagProps {
-  label: string;
-  bgColor: string;
-  textColor: string;
-}
+import { TagProps } from "@/utils/interfaces/tagProps";
 
 export const Tag = styled.div<{ bgColor: string; textColor: string }>`
   padding-top: 6px;

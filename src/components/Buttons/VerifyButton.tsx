@@ -4,7 +4,7 @@ import { publicButtonProps } from "@/utils/interfaces/publicButtonProps";
 
 const Verify = ({ onClick }: publicButtonProps) => {
   return (
-    <StyledVerifyButton onClick={onClick} type="button" aria-labe="확인하기">
+    <StyledVerifyButton onClick={onClick} type="button" aria-label="확인하기">
       확인
     </StyledVerifyButton>
   );

@@ -8,8 +8,8 @@ type DropdownProps = {
 };
 
 const TagDropdown = ({ onSelect, initialTag }: DropdownProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(initialTag || "");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedValue, setSelectedValue] = useState<string>(initialTag || "");
 
   const handleSelect = (value: string) => {
     setSelectedValue(value);

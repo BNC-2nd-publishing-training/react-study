@@ -4,7 +4,7 @@ import { publicButtonProps } from "@/utils/interfaces/publicButtonProps";
 
 const Delete = ({ onClick }: publicButtonProps) => {
   return (
-    <StyledDeleteButton onClick={onClick} type="button" aria-labe="삭제하기">
+    <StyledDeleteButton onClick={onClick} type="button" aria-label="삭제하기">
       삭제하기
     </StyledDeleteButton>
   );

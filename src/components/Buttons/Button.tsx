@@ -8,7 +8,7 @@ const Button = ({ type, isSelected, onClick }: buttonProps) => {
       isSelected={isSelected}
       onClick={onClick}
       type="button"
-      aria-labe="태그 버튼">
+      aria-label="태그 버튼">
       {type}
     </StyledButton>
   );

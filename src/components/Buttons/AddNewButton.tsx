@@ -15,14 +15,14 @@ const FixedButton = ({ onClick }: fixedButtonProps) => {
 };
 
 const StyledFixedButton = styled.button`
-  position: fixed;
+  position: absolute;
   width: 52px;
   height: 51px;
   border-radius: 12px 0 12px 12px;
   margin: 11px 12px;
   background-color: ${theme.color.primary20};
-  top: 5%;
-  left: 58%;
+  top: -20px;
+  left: 22vw;
 
   svg {
     color: white;

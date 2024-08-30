@@ -10,7 +10,7 @@ import { task } from "@/utils/interfaces/editTask";
 import { editTaskModalProps } from "@/utils/interfaces/editTaskModalProps";
 
 const EditTaskModal = ({ initialTask, onClose }: editTaskModalProps) => {
-  const [taskTitle, setTaskTitle] = useState(initialTask.title);
+  const [taskTitle, setTaskTitle] = useState<string>(initialTask.title);
   const [selectedTag, setSelectedTag] = useState<task["tag"] | null>(
     initialTask.tag
   );
