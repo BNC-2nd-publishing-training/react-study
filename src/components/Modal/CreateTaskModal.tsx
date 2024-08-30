@@ -1,17 +1,19 @@
+// Task 생성 모달
+
 import { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import AddTask from "@/components/Button/TaskAddButton";
-import SelectBox from "@/components/Button/TypeSelectButton"; // Updated import
+import SelectBox from "@/components/Button/TypeSelectButton";
 import { useTaskContext } from '@/components/Modal/TaskProvider';
 
 function CreateTask() {
     const [isOpenModal, setOpenModal] = useState<boolean>(false);
     const [taskInput, setTaskInput] = useState<string>('');
-    const [selectedType, setSelectedType] = useState<string>('Task 상태를 선택해주세요'); // Default type
-    const { addTask } = useTaskContext(); // Remove selectedType from context
+    const [selectedType, setSelectedType] = useState<string>('Task 상태를 선택해주세요');
+    const { addTask } = useTaskContext();
 
     const onOpenModal = () => {
         setOpenModal(true);
@@ -22,29 +24,38 @@ function CreateTask() {
     };
 
     const addTaskHandler = () => {
-        if (taskInput.trim() && selectedType !== 'Task 상태를 선택해주세요') { // Ensure a type is selected
+        if (taskInput.trim() && selectedType !== 'Task 상태를 선택해주세요') {
             addTask(taskInput, selectedType);
             setTaskInput('');
-            setSelectedType('Task 상태를 선택해주세요'); // Reset selected type
+            setSelectedType('Task 상태를 선택해주세요');
             onCloseModal();
         }
     };
 
     return (
         <Container>
+
             <TaskHeader>
+
                 <Title>Today Task</Title>
+
                 <PlusButton onClick={onOpenModal}>
                     <i className="bi bi-plus-lg PlusButton"></i>
                 </PlusButton>
+
             </TaskHeader>
+
             {isOpenModal && (
                 <Modal>
+
                     <AddTask onClickPlusButton={onOpenModal}>
+
                         <ModalTitle>Create Task</ModalTitle>
+
                         <CloseButton onClick={onCloseModal}>
                             <i className="bi bi-x-lg CloseButton"></i>
                         </CloseButton>
+
                         <TaskContent>
                             <textarea
                                 className="TaskContentInput"
@@ -53,14 +64,18 @@ function CreateTask() {
                                 onChange={(e) => setTaskInput(e.target.value)}
                             />
                         </TaskContent>
+
                         <SelectBox 
                             selectedType={selectedType}
                             setSelectedType={setSelectedType}
                         />
+
                         <AddButton onClick={addTaskHandler}>
                             <button>Task 추가하기</button>
                         </AddButton>
+
                     </AddTask>
+
                 </Modal>
             )}
         </Container>
@@ -147,17 +162,15 @@ const TaskContent = styled.div`
     .TaskContentInput {
         width: 100%;
         height: 100%;
-        padding: 16px; /* 원하는 패딩 값으로 조정 */
+        padding: 16px;
         border: 2px solid ${theme.color.gray30};
+        border-color: ${theme.color.gray30}; 
+        box-shadow: none;
+        box-sizing: border-box;
         font-size: 16px;
-        line-height: 1.5; /* 줄 높이 조정 */
+        line-height: 1.5;
+        outline: none;
         resize: none;
-        box-sizing: border-box; /* 패딩이 요소의 크기에 포함되도록 설정 */
-        
-        /* 포커스 스타일 제거 */
-        outline: none; /* 기본 아웃라인 제거 */
-        border-color: ${theme.color.gray30}; /* 포커스 시 변하지 않도록 설정 */
-        box-shadow: none; /* 포커스 시 그림자 제거 */
     }
 `;
 

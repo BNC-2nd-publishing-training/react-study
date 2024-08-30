@@ -1,76 +1,76 @@
-import React, { useState } from 'react';
+// Task 타입 선택 버튼
+
+import { useState } from 'react';
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 
-interface SelectBoxProps {
-    selectedType: string;
-    setSelectedType: (type: string) => void;
-}
+import { SelectButtonProps } from "@/utils/interfaces/SelectButtonProps";
 
-const SelectBox: React.FC<SelectBoxProps> = ({ selectedType, setSelectedType }) => {
-    const [isOptionOpen, setIsOptionOpen] = useState<boolean>(false);
-    const options = ["In Review", "In Progress", "Approved", "Waiting"];
+const SelectButton = ({ selectedType, setSelectedType } : SelectButtonProps) => {
+    const [isTypeOpen, setIsTypeOpen] = useState<boolean>(false);
+    const Types = ["In Review", "In Progress", "Approved", "Waiting"];
 
-    const toggleOptions = () => {
-        setIsOptionOpen(!isOptionOpen);
+    const toggleTypes = () => {
+        setIsTypeOpen(!isTypeOpen);
     };
 
     const handleSelectType = (type: string) => {
         setSelectedType(type);
-        setIsOptionOpen(false);
+        setIsTypeOpen(false);
     };
 
     return (
-        <SelectBoxContainer>
-            <SelectBoxLabel onClick={toggleOptions}>
+        <Container>
+
+            <TypeLabel onClick={toggleTypes}>
                 {selectedType || "Task 상태를 선택해주세요"}
-            </SelectBoxLabel>
-            {isOptionOpen && (
-                <OptionsList>
-                    {options.map(option => (
-                        <OptionItem key={option} onClick={() => handleSelectType(option)}>
-                            {option}
-                        </OptionItem>
+            </TypeLabel>
+
+            {isTypeOpen && (
+                <TypesList>
+                    {Types.map(type => (
+                        <TypeItem key={type} onClick={() => handleSelectType(type)}>
+                            {type}
+                        </TypeItem>
                     ))}
-                </OptionsList>
+                </TypesList>
             )}
-        </SelectBoxContainer>
+
+        </Container>
     );
 };
 
-const SelectBoxContainer = styled.div`
+const Container = styled.div`
     position: relative;
     width: 480px;
     height: 50px;
     border: 2px solid ${theme.color.gray30};
+    border-radius: 5px 5px 0 0;
     margin-top: 20px;
     padding: 15px;
-
-    border-radius: 5px 5px 0 0;
 `;
 
-const SelectBoxLabel = styled.div`
+const TypeLabel = styled.div`
     font-size: ${theme.font.textMedium.fontSize};
     color: gray;
     cursor: pointer;
 `;
 
-const OptionsList = styled.ul`
+const TypesList = styled.ul`
     position: absolute;
     width: 480px;
     top: 100%;
     right: -0.5%;
     border: 2px solid ${theme.color.gray30};
+    border-radius: 0 0 5px 5px;
     list-style: none;
     padding: 0;
     margin: 0;
     background-color: white;
     cursor: pointer;
-
-    border-radius: 0 0 5px 5px;
 `;
 
-const OptionItem = styled.li`
+const TypeItem = styled.li`
     height: 50px;
     padding: 13px 15px;
     font-size: ${theme.font.textMedium.fontSize};
@@ -81,4 +81,4 @@ const OptionItem = styled.li`
     }
 `;
 
-export default SelectBox;
+export default SelectButton;

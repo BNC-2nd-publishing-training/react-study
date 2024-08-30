@@ -11,13 +11,13 @@ import UpdateButton from "@/components/Button/TaskUpdateButton";
 
 // import Task from "@/utils/interfaces/Task";
 
-export interface Task {
+interface Task {
     id: number;
     title: string;
     type: string;
 }
 
-export interface CorrectionTaskProps {
+interface CorrectionTaskProps {
     task: Task | null;
     onClose: () => void;
     onUpdate: (updatedTask: Task) => void;
@@ -46,9 +46,11 @@ const CorrectionTask = ({ task, onClose, onUpdate, onDelete }: CorrectionTaskPro
 
     return (
         <Container>
+            
             <Back onClick={onClose} />
 
             <Modal>
+
                 <ModalTitle>Create Task</ModalTitle>
 
                 <CloseButton onClick={onClose}>
@@ -73,7 +75,9 @@ const CorrectionTask = ({ task, onClose, onUpdate, onDelete }: CorrectionTaskPro
                     <DeleteButton onClick={handleDelete} /> 
                     <UpdateButton onClick={handleUpdate} />
                 </Buttons>
+
             </Modal>
+
         </Container>
     );
 };

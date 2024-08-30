@@ -1,6 +1,9 @@
+// Task 타입 별 Tab 버튼
+
 import React from 'react';
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
+
 import { useTaskContext } from '@/components/Modal/TaskProvider';
 import WaitingTask from '@/components/Task/WaitingTask';
 import CorrectionTask from "@/components/Modal/CorrectionTaskModal";
@@ -75,7 +78,9 @@ const Tab = () => {
 
     return (
         <Container>
+
             <TypeTab>
+
                 {TypeArr.map((el, index) => (
                     <li
                         key={index}
@@ -86,22 +91,29 @@ const Tab = () => {
                         {el.name}
                     </li>
                 ))}
+
             </TypeTab>
 
             <Desc>
+
                 {filteredTasks().map((task) => (
                     <TaskItem key={task.id} onClick={() => openModal(task)}>
+
                         <Checkbox
                             type="checkbox"
                             checked={checkedTasks.has(task.id)}
                             onChange={() => handleCheckboxChange(task.id)}
                         />
+
                         <TaskContent>{task.title}</TaskContent>
+
                         <TaskType className={task.type.toLowerCase().replace(' ', '-')}>
                             {task.type}
                         </TaskType>
+
                     </TaskItem>
                 ))}
+
             </Desc>
 
             <WaitingTask 
@@ -118,6 +130,7 @@ const Tab = () => {
                     onDelete={handleDeleteTask}
                 />
             )}
+
         </Container>
     );
 };
@@ -161,12 +174,11 @@ const TypeTab = styled.ul`
 `;
 
 const Desc = styled.div`
+    width: 500px;
+    height: 285px;
     margin-top: -120%;
     margin-left: -7%;
     font-size: 20px;
-
-    width: 500px;
-    height: 285px;
     overflow-y: auto;
 
     ::-webkit-scrollbar {
@@ -200,7 +212,6 @@ const Checkbox = styled.input`
     height: 16px;
     margin-left: 15px;
     margin-right: 10px;
-
     accent-color: ${theme.color.primary20};
 `;
 
@@ -217,7 +228,6 @@ const TaskType = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    // margin-right: 20%;
     border-radius: 20px;
     font-size: 12px;
 

@@ -20,7 +20,6 @@ interface WaitingTaskProps {
 
 function WaitingTask({ tasks, onUpdate, onDelete }: WaitingTaskProps) {
     const waitingTasks = Array.isArray(tasks) ? tasks.filter(task => task.type === 'Waiting') : [];
-
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [selectedTask, setSelectedTask] = useState<Task | null>(null);
     const [checkedTasks, setCheckedTasks] = React.useState<Set<number>>(new Set());
@@ -65,6 +64,7 @@ function WaitingTask({ tasks, onUpdate, onDelete }: WaitingTaskProps) {
             <Title>Upcoming Tasks</Title>
 
             <Desc>
+
                 {waitingTasks.map((task) => (
                     <TaskItem key={task.id} onClick={() => openModal(task)}>
 
@@ -82,6 +82,7 @@ function WaitingTask({ tasks, onUpdate, onDelete }: WaitingTaskProps) {
 
                     </TaskItem>
                 ))}
+
             </Desc>
 
             {isModalOpen && (
@@ -92,6 +93,7 @@ function WaitingTask({ tasks, onUpdate, onDelete }: WaitingTaskProps) {
                     onDelete={handleDeleteTask}
                 />
             )}
+
         </Container>
     );
 }
@@ -109,12 +111,11 @@ const Title = styled.div`
 `;
 
 const Desc = styled.div`
+    width: 455px;
+    height: 240px;
     margin-top: 5%; 
     margin-left: 10%;
     font-size: 20px;
-
-    width: 455px;
-    height: 240px;
     overflow-y: auto;
 
     ::-webkit-scrollbar {
