@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Task } from "@/utils/interfaces/Task";
 import TodoContent from "@/components/TaskList/TodoContentTaskList";
 
-export default function Todo() {
+const Todo: React.FC = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -26,4 +26,6 @@ export default function Todo() {
       setNextId={setNextId}
     />
   );
-}
+};
+
+export default Todo;
