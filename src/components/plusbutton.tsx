@@ -25,10 +25,10 @@ interface PlusButtonProps {
 }
 
 const PlusButton: React.FC<PlusButtonProps> = ({ onAddTask }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+    setIsModalOpen(prevState => !prevState);
   };
 
   return (
