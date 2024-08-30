@@ -65,7 +65,7 @@ const TaskItem = styled.div`
 const CheckboxWrapper = styled.div`
   display: flex;
   align-items: center; 
-  margin-left: 30px;
+  margin-left: 20px;
   margin-right: 20px; 
 `;
 
@@ -75,7 +75,7 @@ const TaskTitle = styled.span`
 
 const TagWrapper = styled.div`
   margin-left: auto; 
-  margin-right: 30px;
+  margin-right: 20px;
 `;
 
 export default TodoAdd;
