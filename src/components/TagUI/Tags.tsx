@@ -1,8 +1,27 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 
+interface TagProps {
+  label: string;
+  bgColor: string;
+  textColor: string;
+}
+
+export const Tag = styled.div<{ bgColor: string; textColor: string }>`
+  padding-top: 6px;
+  border-radius: 14px;
+  text-align: center;
+  background-color: ${({ bgColor }) => bgColor};
+  color: ${({ textColor }) => textColor};
+  font-size: ${theme.font.textSmall.fontSize};
+  font-weight: ${theme.font.textSmall.fontWeight};
+  width: 75px;
+  height: 28px;
+  margin-left: auto;
+`;
+
 const Tags = () => {
-  const tags = [
+  const tags: TagProps[] = [
     {
       label: "In review ",
       bgColor: theme.color.green10,
@@ -24,6 +43,7 @@ const Tags = () => {
       textColor: theme.color.gray60,
     },
   ];
+
   return (
     <TagsContainer>
       {tags.map((tag, index) => (
@@ -34,18 +54,6 @@ const Tags = () => {
     </TagsContainer>
   );
 };
-
-const Tag = styled.div<{ bgColor: string; textColor: string }>`
-  padding-top: 6px;
-  border-radius: 14px;
-  text-align: center;
-  background-color: ${({ bgColor }) => bgColor};
-  color: ${({ textColor }) => textColor};
-  font-size: ${theme.font.textSmall.fontSize};
-  font-weight: ${theme.font.textSmall.fontWeight};
-  width: 75px;
-  height: 28px;
-`;
 
 const TagsContainer = styled.div`
   gap: 8px;
