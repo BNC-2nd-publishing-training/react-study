@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-import styles from '@/styles/MainTodo/maintodo.module.css';
 import PlusButton from "@/components/plusbutton";
 import TodoAdd from "./TodoAdd";
 import InReviewPage from "./InReviewPage";
@@ -73,7 +72,7 @@ const MainTodo = () => {
   return (
     <Container>
       <Header>
-        <div className={styles.today_task}>Today Task</div>
+        <TodayTaskTitle>Today Task</TodayTaskTitle>
         <PlusButtonWrapper>
           <PlusButton onAddTask={handleAddTask} />
         </PlusButtonWrapper>
@@ -116,7 +115,7 @@ const MainTodo = () => {
             onDeleteTask={handleDeleteTask}
             openTaskModal={openTaskModal}
           />
-          <Waiting>Upcoming Tasks</Waiting>
+          <WaitingTitle>Upcoming Tasks</WaitingTitle>
           <WaitingPage
             tasks={waitingTasks}
             checkedStates={checkedStates}
@@ -173,7 +172,7 @@ const Container = styled.div`
   position: absolute;
   top: 90px;
   left: 50%;
-  transform: t ranslateX(-50%);
+  transform: translateX(-50%);
   border-radius: 10px;
   border: 1px solid ${theme.color.gray20};
   background-color: white;
@@ -184,6 +183,11 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 52px;
+`;
+
+const TodayTaskTitle = styled.div`
+  font-size: 28px;
+  font-family: 'Pretendard', sans-serif;
 `;
 
 const PlusButtonWrapper = styled.div`
@@ -225,7 +229,7 @@ const TaskCount = styled.span`
   border-radius: 10px;
 `;
 
-const Waiting = styled.div`
+const WaitingTitle = styled.div`
   margin-left: 50px;
   color: ${theme.color.gray60};
 `;
