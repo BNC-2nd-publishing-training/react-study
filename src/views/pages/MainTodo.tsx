@@ -169,20 +169,18 @@ const MainTodo = () => {
 const Container = styled.div`
   width: 517px;
   height: 840px;
-  position: absolute;
-  top: 90px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   border-radius: 10px;
   border: 1px solid ${theme.color.gray20};
   background-color: white;
+  padding: 20px; 
 `;
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 52px;
+  padding: 30px; 
 `;
 
 const TodayTaskTitle = styled.div`
@@ -201,9 +199,8 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   font-size: 16px;
   align-items: center;
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-top: -40px;
+  margin: -30px 10px 10px; 
+
 `;
 
 const MenuButton = styled.button<{ active: boolean }>`
@@ -230,7 +227,7 @@ const TaskCount = styled.span`
 `;
 
 const WaitingTitle = styled.div`
-  margin-left: 50px;
+  margin-left: 40px;
   color: ${theme.color.gray60};
 `;
 
