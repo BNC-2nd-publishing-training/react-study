@@ -1,26 +1,26 @@
 import { Task } from "@/utils/interfaces/Task";
 
-export const CreateModalSetter = (
+const CreateModalSetter = (
   isCreateModalOpen: boolean,
   setIsCreateModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   setIsCreateModalOpen(!isCreateModalOpen);
 };
 
-export const EditModalSetter = (
+const EditModalSetter = (
   isEditModalOpen: boolean,
   setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   setIsEditModalOpen(!isEditModalOpen);
 };
 
-export const openCreateModal = (
+const openCreateModal = (
   setIsCreateModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   setIsCreateModalOpen(true);
 };
 
-export const closeCreateModal = (
+const closeCreateModal = (
   task: Task,
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>,
   nextId: number,
@@ -37,7 +37,7 @@ export const closeCreateModal = (
   CreateModalSetter(true, setIsCreateModalOpen);
 };
 
-export const openEditModal = (
+const openEditModal = (
   task: Task,
   setSelectedTask: React.Dispatch<React.SetStateAction<Task | null>>,
   setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -46,7 +46,7 @@ export const openEditModal = (
   setIsEditModalOpen(true);
 };
 
-export const closeEditModal = (
+const closeEditModal = (
   updatedTask: Task,
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>,
   setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
@@ -63,4 +63,13 @@ export const closeEditModal = (
   }
   EditModalSetter(true, setIsEditModalOpen);
   setSelectedTask(null);
+};
+
+export {
+  CreateModalSetter,
+  EditModalSetter,
+  openCreateModal,
+  closeCreateModal,
+  openEditModal,
+  closeEditModal,
 };
