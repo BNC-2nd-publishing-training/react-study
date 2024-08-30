@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "@emotion/styled";
 import Badge from "@/components/TagUI/Badge";
 import { theme } from "@/styles/theme";
