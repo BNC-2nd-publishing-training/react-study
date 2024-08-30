@@ -24,6 +24,7 @@ const Container = styled.div`
 const DeleteBtn = styled.button`
     width: 230px;
     height: 50px;
+    border: none;
     border-radius: 5px;
     background-color: ${theme.color.red30};
     color: white;

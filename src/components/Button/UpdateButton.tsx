@@ -24,6 +24,7 @@ const Container = styled.div`
 const UpdateBtn = styled.button`
     width: 230px;
     height: 50px;
+    border: none;
     border-radius: 5px;
     background-color: ${theme.color.primary20};
     color: white;
