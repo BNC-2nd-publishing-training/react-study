@@ -21,14 +21,8 @@ const StyledFixedButton = styled.button`
   border-radius: 12px 0 12px 12px;
   margin: 11px 12px;
   background-color: ${theme.color.primary20};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 8%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  border: none;
-  outline: none;
+  top: 5%;
+  left: 58%;
 
   svg {
     color: white;

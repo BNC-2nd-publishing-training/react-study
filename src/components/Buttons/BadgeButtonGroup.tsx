@@ -78,7 +78,7 @@ const StyledButton = styled.button<{ isSelected: boolean; buttonType: string }>`
   &::after {
     content: "";
     position: absolute;
-    left: ${({ buttonType }) => (buttonType === "All" ? "-47px" : "-20px")};
+    left: ${({ buttonType }) => (buttonType === "All" ? "-49px" : "-20px")};
     bottom: -20px;
     width: ${({ buttonType }) =>
       buttonType === "All" ? "calc(100% + 60px)" : "calc(100% + 40px)"};
