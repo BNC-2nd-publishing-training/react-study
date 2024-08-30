@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
-import { useTaskContext } from '@/components/Modal/CreateTask';
+import { useTaskContext } from '@/components/Modal/TaskProvider';
 import WaitingTask from '@/components/Task/WaitingTask';
-import CorrectionTask from "@/components/Modal/TaskCorrectionModal";
+import CorrectionTask from "@/components/Modal/CorrectionTaskModal";
 
 interface Task {
     id: number;
@@ -87,6 +87,7 @@ const Tab = () => {
                     </li>
                 ))}
             </TypeTab>
+
             <Desc>
                 {filteredTasks().map((task) => (
                     <TaskItem key={task.id} onClick={() => openModal(task)}>
@@ -161,8 +162,16 @@ const TypeTab = styled.ul`
 
 const Desc = styled.div`
     margin-top: -120%;
-    margin-left: 13%;
+    margin-left: -7%;
     font-size: 20px;
+
+    width: 500px;
+    height: 285px;
+    overflow-y: auto;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 const TaskCounter = styled.div`
@@ -182,13 +191,14 @@ const TaskItem = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    padding-left: 15%;
     cursor: pointer;
 `;
 
 const Checkbox = styled.input`
     width: 16px;
     height: 16px;
-    margin-left: -10px;
+    margin-left: 15px;
     margin-right: 10px;
 
     accent-color: ${theme.color.primary20};
@@ -207,7 +217,7 @@ const TaskType = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10%;
+    // margin-right: 20%;
     border-radius: 20px;
     font-size: 12px;
 

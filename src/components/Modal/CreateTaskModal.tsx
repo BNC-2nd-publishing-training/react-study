@@ -3,9 +3,9 @@ import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-import AddTask from "@/components/Button/addTaskButton";
-import SelectBox from "@/components/Button/SelectButton"; // Updated import
-import { useTaskContext } from '@/components/Modal/CreateTask';
+import AddTask from "@/components/Button/TaskAddButton";
+import SelectBox from "@/components/Button/TypeSelectButton"; // Updated import
+import { useTaskContext } from '@/components/Modal/TaskProvider';
 
 function CreateTask() {
     const [isOpenModal, setOpenModal] = useState<boolean>(false);

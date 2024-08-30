@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+// Waiting 타입 Task 컴포넌트
+
+import React, { useEffect, useState } from 'react';
 import styled from "@emotion/styled";
 import { theme } from '@/styles/theme';
-import CorrectionTask from "@/components/Modal/TaskCorrectionModal";
-import React from 'react';
+
+import CorrectionTask from "@/components/Modal/CorrectionTaskModal";
 
 interface Task {
     id: number;
@@ -59,19 +61,25 @@ function WaitingTask({ tasks, onUpdate, onDelete }: WaitingTaskProps) {
 
     return (
         <Container>
-            <WaitingTitle>Waiting Tasks</WaitingTitle>
+
+            <Title>Upcoming Tasks</Title>
+
             <Desc>
                 {waitingTasks.map((task) => (
                     <TaskItem key={task.id} onClick={() => openModal(task)}>
+
                         <Checkbox
                             type="checkbox"
                             checked={checkedTasks.has(task.id)}
                             onChange={() => handleCheckboxChange(task.id)}
                         />
+
                         <TaskContent>{task.title}</TaskContent>
+
                         <TaskType className="waiting">
                             {task.type}
                         </TaskType>
+
                     </TaskItem>
                 ))}
             </Desc>
@@ -88,8 +96,13 @@ function WaitingTask({ tasks, onUpdate, onDelete }: WaitingTaskProps) {
     );
 }
 
-const WaitingTitle = styled.div`
-    margin-top: 8%;
+const Container = styled.div`
+    position: relative;
+    padding-top: -10%; 
+`;
+
+const Title = styled.div`
+    margin-top: 5%;
     margin-left: 10%;  
     font-size: 23px;
     color: gray;
@@ -97,21 +110,24 @@ const WaitingTitle = styled.div`
 
 const Desc = styled.div`
     margin-top: 5%; 
-    margin-left: 13%;
+    margin-left: 10%;
     font-size: 20px;
+
+    width: 455px;
+    height: 240px;
+    overflow-y: auto;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 const Checkbox = styled.input`
     width: 16px;
     height: 16px;
-    margin-left: -10px;
+    margin-left: 2px;
     margin-right: 10px;
     accent-color: ${theme.color.primary20};
-`;
-
-const Container = styled.div`
-    position: relative;
-    padding-top: 8%; 
 `;
 
 const TaskItem = styled.div`

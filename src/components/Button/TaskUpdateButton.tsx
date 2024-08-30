@@ -1,11 +1,11 @@
+// Task 수정 버튼
+
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 
-interface UpdateButtonProps {
-    onClick?: () => void;
-}
+import { UpdateButtonProps } from "@/utils/interfaces/UpdateButtonProps";
 
-const UpdateButton: React.FC<UpdateButtonProps> = ({ onClick }) => {
+const UpdateButton = ({ onClick }: UpdateButtonProps) => {
     return (
         <Container>
             <UpdateBtn onClick={onClick}>Task 수정하기</UpdateBtn>
@@ -14,11 +14,11 @@ const UpdateButton: React.FC<UpdateButtonProps> = ({ onClick }) => {
 };
 
 const Container = styled.div`
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
 `;
 
 const UpdateBtn = styled.button`

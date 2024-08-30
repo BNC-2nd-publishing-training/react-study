@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 
-interface DeleteButtonProps {
-    onClick: () => void; // Add this prop
-}
+import { DeleteButtonProps } from "@/utils/interfaces/DeleteButtonProps";
 
-const DeleteButton: React.FC<DeleteButtonProps> = ({ onClick }) => {
+const DeleteButton = ({ onClick }: DeleteButtonProps) => {
     return (
         <Container>
             <DeleteBtn onClick={onClick}>Task 삭제하기</DeleteBtn>
@@ -14,11 +12,11 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ onClick }) => {
 };
 
 const Container = styled.div`
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
 `;
 
 const DeleteBtn = styled.button`
