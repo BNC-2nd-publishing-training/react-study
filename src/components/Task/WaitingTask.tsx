@@ -68,7 +68,6 @@ function WaitingTask({ tasks, onUpdate, onDelete }: WaitingTaskProps) {
                             checked={checkedTasks.has(task.id)}
                             onChange={() => handleCheckboxChange(task.id)}
                         />
-
                         <TaskContent>{task.title}</TaskContent>
                         <TaskType className="waiting">
                             {task.type}
@@ -107,7 +106,7 @@ const Checkbox = styled.input`
     height: 16px;
     margin-left: -10px;
     margin-right: 10px;
-    accent-color: red;
+    accent-color: ${theme.color.primary20};
 `;
 
 const Container = styled.div`

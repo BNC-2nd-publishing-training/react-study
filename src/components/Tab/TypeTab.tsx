@@ -190,6 +190,8 @@ const Checkbox = styled.input`
     height: 16px;
     margin-left: -10px;
     margin-right: 10px;
+
+    accent-color: ${theme.color.primary20};
 `;
 
 const TaskContent = styled.div`
