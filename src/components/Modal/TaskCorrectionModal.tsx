@@ -43,14 +43,14 @@ const CorrectionTask: React.FC<CorrectionTaskProps> = ({ task, onClose, onUpdate
         <Container>
             <Back onClick={onClose} />
             <Modal>
-                <ModalTitle>작업 수정</ModalTitle>
+                <ModalTitle>Create Task</ModalTitle>
                 <CloseButton onClick={onClose}>
                     <i className="bi bi-x-lg CloseButton"></i>
                 </CloseButton>
 
                 <TaskContent>
-                    <input
-                        type="text"
+                    <textarea
+                        className="TaskContentInput"
                         placeholder="작업 내용을 입력하세요"
                         value={editedTitle}
                         onChange={(e) => setEditedTitle(e.target.value)}
@@ -125,16 +125,20 @@ const TaskContent = styled.div`
     margin-top: 40px;
     box-sizing: border-box;
 
-    input {
+    .TaskContentInput {
         width: 100%;
         height: 100%;
-        padding: 8px;
+        padding: 16px; /* 원하는 패딩 값으로 조정 */
         border: 2px solid ${theme.color.gray30};
         font-size: 16px;
-    }
-
-    input::placeholder {
-        text-align: top;
+        line-height: 1.5; /* 줄 높이 조정 */
+        resize: none;
+        box-sizing: border-box; /* 패딩이 요소의 크기에 포함되도록 설정 */
+        
+        /* 포커스 스타일 제거 */
+        outline: none; /* 기본 아웃라인 제거 */
+        border-color: ${theme.color.gray30}; /* 포커스 시 변하지 않도록 설정 */
+        box-shadow: none; /* 포커스 시 그림자 제거 */
     }
 `;
 
@@ -142,10 +146,10 @@ const Buttons = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 30px 66px;
+    padding: 30px 61px;
     box-sizing: border-box;
     margin-top: 33%;
-    margin-left: 1%;
+    margin-left: 0%;
     z-index: 10000;
 `;
 

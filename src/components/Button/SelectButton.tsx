@@ -45,25 +45,29 @@ const SelectBoxContainer = styled.div`
     border: 2px solid ${theme.color.gray30};
     margin-top: 20px;
     padding: 15px;
+
+    border-radius: 5px 5px 0 0;
 `;
 
 const SelectBoxLabel = styled.div`
     font-size: ${theme.font.textMedium.fontSize};
-    color: black;
+    color: gray;
     cursor: pointer;
 `;
 
 const OptionsList = styled.ul`
     position: absolute;
-    width: 100%;
+    width: 480px;
     top: 100%;
-    left: 0;
+    right: -0.5%;
     border: 2px solid ${theme.color.gray30};
     list-style: none;
     padding: 0;
     margin: 0;
     background-color: white;
     cursor: pointer;
+
+    border-radius: 0 0 5px 5px;
 `;
 
 const OptionItem = styled.li`

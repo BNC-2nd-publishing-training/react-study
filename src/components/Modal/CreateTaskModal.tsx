@@ -46,8 +46,8 @@ function CreateTask() {
                             <i className="bi bi-x-lg CloseButton"></i>
                         </CloseButton>
                         <TaskContent>
-                            <input
-                                type="text"
+                            <textarea
+                                className="TaskContentInput"
                                 placeholder="Task 제목을 입력해주세요"
                                 value={taskInput}
                                 onChange={(e) => setTaskInput(e.target.value)}
@@ -144,14 +144,20 @@ const TaskContent = styled.div`
     margin-top: 40px;
     box-sizing: border-box;
 
-    input {
+    .TaskContentInput {
         width: 100%;
         height: 100%;
+        padding: 16px; /* 원하는 패딩 값으로 조정 */
         border: 2px solid ${theme.color.gray30};
-    }
-
-    input::placeholder {
-        text-align: top;
+        font-size: 16px;
+        line-height: 1.5; /* 줄 높이 조정 */
+        resize: none;
+        box-sizing: border-box; /* 패딩이 요소의 크기에 포함되도록 설정 */
+        
+        /* 포커스 스타일 제거 */
+        outline: none; /* 기본 아웃라인 제거 */
+        border-color: ${theme.color.gray30}; /* 포커스 시 변하지 않도록 설정 */
+        box-shadow: none; /* 포커스 시 그림자 제거 */
     }
 `;
 
@@ -166,6 +172,7 @@ const AddButton = styled.div`
 
     button {
         height: 100%;
+        border: none;
         color: white;
     }
 `;
