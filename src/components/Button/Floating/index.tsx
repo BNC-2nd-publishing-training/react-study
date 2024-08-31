@@ -2,9 +2,13 @@ import RoundAdd from "@/assets/icons/RoundAdd";
 import { theme } from "@/styles/theme";
 import styled from "@emotion/styled";
 
-const FloatingButton = () => {
+interface FloatingButtonProps {
+  onClick?: () => void;
+}
+
+const FloatingButton = ({ onClick }: FloatingButtonProps) => {
   return (
-    <FloatingButtonContainer>
+    <FloatingButtonContainer onClick={onClick}>
       <RoundAdd />
     </FloatingButtonContainer>
   );
