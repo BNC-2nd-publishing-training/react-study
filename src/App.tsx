@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import FloatingButton from "./components/Button/Floating";
@@ -6,12 +6,12 @@ import Nav from "./components/Nav";
 import CheckboxList from "./components/Checkbox/CheckboxList";
 import Modal from "./components/Modal";
 
-type dummyType = {
+type DummyType = {
   status: "Approved" | "In progress" | "In review" | "Waiting";
   label: string;
 };
 
-const dummyList: dummyType[] = [
+const initialList: DummyType[] = [
   { status: "Approved", label: "간지나게 숨쉬기" },
   { status: "Approved", label: "간지나게 숨쉬기" },
   { status: "In review", label: "간지나게 숨쉬기" },
@@ -22,6 +22,7 @@ const dummyList: dummyType[] = [
 const App = () => {
   const [activeStatus, setActiveStatus] = useState<string>("All");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [dummyList, setDummyList] = useState<DummyType[]>(initialList);
 
   const filteredList =
     activeStatus === "All"
@@ -47,12 +48,17 @@ const App = () => {
     setIsModalOpen(false);
   };
 
+  const addTask = (label: string, status: string) => {
+    const newTask: DummyType = { label, status: status as DummyType["status"] };
+    setDummyList((prevList) => [...prevList, newTask]);
+  };
+
   return (
     <Container>
       <TodolistContainer>
         <Header>
           <TodayTaskTitle>Today Task</TodayTaskTitle>
-          <FloatingButton onClick={handleFloatingButtonClick} />{" "}
+          <FloatingButton onClick={handleFloatingButtonClick} />
         </Header>
         <Nav badgeValues={badgeValues} onNavClick={handleNavClick} />
         <CheckboxListContainer>
@@ -74,7 +80,7 @@ const App = () => {
               />
             ))}
         </UpcomingTasksContainer>
-        {isModalOpen && <Modal onClose={closeModal} />}{" "}
+        {isModalOpen && <Modal onClose={closeModal} onAddTask={addTask} />}
       </TodolistContainer>
     </Container>
   );

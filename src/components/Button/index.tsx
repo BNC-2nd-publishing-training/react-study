@@ -10,6 +10,7 @@ const Button = ({ width = "480px", type, ...props }: ButtonProps) => {
 };
 
 const ButtonContainer = styled.button<{ width?: string }>`
+  margin-top: 200px;
   width: ${({ width }) => width};
   height: 50px;
   border-radius: 4px;

@@ -1,29 +1,48 @@
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { theme } from "@/styles/theme";
 import Textarea from "../Textarea";
 import Dropdown from "../Dropdown";
+import Button from "../Button";
 
 interface ModalProps {
   onClose: () => void;
+  onAddTask: (label: string, status: string) => void;
 }
 
-const Modal = ({ onClose }: ModalProps) => {
+const Modal = ({ onClose, onAddTask }: ModalProps) => {
+  const [taskLabel, setTaskLabel] = useState("");
+  const [status, setStatus] = useState("In review");
+
   const handleDropdownChange = (selectedOption: string) => {
-    console.log("Selected option:", selectedOption);
+    setStatus(selectedOption);
+  };
+
+  const handleAddTask = () => {
+    if (taskLabel.trim()) {
+      onAddTask(taskLabel, status);
+      setTaskLabel("");
+      onClose();
+    }
   };
 
   return (
     <Backdrop>
       <ModalContainer>
-        <CloseButton onClick={onClose}>X</CloseButton> {/* 모달 닫기 버튼 */}
+        <CloseButton onClick={onClose}>X</CloseButton>
         <ModalContent>
           <ModalTitle>Create Task</ModalTitle>
-          <Textarea placeholder="Task 제목을 입력해주세요" />
+          <Textarea
+            placeholder="Task 제목을 입력해주세요"
+            value={taskLabel}
+            onChange={(e) => setTaskLabel(e.target.value)}
+          />
           <Dropdown
             placeholder="Task의 상태를 선택해주세요"
             options={["In review", "In progress", "Approved", "Waiting"]}
             onChange={handleDropdownChange}
           />
+          <Button onClick={handleAddTask}>Task 추가하기</Button>
         </ModalContent>
       </ModalContainer>
     </Backdrop>
