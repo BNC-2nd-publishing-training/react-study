@@ -11,22 +11,18 @@ type DummyType = {
   label: string;
 };
 
-const initialList: DummyType[] = [
-  { status: "Approved", label: "간지나게 숨쉬기" },
-  { status: "Approved", label: "간지나게 숨쉬기" },
-  { status: "In review", label: "간지나게 숨쉬기" },
-  { status: "In progress", label: "간지나게 숨쉬기" },
-  { status: "Waiting", label: "간지나게 숨쉬기" },
-];
-
 const App = () => {
   const [activeStatus, setActiveStatus] = useState<string>("All");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [dummyList, setDummyList] = useState<DummyType[]>(initialList);
+  const [modalMode, setModalMode] = useState<"floatingButton" | "checkboxList">(
+    "floatingButton"
+  );
+  const [selectedTask, setSelectedTask] = useState<DummyType | null>(null);
+  const [dummyList, setDummyList] = useState<DummyType[]>([]); // 초기 상태를 빈 배열로 설정
 
   const filteredList =
     activeStatus === "All"
-      ? dummyList.filter((item) => item.status !== "Waiting")
+      ? dummyList
       : dummyList.filter((item) => item.status === activeStatus);
 
   const badgeValues = [
@@ -41,6 +37,13 @@ const App = () => {
   };
 
   const handleFloatingButtonClick = () => {
+    setModalMode("floatingButton");
+    setIsModalOpen(true);
+  };
+
+  const handleCheckboxListClick = (task: DummyType) => {
+    setSelectedTask(task);
+    setModalMode("checkboxList");
     setIsModalOpen(true);
   };
 
@@ -49,8 +52,32 @@ const App = () => {
   };
 
   const addTask = (label: string, status: string) => {
-    const newTask: DummyType = { label, status: status as DummyType["status"] };
-    setDummyList((prevList) => [...prevList, newTask]);
+    if (label.trim()) {
+      setDummyList((prevList) => [
+        ...prevList,
+        { label, status: status as DummyType["status"] },
+      ]);
+    }
+  };
+
+  const editTask = (label: string, status: string) => {
+    if (selectedTask) {
+      setDummyList((prevList) =>
+        prevList.map((task) =>
+          task.label === selectedTask.label
+            ? { label, status: status as DummyType["status"] }
+            : task
+        )
+      );
+    }
+  };
+
+  const deleteTask = () => {
+    if (selectedTask) {
+      setDummyList((prevList) =>
+        prevList.filter((task) => task.label !== selectedTask.label)
+      );
+    }
   };
 
   return (
@@ -63,7 +90,12 @@ const App = () => {
         <Nav badgeValues={badgeValues} onNavClick={handleNavClick} />
         <CheckboxListContainer>
           {filteredList.map((it) => (
-            <CheckboxList key={it.label} status={it.status} label={it.label} />
+            <CheckboxList
+              key={it.label}
+              status={it.status}
+              label={it.label}
+              onClick={() => handleCheckboxListClick(it)}
+            />
           ))}
         </CheckboxListContainer>
         <UpcomingTaskTitleContainer>
@@ -77,10 +109,20 @@ const App = () => {
                 key={it.label}
                 status={it.status}
                 label={it.label}
+                onClick={() => handleCheckboxListClick(it)}
               />
             ))}
         </UpcomingTasksContainer>
-        {isModalOpen && <Modal onClose={closeModal} onAddTask={addTask} />}
+        {isModalOpen && (
+          <Modal
+            onClose={closeModal}
+            onAddTask={addTask}
+            onEditTask={editTask}
+            onDeleteTask={deleteTask}
+            mode={modalMode}
+            selectedTask={selectedTask}
+          />
+        )}
       </TodolistContainer>
     </Container>
   );

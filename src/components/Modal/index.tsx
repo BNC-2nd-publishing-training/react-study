@@ -8,11 +8,22 @@ import Button from "../Button";
 interface ModalProps {
   onClose: () => void;
   onAddTask: (label: string, status: string) => void;
+  onEditTask: (label: string, status: string) => void;
+  onDeleteTask: () => void;
+  mode: "floatingButton" | "checkboxList";
+  selectedTask?: { label: string; status: string };
 }
 
-const Modal = ({ onClose, onAddTask }: ModalProps) => {
-  const [taskLabel, setTaskLabel] = useState("");
-  const [status, setStatus] = useState("In review");
+const Modal = ({
+  onClose,
+  onAddTask,
+  onEditTask,
+  onDeleteTask,
+  mode,
+  selectedTask,
+}: ModalProps) => {
+  const [taskLabel, setTaskLabel] = useState(selectedTask?.label || "");
+  const [status, setStatus] = useState(selectedTask?.status || "In review");
 
   const handleDropdownChange = (selectedOption: string) => {
     setStatus(selectedOption);
@@ -26,12 +37,29 @@ const Modal = ({ onClose, onAddTask }: ModalProps) => {
     }
   };
 
+  const handleEditTask = () => {
+    if (taskLabel.trim() && selectedTask) {
+      onEditTask(taskLabel, status);
+      setTaskLabel("");
+      onClose();
+    }
+  };
+
+  const handleDeleteTask = () => {
+    if (selectedTask) {
+      onDeleteTask();
+      onClose();
+    }
+  };
+
   return (
     <Backdrop>
       <ModalContainer>
         <CloseButton onClick={onClose}>X</CloseButton>
         <ModalContent>
-          <ModalTitle>Create Task</ModalTitle>
+          <ModalTitle>
+            {mode === "floatingButton" ? "Create Task" : "Task Details"}
+          </ModalTitle>
           <Textarea
             placeholder="Task 제목을 입력해주세요"
             value={taskLabel}
@@ -42,7 +70,24 @@ const Modal = ({ onClose, onAddTask }: ModalProps) => {
             options={["In review", "In progress", "Approved", "Waiting"]}
             onChange={handleDropdownChange}
           />
-          <Button onClick={handleAddTask}>Task 추가하기</Button>
+          <ButtonContainer>
+            {mode === "floatingButton" ? (
+              <Button onClick={handleAddTask}>Task 추가하기</Button>
+            ) : (
+              <>
+                <Button
+                  width="230px"
+                  backgroundColor={theme.color.red30}
+                  onClick={handleDeleteTask}
+                >
+                  삭제
+                </Button>
+                <Button width="230px" onClick={handleEditTask}>
+                  수정
+                </Button>
+              </>
+            )}
+          </ButtonContainer>
         </ModalContent>
       </ModalContainer>
     </Backdrop>
@@ -95,6 +140,12 @@ const ModalContent = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 60px;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 200px;
 `;
 
 export default Modal;
