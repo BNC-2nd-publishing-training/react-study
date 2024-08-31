@@ -64,6 +64,8 @@ const DropdownWrapper = styled.div<{ width?: string; height?: string }>`
   height: ${({ height }) => height};
   font-size: ${theme.font.textMedium.fontSize};
   line-height: ${theme.font.textMedium.lineHeight};
+  font-weight: ${theme.font.textMedium.fontWeight};
+  margin-top: 30px;
 `;
 
 const DropdownContainer = styled.div<{
@@ -92,6 +94,9 @@ const SelectedOption = styled.div<{ isSelected: boolean }>`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: ${theme.font.textMedium.fontSize};
+  line-height: ${theme.font.textMedium.lineHeight};
+  font-weight: ${theme.font.textMedium.fontWeight};
 `;
 
 const OptionsContainer = styled.div`
@@ -103,7 +108,6 @@ const OptionsContainer = styled.div`
   border-top: none;
   border-radius: 0 0 6px 6px;
   background-color: ${theme.color.white};
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   z-index: 10;
 `;
@@ -111,6 +115,9 @@ const OptionsContainer = styled.div`
 const Option = styled.div<{ isLast: boolean }>`
   padding: 8px 14px;
   color: ${theme.color.black};
+  font-size: ${theme.font.textMedium.fontSize};
+  line-height: ${theme.font.textMedium.lineHeight};
+  font-weight: ${theme.font.textMedium.fontWeight};
   cursor: pointer;
   &:hover {
     background-color: ${theme.color.gray10};
