@@ -194,7 +194,7 @@ main {
     font-weight: 600;
     src: url("../assets/fonts/Pretendard-SemiBold.woff2") format("woff2"),
         url("../assets/fonts/Pretendard-SemiBold.woff") format("woff");
-    font-dispay: swap;
+    font-display: swap;
 }
 @font-face {
     font-family: "Pretendard";
