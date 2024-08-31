@@ -4,6 +4,7 @@ import { theme } from "@/styles/theme";
 import FloatingButton from "./components/Button/Floating";
 import Nav from "./components/Nav";
 import CheckboxList from "./components/Checkbox/CheckboxList";
+import Modal from "./components/Modal";
 
 type dummyType = {
   status: "Approved" | "In progress" | "In review" | "Waiting";
@@ -20,14 +21,13 @@ const dummyList: dummyType[] = [
 
 const App = () => {
   const [activeStatus, setActiveStatus] = useState<string>("All");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  // 상태별 필터링된 리스트
   const filteredList =
     activeStatus === "All"
       ? dummyList.filter((item) => item.status !== "Waiting")
       : dummyList.filter((item) => item.status === activeStatus);
 
-  // 상태별로 Nav에 표시할 배지 값
   const badgeValues = [
     dummyList.length,
     dummyList.filter((item) => item.status === "In review").length,
@@ -35,9 +35,16 @@ const App = () => {
     dummyList.filter((item) => item.status === "Approved").length,
   ];
 
-  // 상태 변경 핸들러
   const handleNavClick = (status: string) => {
     setActiveStatus(status);
+  };
+
+  const handleFloatingButtonClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -45,7 +52,7 @@ const App = () => {
       <TodolistContainer>
         <Header>
           <TodayTaskTitle>Today Task</TodayTaskTitle>
-          <FloatingButton />
+          <FloatingButton onClick={handleFloatingButtonClick} />{" "}
         </Header>
         <Nav badgeValues={badgeValues} onNavClick={handleNavClick} />
         <CheckboxListContainer>
@@ -67,6 +74,7 @@ const App = () => {
               />
             ))}
         </UpcomingTasksContainer>
+        {isModalOpen && <Modal onClose={closeModal} />}{" "}
       </TodolistContainer>
     </Container>
   );
