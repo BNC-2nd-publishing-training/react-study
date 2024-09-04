@@ -2,9 +2,9 @@
 
 html,
 body {
-    width: 100%;
+    width: fit-content;
     min-width: 1600px;
-    height: 100%;
+    height: fit-content;
     margin: 0;
     padding: 0;
     font-size: 18px;
@@ -15,6 +15,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #fff;
+    overflow: hidden;
 }
 div,
 dl,

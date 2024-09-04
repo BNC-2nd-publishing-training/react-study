@@ -7,7 +7,7 @@ export interface TagOption {
 
 // Function to get tag options from TodoTag type
 export const getTagOptions = (): TagOption[] => {
-    const tags: TodoTag[] = ['Approved', 'In Progress', 'In Review', 'Waiting'];
+    const tags: TodoTag[] = ['Approved', 'In Progress', 'In Review', 'Wating'];
     return tags.map(tag => ({
         value: tag,
         label: tag

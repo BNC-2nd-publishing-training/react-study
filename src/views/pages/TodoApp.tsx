@@ -56,13 +56,19 @@ const Container = styled.div`
 `;
 
 const TodoListBox = styled.div`
-    width: 30vw;
-    height: 80vh;
+    width: 35vw;
+    max-height: 80vh;
+    aspect-ratio: 1 / 3;
     border-radius: 10px;
     background-color: ${theme.color.white};
     overflow: auto;
+
     &::-webkit-scrollbar {
         display: none;
+    }
+
+    @media (max-width: 700px) {
+        width: 80vw;
     }
 `;
 

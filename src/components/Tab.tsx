@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
-import Reset_Center from "@/styles/reset-center"
+import Reset_Center from "@/styles/reset-center";
 import { theme } from "@/styles/theme";
-import BadgeTitleProps from "@/utils/interfaces/BadgeTitleProps"
-import TabListProps from "@/utils/interfaces/TabListProps"
+import BadgeTitleProps from "@/utils/interfaces/BadgeTitleProps";
+import TabListProps from "@/utils/interfaces/TabListProps";
 
 const TabList = ({ onTabSelect, todoCounts }: TabListProps) => {
     const [selectedTab, setSelectedTab] = useState('All');
@@ -22,7 +22,7 @@ const TabList = ({ onTabSelect, todoCounts }: TabListProps) => {
                     onClick={() => handleTabClick(menu)}
                     active={selectedTab === menu}
                 >
-                    <div className="div">
+                    <div>
                         {index === 0 && <span>{todoCounts}</span>}
                         <p>{menu}</p>
                     </div>
@@ -46,8 +46,8 @@ const BadgeTitle = styled(Reset_Center.withComponent('button'))<BadgeTitleProps>
     font-size: ${theme.font.textMedium.fontSize};
     font-weight: ${theme.font.textMedium.fontWeight};
     cursor: pointer;
-    
-    .div {
+
+    div {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -55,7 +55,7 @@ const BadgeTitle = styled(Reset_Center.withComponent('button'))<BadgeTitleProps>
         margin: 2vw;
         color: ${({ active }) => active ? theme.color.black : theme.color.gray50};
 
-        span{
+        span {
             padding: 0 1vh;
             border-radius: 10px;
             background-color: ${theme.color.primary10};

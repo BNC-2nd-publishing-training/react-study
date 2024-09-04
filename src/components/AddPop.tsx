@@ -5,11 +5,11 @@ import EditBtn from '@/components/EditBtn';
 import { PopupProps } from '@/utils/interfaces/PopupType';
 import { getTagOptions, TagOption } from '@/utils/functions/tagUtils';
 
-const AddPop: React.FC<PopupProps> = ({ onClose, setTodos }) => {
+const AddPop = ({ onClose, setTodos }: PopupProps) => {
     const [selectedTag, setSelectedTag] = useState<string>('Task의 상태를 선택해주세요');
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
     const [taskTitle, setTaskTitle] = useState<string>('');
-    
+
     const tagOptions: TagOption[] = getTagOptions();
 
     const handleTagClick = (value: string) => {
@@ -18,11 +18,21 @@ const AddPop: React.FC<PopupProps> = ({ onClose, setTodos }) => {
     };
 
     const handleAddTask = () => {
+        if (taskTitle.trim() === '') {
+            alert('Task 제목을 입력해주세요.');
+            return;
+        }
+
+        if (selectedTag === 'Task의 상태를 선택해주세요') {
+            alert('Task의 상태를 선택해주세요.');
+            return;
+        }
+
         const newTask = {
             check: false,
             text: taskTitle,
             tag: selectedTag,
-            id: Date.now()
+            id: Date.now(),
         };
 
         setTodos(prevTodos => [...prevTodos, newTask]);

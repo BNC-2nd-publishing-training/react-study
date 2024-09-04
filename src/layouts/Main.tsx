@@ -32,7 +32,7 @@ const Main: React.FC<MainProps> = ({ todos, setTodos, onTaskSelect }) => {
                     todos={todos}
                     selectedTab={selectedTab}
                     onToggleTodo={toggleTodoCheck}
-                    onTaskSelect={onTaskSelect} // Pass selected task to parent
+                    onTaskSelect={onTaskSelect} 
                 />
             </ScrollBox>
         </MainStyle>
